@@ -1,0 +1,17 @@
+/* Decline to proceed with operation */
+"cancel" = "Cancel";
+
+/* Option to select photo from library */
+"chooseFromLibrary" = "Choose from library";
+
+/* Option to select photo from photo roll */
+"chooseFromPhotoRoll" = "Choose from photo roll";
+
+/* There are no sources available to select a photo */
+"noSources" = "There are no sources available to select a photo";
+
+/* Option to take photo using camera */
+"takePhoto" = "Take photo";
+
+/* Option to take video using camera */
+"takeVideo" = "Take video";

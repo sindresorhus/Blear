@@ -1,0 +1,17 @@
+/* Decline to proceed with operation */
+"cancel" = "Avbryt";
+
+/* Option to select photo from library */
+"chooseFromLibrary" = "Välj befintlig";
+
+/* Option to select photo from photo roll */
+"chooseFromPhotoRoll" = "Ta bild eller video";
+
+/* There are no sources available to select a photo */
+"noSources" = "Det finns inga tillgängliga källor för att välja ett foto";
+
+/* Option to take photo using camera */
+"takePhoto" = "Ta bild";
+
+/* Option to take video using camera */
+"takeVideo" = "Ta video";

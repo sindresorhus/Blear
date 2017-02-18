@@ -1,0 +1,17 @@
+/* Decline to proceed with operation */
+"cancel" = "ביטול";
+
+/* Option to select photo from library */
+"chooseFromLibrary" = "בחר מתיקייה";
+
+/* Option to select photo from photo roll */
+"chooseFromPhotoRoll" = "​בחר תמונה ​קיימת";
+
+/* There are no sources available to select a photo */
+"noSources" = "חסרים משאבים כדי לבחור תמונה";
+
+/* Option to take photo using camera */
+"takePhoto" = "צלם תמונה";
+
+/* Option to take video using camera */
+"takeVideo" = "צלם וידאו";

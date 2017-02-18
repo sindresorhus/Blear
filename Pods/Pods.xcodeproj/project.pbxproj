@@ -1,0 +1,1223 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05482882E68FAAC354850E64973B1BA8 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5B93022BC68E6719D81F4EFF2CA2CD /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		05D3AF2D70A38F500E15827A84155ECC /* JGProgressHUDErrorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A871253D855D17D870F6FF1FEDEC107 /* JGProgressHUDErrorIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18E6B9A4746D364F76431754D25CB3F3 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D350FE6A695BC997BACA67AB349FC84A /* fr.lproj */; };
+		1C82AC14FE927856371237B238CECB54 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = CD697C0F8D8066EC926CBB65C571D83D /* en.lproj */; };
+		1EC1C3D37036DCE351D3D621B0A240D7 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 08937F45E8EBE35B269C84F9C0D27522 /* nl.lproj */; };
+		221985B5DDEAE34E65A02CE832EA2988 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */; };
+		2532545CA3B8C53A39E5730D7192BB1E /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CCB13EACA643C83C72111F2E66223D7 /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29B9B704A68D466390484447A206876E /* JGProgressHUDAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 33DAFD5AA77F408449A68540C54C1272 /* JGProgressHUDAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D1451012EF70FA9835F50BFDA7403B5 /* IIDelayedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318FDE721A875E7DE78B69D2F2B61AC /* IIDelayedAction.m */; };
+		2F1660205E89E87E5A5E56F3E4BCC96C /* IIDelayedAction-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A6B779F5F3F1F436DF6AD6EF9CE259 /* IIDelayedAction-dummy.m */; };
+		33351D1A4A410979DEDA0806A23738DE /* NZAssetsLibrary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 827D0C57D6C4B830C82A4DAAA6BBA862 /* NZAssetsLibrary-dummy.m */; };
+		33ECDD6E63DA13C73C85ED4736E78C9E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667934CA72C5211F5E4990F94A5076B1 /* AssetsLibrary.framework */; };
+		37703EBB6B8101598356A0263E451481 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 25E4049B92D00BE83B78D38A37F4A956 /* it.lproj */; };
+		38E214F5610265E2C503CFA8CA606A4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EE7F285C290EBDF1FA15184E5C45C5 /* UIKit.framework */; };
+		3E5D8BBA124EC750629B345DBCBC7120 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = AD6B0DE20E2772885C20E548CE6F21F9 /* pl.lproj */; };
+		42561DB23B918CCC12CDCB4DEEC07FA4 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 934F9E2B481DE639DCD0A0F051C365CB /* da.lproj */; };
+		432872EB14BD603B5C92D2C52B412A13 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 947968BA939354AFB52DC9A32D4F7769 /* ar.lproj */; };
+		458230D31D9A358C45970E90FAF2D529 /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4A8A81F5CA203D5395E695BD4911522E /* zh-Hant.lproj */; };
+		4A412BCDE9FB41C8ACCEEEA8E802B2CA /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DDD12B16F14A8DE357BCAC8F1591B1 /* JGProgressHUDPieIndicatorView.m */; };
+		4ACCF7B339E9034FDBE4B9970FFBCCA4 /* JGProgressHUDIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = A38A95BBCB260C907F61466BC0202B1A /* JGProgressHUDIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CC8511A4FE51A4737F97BCBBA222B65 /* JGProgressHUDRingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7391E6086775E4C4091AD54E0A50469B /* JGProgressHUDRingIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CEA907CA81E50F151719A3154587F58 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1E3FEB1C0119850638244C35C75AB7C4 /* de.lproj */; };
+		4D26972AF6F07DDD067BCF390C5EC7D8 /* JGProgressHUDFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C6FC166A34782AE2719BEB3EFD3987 /* JGProgressHUDFadeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F59026D61156C0A580ABBA2036FAF4E /* FDTake-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA31E2663D1312AF2C036021CBA966 /* FDTake-dummy.m */; };
+		4F8C6C0E20DC66BB0CF2A36A0E8175BE /* NZAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = D15B7CA848C9CA42B63EADC8674B18EE /* NZAssetsLibrary.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		50B202136C0F4ACC5995F4EA8414F84C /* FDTakeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 314134AF2D8019D42B1BA9C7E8F5813E /* FDTakeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5181241B1ABB612075EA45059774706D /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AD91257C60C86BDAF7B9C1A598C782 /* JGProgressHUD.m */; };
+		519F1ACB6AD0BACC76B373A3C6219596 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8633C90A10255AFDFDE59220B8DAE /* JGProgressHUDRingIndicatorView.m */; };
+		55926F3D40C899CE61589BC2C1BADD41 /* IIDelayedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F961DF128CB7ACD898A7C25DB6BFAE /* IIDelayedAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5641A9B981849276BC46534EE5D79886 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C5C360CE771C16107FBE36B0F38FB05C /* ru.lproj */; };
+		58B998D41C494694C5AFEED6F227EDCE /* NZAssetImageFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 17553636AA4250CD76F7977018FC9348 /* NZAssetImageFile.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6479FF0EEEE854455F18E6EFC05C418D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */; };
+		64EDB376BBA17EF96FA163E9757162EE /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 167BCC429CA4744CB690273780F45ECD /* JGProgressHUDAnimation.m */; };
+		668F4A04170275CC2003594BBB8D1332 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD25B1B5321C43C562FC8869422098C /* JGProgressHUDIndicatorView.m */; };
+		6B0FAC1299D612C7019E28B8220664AA /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C6802826664C78F29DFC5B869CE9F80 /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D06226E4854E2E8B95AB0640740E61E /* JGProgressHUDImageIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 10BA141790531D01F5C040E6AED5D1CA /* JGProgressHUDImageIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		71730CD2719AD6F97D67B096A79EFF2A /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3C6DD0691E76EEE36C2A249A23CDC84E /* sv.lproj */; };
+		71807C8F559F2AD181BFDC7A11250B23 /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C64D80A32B658C3147A6D5884FBABB1 /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7DD7BB1BA13B089AF5381C9A048F3587 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */; };
+		7E91BC4A442B0E348F72E9E93FBE0083 /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C3F75A9511FA51F4C706BD4DAE6BC /* JGProgressHUDFadeAnimation.m */; };
+		890A683F3E53F6D7B1E81D6F3619D84D /* JGProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC128CC717DFB2D0D6334123467C726 /* JGProgressHUD-dummy.m */; };
+		8D221D393D771F77A56E01E007AB7E5B /* JGProgressHUDIndeterminateIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 03200C94D2370EFFEE158B2D50BBEC75 /* JGProgressHUDIndeterminateIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91E7BA397D538FC3A3770401C99F0224 /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = A01C3F8A299EFCBF3A32AF47E82FB4FB /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		968E39031530FCB94C33EE190E8928C6 /* Pods-Blear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EC9FE83976D8E0C572C736BBFB432E /* Pods-Blear-dummy.m */; };
+		9A6A0B8066D95AE05B1F7FECE2F74B2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */; };
+		9E0F8870E55AB8BCC60C6CC5E5CD814E /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6361E9227A66E875C50479529E9F6E /* FDTakeController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A6D10B8846A4AF7FB4CDF7D6F3AD847C /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FAEC0F2E5D358EFA009DE5836984F18B /* nb.lproj */; };
+		B4B8137A972039426B43144E5EF9FC56 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 087AD48CC98AE88E6BB6D3A97AE0346B /* JGProgressHUDSuccessIndicatorView.m */; };
+		B80A84C46F43FCED2FBBB9D8D7AB7B6D /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A9F180BBFD43FC65134B819406BF39DF /* el.lproj */; };
+		C50C22D80519D29F50377B2A4A294B02 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F103269D2AAF5043F4E8EDD3E2DA48AD /* QuartzCore.framework */; };
+		CB66CEC7F5704B3FCCA120C65E106D3F /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = EDD832EC51C4C00B6F510D5DA4FD50E4 /* zh-Hans.lproj */; };
+		D109C831288C0CB9C381F0A48F5CC8AD /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DF86E09F8882A6EDA990F313CBD10166 /* es.lproj */; };
+		D22BE0B117BB9974355EB245EB05B32F /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5B91950E070ACE9367E1B2AD11017 /* tr.lproj */; };
+		D3DF17C53FD37C7B06467741B83C8A00 /* NZAssetFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D67E8362F9D7E0BF678430CFEDDFA61 /* NZAssetFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4896F43640969DF6AC0C1E4BFDFEBE5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */; };
+		D9904896A1D6A3418003CD5F409B32C6 /* NZAssetFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5673E7CE533279F127F01A39483818FE /* NZAssetFile.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DAE7265D0053E08E6203453853A82E3A /* JGProgressHUDFadeZoomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C18E22F862ECB23C037A072D26A27C1 /* JGProgressHUDFadeZoomAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA9AD894CD4A20184FA22280949C5242 /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65D5E8EC8ED9EC742E9C9066121FD /* JGProgressHUDErrorIndicatorView.m */; };
+		F0A48167B623EF9C873CA3D38F7C91A1 /* NZAssetsLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = F69014605498275186A596FBD878A3DF /* NZAssetsLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F237C4D99A8A33DC146D6613293FED86 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 21C5A0B13CB0920450FFD636497E9324 /* pt.lproj */; };
+		F3F4BFC7E8C4CADA5097F9C2A5981AA0 /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8274898015863310AF4D597F508698F1 /* he.lproj */; };
+		F6691DC5590B06AC42094239ACE8E3EC /* NZAssetImageFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C393A0C36CD2566B399401AB2ECF0CD8 /* NZAssetImageFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F98386E44ECCB02E521224B917F2B818 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A30465FC5ACDCF086B5F501CF15DFE15 /* JGProgressHUDFadeZoomAnimation.m */; };
+		FABB4FF076D17A67A35458901DF2EA6A /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C655EF100CA185D9BBCB94032A5F22 /* JGProgressHUDImageIndicatorView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1B294AA2A59FA72AE4576A8C614E1014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69811E51DCB9DD00428DB41051A6FA00;
+			remoteInfo = "FDTake-FDTakeResources";
+		};
+		1DF3FFEA66CD74B540BCF373DD008973 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09CD7260BA4ABD880020DE8CE459BDB4;
+			remoteInfo = IIDelayedAction;
+		};
+		C2EC6289621DCB0BC9A3ADD637D5911A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFE1E212EB266EC7F5190DB78A8C0E7;
+			remoteInfo = JGProgressHUD;
+		};
+		E90BF34179F11DDA3A27743D7E8C78E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9C88F0301B34212A26D9F6E2AEFE100;
+			remoteInfo = NZAssetsLibrary;
+		};
+		F55B0DE33D438D7E82438E987AA31F67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53363D022C9F9C7295DD37F3E5BDD332;
+			remoteInfo = FDTake;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03200C94D2370EFFEE158B2D50BBEC75 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndeterminateIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		05A6B779F5F3F1F436DF6AD6EF9CE259 /* IIDelayedAction-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IIDelayedAction-dummy.m"; sourceTree = "<group>"; };
+		06EA31E2663D1312AF2C036021CBA966 /* FDTake-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FDTake-dummy.m"; sourceTree = "<group>"; };
+		07AD91257C60C86BDAF7B9C1A598C782 /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
+		07BCB7B946076177F1619B785CDE1E25 /* Pods-Blear-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Blear-acknowledgements.markdown"; sourceTree = "<group>"; };
+		087AD48CC98AE88E6BB6D3A97AE0346B /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDSuccessIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
+		08937F45E8EBE35B269C84F9C0D27522 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = FDTakeExample/nl.lproj; sourceTree = "<group>"; };
+		0C5C3F75A9511FA51F4C706BD4DAE6BC /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		0DD5B91950E070ACE9367E1B2AD11017 /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = tr.lproj; path = FDTakeExample/tr.lproj; sourceTree = "<group>"; };
+		0FD25B1B5321C43C562FC8869422098C /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		10BA141790531D01F5C040E6AED5D1CA /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDImageIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
+		167BCC429CA4744CB690273780F45ECD /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		17553636AA4250CD76F7977018FC9348 /* NZAssetImageFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NZAssetImageFile.m; path = NZAssetsLibrary/Models/NZAssetImageFile.m; sourceTree = "<group>"; };
+		1A871253D855D17D870F6FF1FEDEC107 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
+		1CC128CC717DFB2D0D6334123467C726 /* JGProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1E3FEB1C0119850638244C35C75AB7C4 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = FDTakeExample/de.lproj; sourceTree = "<group>"; };
+		1F3EF36CD11E22DE8EBE5425031FDAB7 /* Pods-Blear-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Blear-acknowledgements.plist"; sourceTree = "<group>"; };
+		21C5A0B13CB0920450FFD636497E9324 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = FDTakeExample/pt.lproj; sourceTree = "<group>"; };
+		2318FDE721A875E7DE78B69D2F2B61AC /* IIDelayedAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IIDelayedAction.m; path = IIDelayedAction/IIDelayedAction.m; sourceTree = "<group>"; };
+		25E4049B92D00BE83B78D38A37F4A956 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = FDTakeExample/it.lproj; sourceTree = "<group>"; };
+		27EE7F285C290EBDF1FA15184E5C45C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		2CCB13EACA643C83C72111F2E66223D7 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDPieIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		309B3885AD85717EB45BD9CD6C0D07F1 /* FDTakeResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FDTakeResources.bundle; path = FDTakeResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		314134AF2D8019D42B1BA9C7E8F5813E /* FDTakeController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FDTakeController.h; path = FDTakeExample/FDTakeController.h; sourceTree = "<group>"; };
+		33DAFD5AA77F408449A68540C54C1272 /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		357ACFC1BD8292029FD4292DCD89BBE2 /* libNZAssetsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libNZAssetsLibrary.a; path = libNZAssetsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C6DD0691E76EEE36C2A249A23CDC84E /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = FDTakeExample/sv.lproj; sourceTree = "<group>"; };
+		3C7BF4D6074BCC7AE3A04C0C0690F6DC /* libFDTake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFDTake.a; path = libFDTake.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8A81F5CA203D5395E695BD4911522E /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hant.lproj"; path = "FDTakeExample/zh-Hant.lproj"; sourceTree = "<group>"; };
+		4C64D80A32B658C3147A6D5884FBABB1 /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDSuccessIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
+		5673E7CE533279F127F01A39483818FE /* NZAssetFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NZAssetFile.m; path = NZAssetsLibrary/Models/NZAssetFile.m; sourceTree = "<group>"; };
+		584DED7A986AEDCE7724E2222B2AE9BE /* libIIDelayedAction.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libIIDelayedAction.a; path = libIIDelayedAction.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FF5CF9DC5566C972C141C9E5F15477F /* Pods-Blear-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Blear-frameworks.sh"; sourceTree = "<group>"; };
+		63C1511C848F48E4A0D91EA5BED2D7DD /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = "JGProgressHUD Resources.bundle"; path = "JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
+		667934CA72C5211F5E4990F94A5076B1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
+		6B6361E9227A66E875C50479529E9F6E /* FDTakeController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FDTakeController.m; path = FDTakeExample/FDTakeController.m; sourceTree = "<group>"; };
+		6C6802826664C78F29DFC5B869CE9F80 /* JGProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.h; sourceTree = "<group>"; };
+		6CD65D5E8EC8ED9EC742E9C9066121FD /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDErrorIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		6D67E8362F9D7E0BF678430CFEDDFA61 /* NZAssetFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NZAssetFile.h; path = NZAssetsLibrary/Models/NZAssetFile.h; sourceTree = "<group>"; };
+		7391E6086775E4C4091AD54E0A50469B /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDRingIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		768765D27B831D92A344EC1DB8AF8F88 /* libPods-Blear.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Blear.a"; path = "libPods-Blear.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F92A438DE81881BACF8DEA47710A306 /* ResourceBundle-FDTakeResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FDTakeResources-Info.plist"; sourceTree = "<group>"; };
+		81721A2331331D5AF3282EA624352F7D /* FDTake-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDTake-prefix.pch"; sourceTree = "<group>"; };
+		81EFC412F29DBBD89C7F7D406E54F620 /* NZAssetsLibrary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NZAssetsLibrary.xcconfig; sourceTree = "<group>"; };
+		8274898015863310AF4D597F508698F1 /* he.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = he.lproj; path = FDTakeExample/he.lproj; sourceTree = "<group>"; };
+		827D0C57D6C4B830C82A4DAAA6BBA862 /* NZAssetsLibrary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NZAssetsLibrary-dummy.m"; sourceTree = "<group>"; };
+		86EC9FE83976D8E0C572C736BBFB432E /* Pods-Blear-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Blear-dummy.m"; sourceTree = "<group>"; };
+		8924805B946306848842B177F7B47A00 /* IIDelayedAction-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IIDelayedAction-prefix.pch"; sourceTree = "<group>"; };
+		8C18E22F862ECB23C037A072D26A27C1 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeZoomAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		90C6FC166A34782AE2719BEB3EFD3987 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		934F9E2B481DE639DCD0A0F051C365CB /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = da.lproj; path = FDTakeExample/da.lproj; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		947968BA939354AFB52DC9A32D4F7769 /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ar.lproj; path = FDTakeExample/ar.lproj; sourceTree = "<group>"; };
+		97CA495856D08464D286826B81B577E2 /* Pods-Blear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.release.xcconfig"; sourceTree = "<group>"; };
+		980F20177A152EC7672AF60D280AEF91 /* JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		A01C3F8A299EFCBF3A32AF47E82FB4FB /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JGProgressHUD-Defines.h"; path = "JGProgressHUD/JGProgressHUD/JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
+		A0DB2C99757E52EEC1558CFB68129E0F /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJGProgressHUD.a; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A30465FC5ACDCF086B5F501CF15DFE15 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeZoomAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		A38A95BBCB260C907F61466BC0202B1A /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		A9F180BBFD43FC65134B819406BF39DF /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = el.lproj; path = FDTakeExample/el.lproj; sourceTree = "<group>"; };
+		AD6B0DE20E2772885C20E548CE6F21F9 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.lproj; path = FDTakeExample/pl.lproj; sourceTree = "<group>"; };
+		B2F961DF128CB7ACD898A7C25DB6BFAE /* IIDelayedAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IIDelayedAction.h; path = IIDelayedAction/IIDelayedAction.h; sourceTree = "<group>"; };
+		B7C504C648A6127279936637DA3BBF56 /* IIDelayedAction.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IIDelayedAction.xcconfig; sourceTree = "<group>"; };
+		BCB8633C90A10255AFDFDE59220B8DAE /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		C1DDD12B16F14A8DE357BCAC8F1591B1 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDPieIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		C313E36861A1D8C4E81255493ACD2849 /* Pods-Blear-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Blear-resources.sh"; sourceTree = "<group>"; };
+		C393A0C36CD2566B399401AB2ECF0CD8 /* NZAssetImageFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NZAssetImageFile.h; path = NZAssetsLibrary/Models/NZAssetImageFile.h; sourceTree = "<group>"; };
+		C5C360CE771C16107FBE36B0F38FB05C /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = FDTakeExample/ru.lproj; sourceTree = "<group>"; };
+		C6C655EF100CA185D9BBCB94032A5F22 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDImageIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
+		CB09277F75E381EDEC7E633D89BDD360 /* Pods-Blear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.debug.xcconfig"; sourceTree = "<group>"; };
+		CD697C0F8D8066EC926CBB65C571D83D /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = FDTakeExample/en.lproj; sourceTree = "<group>"; };
+		CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FDTake.xcconfig; sourceTree = "<group>"; };
+		CF5B93022BC68E6719D81F4EFF2CA2CD /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndeterminateIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		D15B7CA848C9CA42B63EADC8674B18EE /* NZAssetsLibrary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NZAssetsLibrary.m; path = NZAssetsLibrary/NZAssetsLibrary.m; sourceTree = "<group>"; };
+		D350FE6A695BC997BACA67AB349FC84A /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = FDTakeExample/fr.lproj; sourceTree = "<group>"; };
+		DD1AA5A718B8A42EA455B271105B34DA /* JGProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JGProgressHUD.xcconfig; sourceTree = "<group>"; };
+		DF86E09F8882A6EDA990F313CBD10166 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = FDTakeExample/es.lproj; sourceTree = "<group>"; };
+		EDD832EC51C4C00B6F510D5DA4FD50E4 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "FDTakeExample/zh-Hans.lproj"; sourceTree = "<group>"; };
+		F103269D2AAF5043F4E8EDD3E2DA48AD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		F30D1D659F002E0E5D29F0D8DFE1D4A5 /* NZAssetsLibrary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NZAssetsLibrary-prefix.pch"; sourceTree = "<group>"; };
+		F69014605498275186A596FBD878A3DF /* NZAssetsLibrary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NZAssetsLibrary.h; path = NZAssetsLibrary/NZAssetsLibrary.h; sourceTree = "<group>"; };
+		FAEC0F2E5D358EFA009DE5836984F18B /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nb.lproj; path = FDTakeExample/nb.lproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0353F50ECD73C91E2B7BC52562A8F3BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ECDD6E63DA13C73C85ED4736E78C9E /* AssetsLibrary.framework in Frameworks */,
+				7DD7BB1BA13B089AF5381C9A048F3587 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B0D8D2FCB0DD09BBAC35B1E29D8451E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221985B5DDEAE34E65A02CE832EA2988 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FB9A0CCA15E603E267F1B685ADA8255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A6A0B8066D95AE05B1F7FECE2F74B2D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D792C877201DE480037F9A9F8B406BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4896F43640969DF6AC0C1E4BFDFEBE5 /* Foundation.framework in Frameworks */,
+				C50C22D80519D29F50377B2A4A294B02 /* QuartzCore.framework in Frameworks */,
+				38E214F5610265E2C503CFA8CA606A4E /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A21C1AEB4EC6DA0FE136DA71D1AA1245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6479FF0EEEE854455F18E6EFC05C418D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCA62EC774B2EFE30EEA3C82D4B7037A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C9E0824FF3031D9C637696E67B195B4 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6C6802826664C78F29DFC5B869CE9F80 /* JGProgressHUD.h */,
+				07AD91257C60C86BDAF7B9C1A598C782 /* JGProgressHUD.m */,
+				A01C3F8A299EFCBF3A32AF47E82FB4FB /* JGProgressHUD-Defines.h */,
+				33DAFD5AA77F408449A68540C54C1272 /* JGProgressHUDAnimation.h */,
+				167BCC429CA4744CB690273780F45ECD /* JGProgressHUDAnimation.m */,
+				1A871253D855D17D870F6FF1FEDEC107 /* JGProgressHUDErrorIndicatorView.h */,
+				6CD65D5E8EC8ED9EC742E9C9066121FD /* JGProgressHUDErrorIndicatorView.m */,
+				90C6FC166A34782AE2719BEB3EFD3987 /* JGProgressHUDFadeAnimation.h */,
+				0C5C3F75A9511FA51F4C706BD4DAE6BC /* JGProgressHUDFadeAnimation.m */,
+				8C18E22F862ECB23C037A072D26A27C1 /* JGProgressHUDFadeZoomAnimation.h */,
+				A30465FC5ACDCF086B5F501CF15DFE15 /* JGProgressHUDFadeZoomAnimation.m */,
+				10BA141790531D01F5C040E6AED5D1CA /* JGProgressHUDImageIndicatorView.h */,
+				C6C655EF100CA185D9BBCB94032A5F22 /* JGProgressHUDImageIndicatorView.m */,
+				03200C94D2370EFFEE158B2D50BBEC75 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				CF5B93022BC68E6719D81F4EFF2CA2CD /* JGProgressHUDIndeterminateIndicatorView.m */,
+				A38A95BBCB260C907F61466BC0202B1A /* JGProgressHUDIndicatorView.h */,
+				0FD25B1B5321C43C562FC8869422098C /* JGProgressHUDIndicatorView.m */,
+				2CCB13EACA643C83C72111F2E66223D7 /* JGProgressHUDPieIndicatorView.h */,
+				C1DDD12B16F14A8DE357BCAC8F1591B1 /* JGProgressHUDPieIndicatorView.m */,
+				7391E6086775E4C4091AD54E0A50469B /* JGProgressHUDRingIndicatorView.h */,
+				BCB8633C90A10255AFDFDE59220B8DAE /* JGProgressHUDRingIndicatorView.m */,
+				4C64D80A32B658C3147A6D5884FBABB1 /* JGProgressHUDSuccessIndicatorView.h */,
+				087AD48CC98AE88E6BB6D3A97AE0346B /* JGProgressHUDSuccessIndicatorView.m */,
+				2DE438FFB780DA671A3CD255C2F5C29A /* Resources */,
+				7191C19724775EC70A490E329DD1DEBF /* Support Files */,
+			);
+			name = JGProgressHUD;
+			path = JGProgressHUD;
+			sourceTree = "<group>";
+		};
+		0ECFCB265D108F916C68A862083403A9 /* IIDelayedAction */ = {
+			isa = PBXGroup;
+			children = (
+				B2F961DF128CB7ACD898A7C25DB6BFAE /* IIDelayedAction.h */,
+				2318FDE721A875E7DE78B69D2F2B61AC /* IIDelayedAction.m */,
+				C1AA21C8FC5C18D530B59DCA966FFC78 /* Support Files */,
+			);
+			name = IIDelayedAction;
+			path = IIDelayedAction;
+			sourceTree = "<group>";
+		};
+		123ACA8BE4C3A416A6C39B499C7DAE20 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */,
+				06EA31E2663D1312AF2C036021CBA966 /* FDTake-dummy.m */,
+				81721A2331331D5AF3282EA624352F7D /* FDTake-prefix.pch */,
+				7F92A438DE81881BACF8DEA47710A306 /* ResourceBundle-FDTakeResources-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FDTake";
+			sourceTree = "<group>";
+		};
+		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6AE34C5F068B32DD5778C17027E99805 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1BDBEB1726FE025D4A8F94842945D0AD /* Pods-Blear */ = {
+			isa = PBXGroup;
+			children = (
+				07BCB7B946076177F1619B785CDE1E25 /* Pods-Blear-acknowledgements.markdown */,
+				1F3EF36CD11E22DE8EBE5425031FDAB7 /* Pods-Blear-acknowledgements.plist */,
+				86EC9FE83976D8E0C572C736BBFB432E /* Pods-Blear-dummy.m */,
+				5FF5CF9DC5566C972C141C9E5F15477F /* Pods-Blear-frameworks.sh */,
+				C313E36861A1D8C4E81255493ACD2849 /* Pods-Blear-resources.sh */,
+				CB09277F75E381EDEC7E633D89BDD360 /* Pods-Blear.debug.xcconfig */,
+				97CA495856D08464D286826B81B577E2 /* Pods-Blear.release.xcconfig */,
+			);
+			name = "Pods-Blear";
+			path = "Target Support Files/Pods-Blear";
+			sourceTree = "<group>";
+		};
+		1F5B24052A4A9E759E189E5B3114286E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				81EFC412F29DBBD89C7F7D406E54F620 /* NZAssetsLibrary.xcconfig */,
+				827D0C57D6C4B830C82A4DAAA6BBA862 /* NZAssetsLibrary-dummy.m */,
+				F30D1D659F002E0E5D29F0D8DFE1D4A5 /* NZAssetsLibrary-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NZAssetsLibrary";
+			sourceTree = "<group>";
+		};
+		2DE438FFB780DA671A3CD255C2F5C29A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63C1511C848F48E4A0D91EA5BED2D7DD /* JGProgressHUD Resources.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3B19BE1688CB1C34CFE2AB2550B79431 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				482CB1A87963F26DA9760BEACA94B3FB /* FDTake */,
+				0ECFCB265D108F916C68A862083403A9 /* IIDelayedAction */,
+				0C9E0824FF3031D9C637696E67B195B4 /* JGProgressHUD */,
+				5147703F2DEA70DEDC993CEF1E10ED30 /* NZAssetsLibrary */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		482CB1A87963F26DA9760BEACA94B3FB /* FDTake */ = {
+			isa = PBXGroup;
+			children = (
+				314134AF2D8019D42B1BA9C7E8F5813E /* FDTakeController.h */,
+				6B6361E9227A66E875C50479529E9F6E /* FDTakeController.m */,
+				71224971B0901F9A63FCE6363E2EB21E /* Resources */,
+				123ACA8BE4C3A416A6C39B499C7DAE20 /* Support Files */,
+			);
+			name = FDTake;
+			path = FDTake;
+			sourceTree = "<group>";
+		};
+		5147703F2DEA70DEDC993CEF1E10ED30 /* NZAssetsLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				6D67E8362F9D7E0BF678430CFEDDFA61 /* NZAssetFile.h */,
+				5673E7CE533279F127F01A39483818FE /* NZAssetFile.m */,
+				C393A0C36CD2566B399401AB2ECF0CD8 /* NZAssetImageFile.h */,
+				17553636AA4250CD76F7977018FC9348 /* NZAssetImageFile.m */,
+				F69014605498275186A596FBD878A3DF /* NZAssetsLibrary.h */,
+				D15B7CA848C9CA42B63EADC8674B18EE /* NZAssetsLibrary.m */,
+				1F5B24052A4A9E759E189E5B3114286E /* Support Files */,
+			);
+			name = NZAssetsLibrary;
+			path = NZAssetsLibrary;
+			sourceTree = "<group>";
+		};
+		6AE34C5F068B32DD5778C17027E99805 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				667934CA72C5211F5E4990F94A5076B1 /* AssetsLibrary.framework */,
+				1D5C3408251CBBFF561587601BDAC75A /* Foundation.framework */,
+				F103269D2AAF5043F4E8EDD3E2DA48AD /* QuartzCore.framework */,
+				27EE7F285C290EBDF1FA15184E5C45C5 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		71224971B0901F9A63FCE6363E2EB21E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				947968BA939354AFB52DC9A32D4F7769 /* ar.lproj */,
+				934F9E2B481DE639DCD0A0F051C365CB /* da.lproj */,
+				1E3FEB1C0119850638244C35C75AB7C4 /* de.lproj */,
+				A9F180BBFD43FC65134B819406BF39DF /* el.lproj */,
+				CD697C0F8D8066EC926CBB65C571D83D /* en.lproj */,
+				DF86E09F8882A6EDA990F313CBD10166 /* es.lproj */,
+				D350FE6A695BC997BACA67AB349FC84A /* fr.lproj */,
+				8274898015863310AF4D597F508698F1 /* he.lproj */,
+				25E4049B92D00BE83B78D38A37F4A956 /* it.lproj */,
+				FAEC0F2E5D358EFA009DE5836984F18B /* nb.lproj */,
+				08937F45E8EBE35B269C84F9C0D27522 /* nl.lproj */,
+				AD6B0DE20E2772885C20E548CE6F21F9 /* pl.lproj */,
+				21C5A0B13CB0920450FFD636497E9324 /* pt.lproj */,
+				C5C360CE771C16107FBE36B0F38FB05C /* ru.lproj */,
+				3C6DD0691E76EEE36C2A249A23CDC84E /* sv.lproj */,
+				0DD5B91950E070ACE9367E1B2AD11017 /* tr.lproj */,
+				EDD832EC51C4C00B6F510D5DA4FD50E4 /* zh-Hans.lproj */,
+				4A8A81F5CA203D5395E695BD4911522E /* zh-Hant.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7191C19724775EC70A490E329DD1DEBF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD1AA5A718B8A42EA455B271105B34DA /* JGProgressHUD.xcconfig */,
+				1CC128CC717DFB2D0D6334123467C726 /* JGProgressHUD-dummy.m */,
+				980F20177A152EC7672AF60D280AEF91 /* JGProgressHUD-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JGProgressHUD";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
+				3B19BE1688CB1C34CFE2AB2550B79431 /* Pods */,
+				F369520CF03C479E2E56E1AC94AAFFFB /* Products */,
+				A25D185777179B008B6EDDCEDC1A354E /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A25D185777179B008B6EDDCEDC1A354E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1BDBEB1726FE025D4A8F94842945D0AD /* Pods-Blear */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C1AA21C8FC5C18D530B59DCA966FFC78 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7C504C648A6127279936637DA3BBF56 /* IIDelayedAction.xcconfig */,
+				05A6B779F5F3F1F436DF6AD6EF9CE259 /* IIDelayedAction-dummy.m */,
+				8924805B946306848842B177F7B47A00 /* IIDelayedAction-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/IIDelayedAction";
+			sourceTree = "<group>";
+		};
+		F369520CF03C479E2E56E1AC94AAFFFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				309B3885AD85717EB45BD9CD6C0D07F1 /* FDTakeResources.bundle */,
+				3C7BF4D6074BCC7AE3A04C0C0690F6DC /* libFDTake.a */,
+				584DED7A986AEDCE7724E2222B2AE9BE /* libIIDelayedAction.a */,
+				A0DB2C99757E52EEC1558CFB68129E0F /* libJGProgressHUD.a */,
+				357ACFC1BD8292029FD4292DCD89BBE2 /* libNZAssetsLibrary.a */,
+				768765D27B831D92A344EC1DB8AF8F88 /* libPods-Blear.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		293F9C09564E35625ECAE922FAE46246 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91E7BA397D538FC3A3770401C99F0224 /* JGProgressHUD-Defines.h in Headers */,
+				6B0FAC1299D612C7019E28B8220664AA /* JGProgressHUD.h in Headers */,
+				29B9B704A68D466390484447A206876E /* JGProgressHUDAnimation.h in Headers */,
+				05D3AF2D70A38F500E15827A84155ECC /* JGProgressHUDErrorIndicatorView.h in Headers */,
+				4D26972AF6F07DDD067BCF390C5EC7D8 /* JGProgressHUDFadeAnimation.h in Headers */,
+				DAE7265D0053E08E6203453853A82E3A /* JGProgressHUDFadeZoomAnimation.h in Headers */,
+				6D06226E4854E2E8B95AB0640740E61E /* JGProgressHUDImageIndicatorView.h in Headers */,
+				8D221D393D771F77A56E01E007AB7E5B /* JGProgressHUDIndeterminateIndicatorView.h in Headers */,
+				4ACCF7B339E9034FDBE4B9970FFBCCA4 /* JGProgressHUDIndicatorView.h in Headers */,
+				2532545CA3B8C53A39E5730D7192BB1E /* JGProgressHUDPieIndicatorView.h in Headers */,
+				4CC8511A4FE51A4737F97BCBBA222B65 /* JGProgressHUDRingIndicatorView.h in Headers */,
+				71807C8F559F2AD181BFDC7A11250B23 /* JGProgressHUDSuccessIndicatorView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C6EB045FA87EC5552AF514E89CB8A66 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3DF17C53FD37C7B06467741B83C8A00 /* NZAssetFile.h in Headers */,
+				F6691DC5590B06AC42094239ACE8E3EC /* NZAssetImageFile.h in Headers */,
+				F0A48167B623EF9C873CA3D38F7C91A1 /* NZAssetsLibrary.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E697779EC87BED35771E54BECFFF960 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B202136C0F4ACC5995F4EA8414F84C /* FDTakeController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87BAF38A2CBA40B7C9BCD649ABE7BE45 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55926F3D40C899CE61589BC2C1BADD41 /* IIDelayedAction.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		09CD7260BA4ABD880020DE8CE459BDB4 /* IIDelayedAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C51E790B528F728D6FBB4E447B10A209 /* Build configuration list for PBXNativeTarget "IIDelayedAction" */;
+			buildPhases = (
+				0BC287C0190CCE5CDD7477D3C58BDE23 /* Sources */,
+				A21C1AEB4EC6DA0FE136DA71D1AA1245 /* Frameworks */,
+				87BAF38A2CBA40B7C9BCD649ABE7BE45 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IIDelayedAction;
+			productName = IIDelayedAction;
+			productReference = 584DED7A986AEDCE7724E2222B2AE9BE /* libIIDelayedAction.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		53363D022C9F9C7295DD37F3E5BDD332 /* FDTake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61CCF1D05DA56B72B7E08CE239890978 /* Build configuration list for PBXNativeTarget "FDTake" */;
+			buildPhases = (
+				0246FCABD1B2A6F2A2B8EA906A13996A /* Sources */,
+				1B0D8D2FCB0DD09BBAC35B1E29D8451E /* Frameworks */,
+				4E697779EC87BED35771E54BECFFF960 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4787CE9B8C7778BB51C188308011DBEE /* PBXTargetDependency */,
+			);
+			name = FDTake;
+			productName = FDTake;
+			productReference = 3C7BF4D6074BCC7AE3A04C0C0690F6DC /* libFDTake.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		69811E51DCB9DD00428DB41051A6FA00 /* FDTake-FDTakeResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 549DD0F5BECD5D5517541218D770D8D0 /* Build configuration list for PBXNativeTarget "FDTake-FDTakeResources" */;
+			buildPhases = (
+				98110C944558EC765A459552E7F6B14C /* Sources */,
+				CCA62EC774B2EFE30EEA3C82D4B7037A /* Frameworks */,
+				94479AB1F334E5DABD047C1212D3BEC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FDTake-FDTakeResources";
+			productName = "FDTake-FDTakeResources";
+			productReference = 309B3885AD85717EB45BD9CD6C0D07F1 /* FDTakeResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		CAFE1E212EB266EC7F5190DB78A8C0E7 /* JGProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49D58C0DCF6BBB8CF3362EA739C234AD /* Build configuration list for PBXNativeTarget "JGProgressHUD" */;
+			buildPhases = (
+				D7A3331E0995CD1B5379600F7C077168 /* Sources */,
+				8D792C877201DE480037F9A9F8B406BD /* Frameworks */,
+				293F9C09564E35625ECAE922FAE46246 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JGProgressHUD;
+			productName = JGProgressHUD;
+			productReference = A0DB2C99757E52EEC1558CFB68129E0F /* libJGProgressHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F25F141FBD60490655E35C9A99B874C6 /* Pods-Blear */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5376234B18DD16897FC8C8C23CA18FBE /* Build configuration list for PBXNativeTarget "Pods-Blear" */;
+			buildPhases = (
+				89D1F0853464EA21686032B4425F81BD /* Sources */,
+				2FB9A0CCA15E603E267F1B685ADA8255 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				485D80C928239D8602BC5128674120A1 /* PBXTargetDependency */,
+				73EB60D81C775A05A063C9ABC8759932 /* PBXTargetDependency */,
+				B1740E4E9191FEE0726F6167985D640B /* PBXTargetDependency */,
+				FF61C1A3644641CC1319C59631584C7E /* PBXTargetDependency */,
+			);
+			name = "Pods-Blear";
+			productName = "Pods-Blear";
+			productReference = 768765D27B831D92A344EC1DB8AF8F88 /* libPods-Blear.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F9C88F0301B34212A26D9F6E2AEFE100 /* NZAssetsLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B2C08D702AE7DD39FE568B3D0751B0E /* Build configuration list for PBXNativeTarget "NZAssetsLibrary" */;
+			buildPhases = (
+				1863A44054464258C6E6865FB72EB783 /* Sources */,
+				0353F50ECD73C91E2B7BC52562A8F3BC /* Frameworks */,
+				3C6EB045FA87EC5552AF514E89CB8A66 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NZAssetsLibrary;
+			productName = NZAssetsLibrary;
+			productReference = 357ACFC1BD8292029FD4292DCD89BBE2 /* libNZAssetsLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = F369520CF03C479E2E56E1AC94AAFFFB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				53363D022C9F9C7295DD37F3E5BDD332 /* FDTake */,
+				69811E51DCB9DD00428DB41051A6FA00 /* FDTake-FDTakeResources */,
+				09CD7260BA4ABD880020DE8CE459BDB4 /* IIDelayedAction */,
+				CAFE1E212EB266EC7F5190DB78A8C0E7 /* JGProgressHUD */,
+				F9C88F0301B34212A26D9F6E2AEFE100 /* NZAssetsLibrary */,
+				F25F141FBD60490655E35C9A99B874C6 /* Pods-Blear */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94479AB1F334E5DABD047C1212D3BEC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				432872EB14BD603B5C92D2C52B412A13 /* ar.lproj in Resources */,
+				42561DB23B918CCC12CDCB4DEEC07FA4 /* da.lproj in Resources */,
+				4CEA907CA81E50F151719A3154587F58 /* de.lproj in Resources */,
+				B80A84C46F43FCED2FBBB9D8D7AB7B6D /* el.lproj in Resources */,
+				1C82AC14FE927856371237B238CECB54 /* en.lproj in Resources */,
+				D109C831288C0CB9C381F0A48F5CC8AD /* es.lproj in Resources */,
+				18E6B9A4746D364F76431754D25CB3F3 /* fr.lproj in Resources */,
+				F3F4BFC7E8C4CADA5097F9C2A5981AA0 /* he.lproj in Resources */,
+				37703EBB6B8101598356A0263E451481 /* it.lproj in Resources */,
+				A6D10B8846A4AF7FB4CDF7D6F3AD847C /* nb.lproj in Resources */,
+				1EC1C3D37036DCE351D3D621B0A240D7 /* nl.lproj in Resources */,
+				3E5D8BBA124EC750629B345DBCBC7120 /* pl.lproj in Resources */,
+				F237C4D99A8A33DC146D6613293FED86 /* pt.lproj in Resources */,
+				5641A9B981849276BC46534EE5D79886 /* ru.lproj in Resources */,
+				71730CD2719AD6F97D67B096A79EFF2A /* sv.lproj in Resources */,
+				D22BE0B117BB9974355EB245EB05B32F /* tr.lproj in Resources */,
+				CB66CEC7F5704B3FCCA120C65E106D3F /* zh-Hans.lproj in Resources */,
+				458230D31D9A358C45970E90FAF2D529 /* zh-Hant.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0246FCABD1B2A6F2A2B8EA906A13996A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F59026D61156C0A580ABBA2036FAF4E /* FDTake-dummy.m in Sources */,
+				9E0F8870E55AB8BCC60C6CC5E5CD814E /* FDTakeController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BC287C0190CCE5CDD7477D3C58BDE23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F1660205E89E87E5A5E56F3E4BCC96C /* IIDelayedAction-dummy.m in Sources */,
+				2D1451012EF70FA9835F50BFDA7403B5 /* IIDelayedAction.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1863A44054464258C6E6865FB72EB783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9904896A1D6A3418003CD5F409B32C6 /* NZAssetFile.m in Sources */,
+				58B998D41C494694C5AFEED6F227EDCE /* NZAssetImageFile.m in Sources */,
+				33351D1A4A410979DEDA0806A23738DE /* NZAssetsLibrary-dummy.m in Sources */,
+				4F8C6C0E20DC66BB0CF2A36A0E8175BE /* NZAssetsLibrary.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89D1F0853464EA21686032B4425F81BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				968E39031530FCB94C33EE190E8928C6 /* Pods-Blear-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98110C944558EC765A459552E7F6B14C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7A3331E0995CD1B5379600F7C077168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890A683F3E53F6D7B1E81D6F3619D84D /* JGProgressHUD-dummy.m in Sources */,
+				5181241B1ABB612075EA45059774706D /* JGProgressHUD.m in Sources */,
+				64EDB376BBA17EF96FA163E9757162EE /* JGProgressHUDAnimation.m in Sources */,
+				EA9AD894CD4A20184FA22280949C5242 /* JGProgressHUDErrorIndicatorView.m in Sources */,
+				7E91BC4A442B0E348F72E9E93FBE0083 /* JGProgressHUDFadeAnimation.m in Sources */,
+				F98386E44ECCB02E521224B917F2B818 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
+				FABB4FF076D17A67A35458901DF2EA6A /* JGProgressHUDImageIndicatorView.m in Sources */,
+				05482882E68FAAC354850E64973B1BA8 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
+				668F4A04170275CC2003594BBB8D1332 /* JGProgressHUDIndicatorView.m in Sources */,
+				4A412BCDE9FB41C8ACCEEEA8E802B2CA /* JGProgressHUDPieIndicatorView.m in Sources */,
+				519F1ACB6AD0BACC76B373A3C6219596 /* JGProgressHUDRingIndicatorView.m in Sources */,
+				B4B8137A972039426B43144E5EF9FC56 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4787CE9B8C7778BB51C188308011DBEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FDTake-FDTakeResources";
+			target = 69811E51DCB9DD00428DB41051A6FA00 /* FDTake-FDTakeResources */;
+			targetProxy = 1B294AA2A59FA72AE4576A8C614E1014 /* PBXContainerItemProxy */;
+		};
+		485D80C928239D8602BC5128674120A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FDTake;
+			target = 53363D022C9F9C7295DD37F3E5BDD332 /* FDTake */;
+			targetProxy = F55B0DE33D438D7E82438E987AA31F67 /* PBXContainerItemProxy */;
+		};
+		73EB60D81C775A05A063C9ABC8759932 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IIDelayedAction;
+			target = 09CD7260BA4ABD880020DE8CE459BDB4 /* IIDelayedAction */;
+			targetProxy = 1DF3FFEA66CD74B540BCF373DD008973 /* PBXContainerItemProxy */;
+		};
+		B1740E4E9191FEE0726F6167985D640B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JGProgressHUD;
+			target = CAFE1E212EB266EC7F5190DB78A8C0E7 /* JGProgressHUD */;
+			targetProxy = C2EC6289621DCB0BC9A3ADD637D5911A /* PBXContainerItemProxy */;
+		};
+		FF61C1A3644641CC1319C59631584C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NZAssetsLibrary;
+			target = F9C88F0301B34212A26D9F6E2AEFE100 /* NZAssetsLibrary */;
+			targetProxy = E90BF34179F11DDA3A27743D7E8C78E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12914D756594D15C6F2CA12FE5F89F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		135DC4E5A5BFD3156005DC729267D47A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD1AA5A718B8A42EA455B271105B34DA /* JGProgressHUD.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JGProgressHUD/JGProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2492CD24DD8F4B102B95EEED7B5D5645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97CA495856D08464D286826B81B577E2 /* Pods-Blear.release.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4B3FE45689182F0A201E23B341EF9038 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81EFC412F29DBBD89C7F7D406E54F620 /* NZAssetsLibrary.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NZAssetsLibrary/NZAssetsLibrary-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4B4302660BE39C37814D68E8BFDA8350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FDTake";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/FDTake/ResourceBundle-FDTakeResources-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = FDTakeResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		5F10853FB732199EFC29364FAFDB01C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD1AA5A718B8A42EA455B271105B34DA /* JGProgressHUD.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JGProgressHUD/JGProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6789767925E9B3CF973B33C14D24A413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FDTake";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/FDTake/ResourceBundle-FDTakeResources-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = FDTakeResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		745FE7F91AFDDFD3B70EEEBE8B78BE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7C504C648A6127279936637DA3BBF56 /* IIDelayedAction.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/IIDelayedAction/IIDelayedAction-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		93213FB21E112313AE6B1758A2468F7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81EFC412F29DBBD89C7F7D406E54F620 /* NZAssetsLibrary.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NZAssetsLibrary/NZAssetsLibrary-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AE99C1570E227C2EF182DFFF864D1FCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B3520DBE154E829A8AB0AFBCB4788BE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB09277F75E381EDEC7E633D89BDD360 /* Pods-Blear.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BD41A88E5BD2B5EC72C4287BF22436AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDF98BA9BFEAFBA4D22E5D47BD055AB4 /* FDTake.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D0F24DF6DD82DA91E13E468DDE850EBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7C504C648A6127279936637DA3BBF56 /* IIDelayedAction.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/IIDelayedAction/IIDelayedAction-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E72E7977875C2D251FC62736BBDDC389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12914D756594D15C6F2CA12FE5F89F1B /* Debug */,
+				E72E7977875C2D251FC62736BBDDC389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49D58C0DCF6BBB8CF3362EA739C234AD /* Build configuration list for PBXNativeTarget "JGProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F10853FB732199EFC29364FAFDB01C5 /* Debug */,
+				135DC4E5A5BFD3156005DC729267D47A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B2C08D702AE7DD39FE568B3D0751B0E /* Build configuration list for PBXNativeTarget "NZAssetsLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93213FB21E112313AE6B1758A2468F7B /* Debug */,
+				4B3FE45689182F0A201E23B341EF9038 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5376234B18DD16897FC8C8C23CA18FBE /* Build configuration list for PBXNativeTarget "Pods-Blear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3520DBE154E829A8AB0AFBCB4788BE4 /* Debug */,
+				2492CD24DD8F4B102B95EEED7B5D5645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		549DD0F5BECD5D5517541218D770D8D0 /* Build configuration list for PBXNativeTarget "FDTake-FDTakeResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B4302660BE39C37814D68E8BFDA8350 /* Debug */,
+				6789767925E9B3CF973B33C14D24A413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61CCF1D05DA56B72B7E08CE239890978 /* Build configuration list for PBXNativeTarget "FDTake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD41A88E5BD2B5EC72C4287BF22436AC /* Debug */,
+				AE99C1570E227C2EF182DFFF864D1FCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C51E790B528F728D6FBB4E447B10A209 /* Build configuration list for PBXNativeTarget "IIDelayedAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F24DF6DD82DA91E13E468DDE850EBB /* Debug */,
+				745FE7F91AFDDFD3B70EEEBE8B78BE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
