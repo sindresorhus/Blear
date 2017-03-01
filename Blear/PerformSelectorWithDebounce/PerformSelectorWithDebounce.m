@@ -38,7 +38,7 @@ const char *kDictionaryOfSelectorsToBlock = "kDictionaryOfSelectorsToBlock";
 		blockedSelectors[aSelectorAsStr] = @YES;
 		
 		// perform it now
-		((id (*)(id, SEL))objc_msgSend)(self, aSelector);
+        //((id (*)(id, SEL))objc_msgSend)(self, aSelector);
 		
 		// unblock it after the delay
 		[self performSelector:@selector(unblockSelectorNamed:) withObject:aSelectorAsStr afterDelay:duration];

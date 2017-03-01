@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+#platform :ios, '10.0'
 
 target 'Blear' do
 	pod 'FDTake', '~> 0.2.1'
