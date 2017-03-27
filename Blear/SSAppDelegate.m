@@ -23,15 +23,20 @@
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:@"firstTime"] == NULL) {
 		[[NSUserDefaults standardUserDefaults] setValue:@"not" forKey:@"firstTime"];
 
-		// TODO: `UIAlertView` is deprecated. Switch it out with `UIAlertController`.
-		[[
-		  [UIAlertView alloc]
-		  initWithTitle:@"Tip"
-		  message:@"Shake the device to get a random image."
-		  delegate:self
-		  cancelButtonTitle:@"Cool"
-		  otherButtonTitles:nil
-		  ] show];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Tip"
+                                                                        message:@"Shake the device to get a random image."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* coolAction = [UIAlertAction actionWithTitle:@"Cool"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action) {
+                                                               // Nothing to handle
+                                                           }
+                                     ];
+        
+        [alert addAction:coolAction];
+        
+        [self.inputViewController presentViewController:alert animated:YES completion:nil];
 	}
 
 	return YES;
