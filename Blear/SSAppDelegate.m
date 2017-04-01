@@ -29,10 +29,7 @@
         
         UIAlertAction* coolAction = [UIAlertAction actionWithTitle:@"Cool"
                                                              style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * action) {
-                                                               // Nothing to handle
-                                                           }
-                                     ];
+                                                           handler:nil];
         
         [alert addAction:coolAction];
         
