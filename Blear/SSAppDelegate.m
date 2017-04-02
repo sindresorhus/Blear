@@ -33,7 +33,7 @@
         
         [alert addAction:coolAction];
         
-        [self.inputViewController presentViewController:alert animated:YES completion:nil];
+        [rootViewController presentViewController:alert animated:YES completion:nil];
 	}
 
 	return YES;
