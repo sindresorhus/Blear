@@ -230,16 +230,18 @@ int uniqRand(int upperBound, int avoid) {
 		if ([[NSUserDefaults standardUserDefaults] valueForKey:@"firstSave"] == NULL) {
 			[[NSUserDefaults standardUserDefaults] setValue:@"not" forKey:@"firstSave"];
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 1), dispatch_get_main_queue(), ^(void) {
-				// TODO: `UIAlertView` is deprecated. Switch it out with `UIAlertController`.
-				[[
-				  [UIAlertView alloc]
-				  initWithTitle:@"Changing Wallpaper"
-				  message:@"In the Photos app go to the wallpaper you just saved, tap the action button on the bottom left and choose \"Use as Wallpaper\"."
-				  delegate:self
-				  cancelButtonTitle:@"Cool"
-				  otherButtonTitles:nil
-				  ] show];
-			});
+                UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Changing Wallpaper"
+                                                                                message:@"In the Photos app go to the wallpaper you just saved, tap the action button on the bottom left and choose \"Use as Wallpaper\"."
+                                                                         preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* coolAction = [UIAlertAction actionWithTitle:@"Cool"
+                                                                     style:UIAlertActionStyleDefault
+                                                                   handler:nil];
+                
+                [alert addAction:coolAction];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+            });
 		}
 	}];
 }
