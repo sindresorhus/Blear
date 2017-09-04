@@ -1,2 +1,3 @@
-*.xcodeproj/xcuserdata
-*.xcworkspace/xcuserdata
+xcuserdata
+project.xcworkspace
+/Pods/SwiftLint

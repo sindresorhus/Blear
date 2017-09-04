@@ -1,0 +1,17 @@
+/* Decline to proceed with operation */
+"cancel" = "取消";
+
+/* Option to select photo from library */
+"chooseFromLibrary" = "從相冊選擇";
+
+/* Option to select photo from photo roll */
+"chooseFromPhotoRoll" = "從相冊選擇";
+
+/* There are no sources available to select a photo */
+"noSources" = "沒有照片可選";
+
+/* Option to take photo using camera */
+"takePhoto" = "拍照";
+
+/* Option to take video using camera */
+"takeVideo" = "拍視頻";

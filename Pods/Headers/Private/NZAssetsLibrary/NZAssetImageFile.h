@@ -1,1 +1,0 @@
-../../../NZAssetsLibrary/NZAssetsLibrary/Models/NZAssetImageFile.h
