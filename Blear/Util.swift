@@ -45,6 +45,15 @@ extension UIImage {
 		UIGraphicsEndImageContext()
 		self.init(cgImage: image.cgImage!)
 	}
+
+	convenience init(color: UIColor, size: CGSize) {
+		UIGraphicsBeginImageContextWithOptions(size, true, 0)
+		color.setFill()
+		UIRectFill(CGRect(origin: .zero, size: size))
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		self.init(cgImage: image!.cgImage!)
+	}
 }
 
 struct Util {

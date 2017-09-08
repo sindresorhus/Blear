@@ -129,17 +129,10 @@ final class ViewController: UIViewController {
 	}
 
 	func createInitialImageView() -> UIImageView {
-		UIGraphicsBeginImageContextWithOptions(CGSize(width: view.frame.size.width, height: view.frame.size.height), false, 0)
-		let p = UIBezierPath(rect: CGRect(origin: .zero, size: view.frame.size))
-		UIColor.black.setFill()
-		p.fill()
-		let blackFill = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-
-		let imageView = UIImageView(image: blackFill)
+		let imageView = UIImageView(image: UIImage(color: .black, size: view.frame.size))
 		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
-		imageView.frame = CGRect(origin: .zero, size: view.frame.size)
+		imageView.frame = view.bounds
 		return imageView
 	}
 
