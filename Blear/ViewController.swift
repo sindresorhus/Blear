@@ -38,7 +38,7 @@ final class ViewController: UIViewController {
 
 		// This is to ensure that it always ends up with the current blur amount when the slider stops
 		// since we're using `DispatchQueue.global().async` the order of events aren't serial
-		delayedAction = IIDelayedAction({ _ in }, withDelay: 0.2)
+		delayedAction = IIDelayedAction({}, withDelay: 0.2)
 		delayedAction?.onMainThread = false
 
 		imageView = createInitialImageView()
@@ -109,6 +109,7 @@ final class ViewController: UIViewController {
 		return slider
 	}
 
+	@objc
 	func pickImage() {
 		let fdTake = FDTakeController()
 		fdTake.allowsVideo = false
@@ -136,6 +137,7 @@ final class ViewController: UIViewController {
 		return imageView
 	}
 
+	@objc
 	func updateImage() {
 		DispatchQueue.global(qos: .userInteractive).async {
 			let tmp = self.blurImage(self.blurAmount)
@@ -149,14 +151,16 @@ final class ViewController: UIViewController {
 		performSelector(inBackground: #selector(updateImage), with: IS_IPAD ? 0.1 : 0.06)
 	}
 
+	@objc
 	func sliderChanged(_ sender: UISlider) {
 		blurAmount = sender.value
 		updateImageDebounced()
-		delayedAction?.action { _ in
+		delayedAction?.action {
 			self.updateImage()
 		}
 	}
 
+	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
@@ -198,13 +202,13 @@ final class ViewController: UIViewController {
 
 	func changeImage(_ image: UIImage) {
 		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
-		view.insertSubview(tmp, belowSubview: slider.superview!)
+		view.insertSubview(tmp, aboveSubview: imageView)
 		imageView.image = image
 		sourceImage = UIImage(view: imageView)
 		updateImageDebounced()
 
 		// The delay here is important so it has time to blur the image before we start fading
-		UIView.animate(withDuration: 0.6, delay: (IS_LARGE_SCREEN ? 0.4 : 0.1), options: .curveEaseInOut, animations: {
+		UIView.animate(withDuration: 0.6, delay: 0.3, options: .curveEaseInOut, animations: {
 			tmp.alpha = 0
 		}, completion: { _ in
 			tmp.removeFromSuperview()

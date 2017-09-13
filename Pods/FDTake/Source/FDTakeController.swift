@@ -287,7 +287,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
 
                 //
                 if UI_USER_INTERFACE_IDIOM() == .phone || (source == .camera && self.iPadUsesFullScreenCamera) {
-                    topVC.present(self.imagePicker, animated: true, completion: { _ in })
+                    topVC.present(self.imagePicker, animated: true)
                 } else {
                     // On iPad use pop-overs.
                     self.popover.present(from: popOverPresentRect, in: topVC.view!, permittedArrowDirections: .any, animated: true)
@@ -351,7 +351,7 @@ extension FDTakeController : UIImagePickerControllerDelegate, UINavigationContro
     /// Conformance for image picker delegate
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         UIApplication.shared.isStatusBarHidden = true
-        picker.dismiss(animated: true, completion: { _ in })
+        picker.dismiss(animated: true)
         self.didDeny?()
     }
 }
