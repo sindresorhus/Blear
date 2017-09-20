@@ -30,6 +30,8 @@
 	<string>Required so you can capture a photo to blur.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app does not require access to the microphone.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Required so you can save the blurred photo to your library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Required so you can pick a photo from your library to blur.</string>
 	<key>UILaunchStoryboardName</key>
@@ -46,8 +48,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>So you can later choose it as a wallpaper.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

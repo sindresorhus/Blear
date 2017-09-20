@@ -1,6 +1,24 @@
 import UIKit
 import QuartzCore
 
+extension UIBarButtonItem {
+	/**
+	```
+	toolbar.items = [
+		someButton,
+		.flexibleSpace
+	]
+	```
+	*/
+	static let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+	static let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+
+	convenience init(image: UIImage?, target: Any?, action: Selector?, width: CGFloat = 0) {
+		self.init(image: image, style: .plain, target: target, action: action)
+		self.width = width
+	}
+}
+
 // TODO: Drop the `where Index == Int` part in Swift 4
 extension Collection where Index == Int {
 	func uniqueRandomElement() -> AnyIterator<Iterator.Element> {
@@ -34,16 +52,9 @@ extension UserDefaults {
 
 extension UIImage {
 	/// Initialize with a URL
-	convenience init?(url: URL) {
+	/// AppKit.NSImage polyfill
+	convenience init?(contentsOf url: URL) {
 		self.init(contentsOfFile: url.path)
-	}
-
-	convenience init(view: UIView) {
-		UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0)
-		view.layer.render(in: UIGraphicsGetCurrentContext()!)
-		let image = UIGraphicsGetImageFromCurrentImageContext()!
-		UIGraphicsEndImageContext()
-		self.init(cgImage: image.cgImage!)
 	}
 
 	convenience init(color: UIColor, size: CGSize) {
@@ -53,6 +64,15 @@ extension UIImage {
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		self.init(cgImage: image!.cgImage!)
+	}
+}
+
+extension UIView {
+	/// The most efficient solution
+	func toImage() -> UIImage {
+		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+			self.drawHierarchy(in: CGRect(origin: .zero, size: bounds.size), afterScreenUpdates: true)
+		}
 	}
 }
 

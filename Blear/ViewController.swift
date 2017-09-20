@@ -12,12 +12,37 @@ let IS_LARGE_SCREEN = IS_IPHONE && max(SCREEN_WIDTH, SCREEN_HEIGHT) >= 736.0
 
 final class ViewController: UIViewController {
 	var sourceImage: UIImage?
-	var imageView: UIImageView!
-	var slider: UISlider!
+	var delayedAction: IIDelayedAction?
 	var blurAmount: Float = 50
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "bundled-photos")!
-	var delayedAction: IIDelayedAction?
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
+
+	lazy var imageView: UIImageView = {
+		let imageView = UIImageView(image: UIImage(color: .black, size: view.frame.size))
+		imageView.contentMode = .scaleAspectFill
+		imageView.clipsToBounds = true
+		imageView.frame = view.bounds
+		return imageView
+	}()
+
+	lazy var slider: UISlider = {
+		let SLIDER_MARGIN: CGFloat = 120
+		let slider = UISlider(frame: CGRect(x: 0, y: 0, width: view.frame.size.width - SLIDER_MARGIN, height: view.frame.size.height))
+		slider.minimumValue = 10
+		slider.maximumValue = 100
+		slider.value = blurAmount
+		slider.isContinuous = true
+		slider.setThumbImage(#imageLiteral(resourceName: "slider-thumb"), for: .normal)
+		slider.autoresizingMask = [
+			.flexibleWidth,
+			.flexibleTopMargin,
+			.flexibleBottomMargin,
+			.flexibleLeftMargin,
+			.flexibleRightMargin
+		]
+		slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+		return slider
+	}()
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -41,18 +66,9 @@ final class ViewController: UIViewController {
 		delayedAction = IIDelayedAction({}, withDelay: 0.2)
 		delayedAction?.onMainThread = false
 
-		imageView = createInitialImageView()
 		view.addSubview(imageView)
 
-		let pickImageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "btn-pick"), style: .plain, target: self, action: #selector(pickImage))
-		pickImageButton.width = 20
-
-		slider = createSlider()
-		let sliderAsToolbarItem = UIBarButtonItem(customView: slider)
-
-		let saveImageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "btn-save"), style: .plain, target: self, action: #selector(saveImage))
-		saveImageButton.width = 20
-
+		// TODO: Is this still relevant?
 		let TOOLBAR_HEIGHT: CGFloat = IS_IPAD ? 80 : 70
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - TOOLBAR_HEIGHT, width: view.frame.size.width, height: TOOLBAR_HEIGHT))
 		toolbar.autoresizingMask = .flexibleWidth
@@ -75,38 +91,17 @@ final class ViewController: UIViewController {
 		]
 		toolbar.layer.addSublayer(gradient)
 
-		let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
 		toolbar.items = [
-			pickImageButton,
-			flexible,
-			sliderAsToolbarItem,
-			flexible,
-			saveImageButton
+			UIBarButtonItem(image: #imageLiteral(resourceName: "btn-pick"), target: self, action: #selector(pickImage), width: 20),
+			.flexibleSpace,
+			UIBarButtonItem(customView: slider),
+			.flexibleSpace,
+			UIBarButtonItem(image: #imageLiteral(resourceName: "btn-save"), target: self, action: #selector(saveImage), width: 20)
 		]
 		view.addSubview(toolbar)
 
 		// Important that this is here at the end for the fading to work
 		randomImage()
-	}
-
-	func createSlider() -> UISlider {
-		let SLIDER_MARGIN: CGFloat = 120
-		let slider = UISlider(frame: CGRect(x: 0, y: 0, width: view.frame.size.width - SLIDER_MARGIN, height: view.frame.size.height))
-		slider.minimumValue = 10
-		slider.maximumValue = 100
-		slider.value = blurAmount
-		slider.isContinuous = true
-		slider.setThumbImage(#imageLiteral(resourceName: "slider-thumb"), for: .normal)
-		slider.autoresizingMask = [
-			.flexibleWidth,
-			.flexibleTopMargin,
-			.flexibleBottomMargin,
-			.flexibleLeftMargin,
-			.flexibleRightMargin
-		]
-		slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
-		return slider
 	}
 
 	@objc
@@ -127,14 +122,6 @@ final class ViewController: UIViewController {
 			saturationDeltaFactor: CGFloat(max(1, min(2.8, blurAmount * (IS_IPAD ? 0.035 : 0.045)))),
 			maskImage: nil
 		)
-	}
-
-	func createInitialImageView() -> UIImageView {
-		let imageView = UIImageView(image: UIImage(color: .black, size: view.frame.size))
-		imageView.contentMode = .scaleAspectFill
-		imageView.clipsToBounds = true
-		imageView.frame = view.bounds
-		return imageView
 	}
 
 	@objc
@@ -200,11 +187,12 @@ final class ViewController: UIViewController {
 		}
 	}
 
+	/// TODO: Improve this method
 	func changeImage(_ image: UIImage) {
 		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
 		view.insertSubview(tmp, aboveSubview: imageView)
 		imageView.image = image
-		sourceImage = UIImage(view: imageView)
+		sourceImage = imageView.toImage()
 		updateImageDebounced()
 
 		// The delay here is important so it has time to blur the image before we start fading
@@ -216,6 +204,6 @@ final class ViewController: UIViewController {
 	}
 
 	func randomImage() {
-		changeImage(UIImage(url: randomImageIterator.next()!)!)
+		changeImage(UIImage(contentsOf: randomImageIterator.next()!)!)
 	}
 }
