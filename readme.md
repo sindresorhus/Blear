@@ -23,7 +23,7 @@ The app is done, but happy to receive pull requests for bug fixes and small impr
 
 ## Info
 
-Requires minimum iOS 10 and iPhone 5S / iPad Air / iPad Pro.
+Requires minimum iOS 11.
 
 
 ## Dev
