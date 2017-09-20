@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
 	var sourceImage: UIImage?
 	var delayedAction: IIDelayedAction?
 	var blurAmount: Float = 50
-	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "bundled-photos")!
+	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
 
 	lazy var imageView: UIImageView = {
@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
 		slider.maximumValue = 100
 		slider.value = blurAmount
 		slider.isContinuous = true
-		slider.setThumbImage(#imageLiteral(resourceName: "slider-thumb"), for: .normal)
+		slider.setThumbImage(#imageLiteral(resourceName: "SliderThumb"), for: .normal)
 		slider.autoresizingMask = [
 			.flexibleWidth,
 			.flexibleTopMargin,
@@ -92,11 +92,11 @@ final class ViewController: UIViewController {
 		toolbar.layer.addSublayer(gradient)
 
 		toolbar.items = [
-			UIBarButtonItem(image: #imageLiteral(resourceName: "btn-pick"), target: self, action: #selector(pickImage), width: 20),
+			UIBarButtonItem(image: #imageLiteral(resourceName: "PickButton"), target: self, action: #selector(pickImage), width: 20),
 			.flexibleSpace,
 			UIBarButtonItem(customView: slider),
 			.flexibleSpace,
-			UIBarButtonItem(image: #imageLiteral(resourceName: "btn-save"), target: self, action: #selector(saveImage), width: 20)
+			UIBarButtonItem(image: #imageLiteral(resourceName: "SaveButton"), target: self, action: #selector(saveImage), width: 20)
 		]
 		view.addSubview(toolbar)
 
@@ -165,7 +165,7 @@ final class ViewController: UIViewController {
 			if let error = error {
 				HUD.textLabel.text = error.localizedDescription
 			} else {
-				HUD.indicatorView = JGProgressHUDImageIndicatorView(image: #imageLiteral(resourceName: "hud-saved"))
+				HUD.indicatorView = JGProgressHUDImageIndicatorView(image: #imageLiteral(resourceName: "HudSaved"))
 				HUD.indicatorView.tintColor = .black
 			}
 

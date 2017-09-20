@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		B4402B6BE736FE94384151F3 /* Pods_Blear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69A32EB0F984A04AB1CBE519 /* Pods_Blear.framework */; };
 		E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */; };
-		E3430F431B27AD5800AF3F80 /* bundled-photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* bundled-photos */; };
+		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
 		E38F930C189885370091DEAD /* LICENSE-MIT.txt in Resources */ = {isa = PBXBuildFile; fileRef = E38F9308189885370091DEAD /* LICENSE-MIT.txt */; };
 		E38F930D189885370091DEAD /* PerformSelectorWithDebounce.m in Sources */ = {isa = PBXBuildFile; fileRef = E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */; };
 		E3A0364A17E5E7AE00892B76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A0364917E5E7AE00892B76 /* Foundation.framework */; };
-		E3A0365417E5E7AE00892B76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365217E5E7AE00892B76 /* InfoPlist.strings */; };
 		E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* AppDelegate.swift */; };
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
@@ -27,7 +26,7 @@
 		85485F4EC63A600901518312 /* Pods-Blear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blear.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blear/Pods-Blear.debug.xcconfig"; sourceTree = "<group>"; };
 		E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
-		E3430F421B27AD5800AF3F80 /* bundled-photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bundled-photos"; sourceTree = "<group>"; };
+		E3430F421B27AD5800AF3F80 /* Bundled Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Bundled Photos"; sourceTree = "<group>"; };
 		E38F9308189885370091DEAD /* LICENSE-MIT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MIT.txt"; sourceTree = "<group>"; };
 		E38F9309189885370091DEAD /* PerformSelectorWithDebounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformSelectorWithDebounce.h; sourceTree = "<group>"; };
 		E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformSelectorWithDebounce.m; sourceTree = "<group>"; };
@@ -35,15 +34,13 @@
 		E3A0364917E5E7AE00892B76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E3A0364B17E5E7AE00892B76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E3A0364D17E5E7AE00892B76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E3A0365117E5E7AE00892B76 /* Blear-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Blear-Info.plist"; sourceTree = "<group>"; };
-		E3A0365317E5E7AE00892B76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E3A0365117E5E7AE00892B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3A0365917E5E7AE00892B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3A0365B17E5E7AE00892B76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E3A0367917E5E94E00892B76 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3A0368B17E619F300892B76 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E3A0368E17E6214500892B76 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Blear-Bridging-Header.h"; sourceTree = "<group>"; };
-		E3B140891F2C30B2008408AC /* Blear-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blear-Prefix.pch"; sourceTree = "<group>"; };
 		E3E2320D1B0396EA003376C6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +113,6 @@
 				E3A0367917E5E94E00892B76 /* ViewController.swift */,
 				E3A0368E17E6214500892B76 /* Util.swift */,
 				E3A0365B17E5E7AE00892B76 /* Images.xcassets */,
-				E3430F421B27AD5800AF3F80 /* bundled-photos */,
 				E3A0365017E5E7AE00892B76 /* Supporting Files */,
 			);
 			path = Blear;
@@ -125,13 +121,12 @@
 		E3A0365017E5E7AE00892B76 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E3430F421B27AD5800AF3F80 /* Bundled Photos */,
 				E38F9307189885370091DEAD /* PerformSelectorWithDebounce */,
 				E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */,
 				E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */,
-				E3A0365117E5E7AE00892B76 /* Blear-Info.plist */,
+				E3A0365117E5E7AE00892B76 /* Info.plist */,
 				E3E2320D1B0396EA003376C6 /* Launch Screen.xib */,
-				E3A0365217E5E7AE00892B76 /* InfoPlist.strings */,
-				E3B140891F2C30B2008408AC /* Blear-Prefix.pch */,
 				E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -200,10 +195,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3A0365417E5E7AE00892B76 /* InfoPlist.strings in Resources */,
 				E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */,
 				E38F930C189885370091DEAD /* LICENSE-MIT.txt in Resources */,
-				E3430F431B27AD5800AF3F80 /* bundled-photos in Resources */,
+				E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */,
 				E3E2320E1B0396EA003376C6 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,17 +292,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E3A0365217E5E7AE00892B76 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E3A0365317E5E7AE00892B76 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E3A0367017E5E7AE00892B76 /* Debug */ = {
@@ -421,9 +404,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Blear/Blear-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_PROFILING_CODE = NO;
-				INFOPLIST_FILE = "Blear/Blear-Info.plist";
+				INFOPLIST_FILE = Blear/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.${PRODUCT_NAME:rfc1034identifier:lower}";
 				PRODUCT_NAME = Blear;
 				PROVISIONING_PROFILE = "";
@@ -445,9 +428,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Blear/Blear-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_PROFILING_CODE = YES;
-				INFOPLIST_FILE = "Blear/Blear-Info.plist";
+				INFOPLIST_FILE = Blear/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.${PRODUCT_NAME:rfc1034identifier:lower}";
 				PRODUCT_NAME = Blear;
 				PROVISIONING_PROFILE = "";
