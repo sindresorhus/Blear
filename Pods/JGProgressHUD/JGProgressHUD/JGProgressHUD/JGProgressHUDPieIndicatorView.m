@@ -3,7 +3,7 @@
 //  JGProgressHUD
 //
 //  Created by Jonas Gessner on 19.07.14.
-//  Copyright (c) 2014 Hardtack. All rights reserved.
+//  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
 #import "JGProgressHUDPieIndicatorView.h"
@@ -44,12 +44,11 @@
     
     CGRect rect = self.bounds;
     
-    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.height/2.0f), rect.origin.y + (CGFloat)floor(rect.size.height/2.0f));
-    CGFloat lineWidth = 2.0f;
-    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0f)-lineWidth;
+    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.width/2.0), rect.origin.y + (CGFloat)floor(rect.size.height/2.0));
+    CGFloat lineWidth = 2.0;
+    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0)-lineWidth;
     
-    //Border && Fill
-    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0f endAngle:2.0f*(CGFloat)M_PI clockwise:NO];
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0 endAngle:2.0*(CGFloat)M_PI clockwise:NO];
     
     [borderPath setLineWidth:lineWidth];
     
@@ -63,22 +62,20 @@
     
     [borderPath stroke];
     
-    
-    //Progress
     if (self.progress > 0.0) {
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         
         [processPath setLineWidth:radius];
         
-        CGFloat startAngle = -((CGFloat)M_PI/2.0f);
-        CGFloat endAngle = startAngle + 2.0f * (CGFloat)M_PI * self.progress;
+        CGFloat startAngle = -((CGFloat)M_PI/2.0);
+        CGFloat endAngle = startAngle + 2.0 * (CGFloat)M_PI * self.progress;
         
-        [processPath addArcWithCenter:center radius:radius/2.0f startAngle:startAngle endAngle:endAngle clockwise:YES];
+        [processPath addArcWithCenter:center radius:radius/2.0 startAngle:startAngle endAngle:endAngle clockwise:YES];
         
         [processPath stroke];
-        
-        UIGraphicsPopContext();
     }
+    
+    UIGraphicsPopContext();
 }
 
 @end
@@ -88,42 +85,26 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
-    self = [super init];
+- (instancetype)init {
+    self = [super initWithContentView:nil];
     
     if (self) {
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer setNeedsDisplay];
         
-        if (style == JGProgressHUDStyleDark) {
-            self.color = [UIColor whiteColor];
-            self.fillColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-        }
-        else {
-            self.color = [UIColor blackColor];
-            if (style == JGProgressHUDStyleLight) {
-                self.fillColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-            }
-            else {
-                self.fillColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-            }
-        }
+        self.color = [UIColor clearColor];
+        self.fillColor = [UIColor clearColor];
     }
     
     return self;
 }
 
+- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
+    return [self init];
+}
+
 - (instancetype)initWithContentView:(UIView *)contentView {
-    self = [super initWithContentView:contentView];
-    
-    if (self) {
-        self.layer.contentsScale = [UIScreen mainScreen].scale;
-        [self.layer setNeedsDisplay];
-        
-        self.color = [UIColor whiteColor];
-    }
-    
-    return self;
+    return [self init];
 }
 
 #pragma mark - Getters & Setters
@@ -164,6 +145,24 @@
 }
 
 #pragma mark - Overrides
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
+    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
+    
+    if (style == JGProgressHUDStyleDark) {
+        self.color = [UIColor colorWithWhite:1.0 alpha:1.0];
+        self.fillColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    }
+    else {
+        self.color = [UIColor blackColor];
+        if (style == JGProgressHUDStyleLight) {
+            self.fillColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+        }
+        else {
+            self.fillColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        }
+    }
+}
 
 + (Class)layerClass {
     return [JGProgressHUDPieIndicatorLayer class];

@@ -48,14 +48,14 @@
     
     CGRect rect = self.bounds;
     
-    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.height/2.0f), rect.origin.y + (CGFloat)floor(rect.size.height/2.0f));
+    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.width/2.0), rect.origin.y + (CGFloat)floor(rect.size.height/2.0));
     CGFloat lineWidth = self.ringWidth;
-    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0f) - lineWidth;
+    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0) - lineWidth;
     
     //Background
     [self.ringBackgroundColor setStroke];
     
-    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0f endAngle:2.0f*(CGFloat)M_PI clockwise:NO];
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0 endAngle:2.0*(CGFloat)M_PI clockwise:NO];
     
     [borderPath setLineWidth:lineWidth];
     [borderPath stroke];
@@ -63,19 +63,21 @@
     //Progress
     [self.ringColor setStroke];
     
-    if (self.progress > 0.0f) {
+    if (self.progress > 0.0) {
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         
         [processPath setLineWidth:lineWidth];
-        [borderPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
+        [processPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
         
-        CGFloat startAngle = -((CGFloat)M_PI / 2.0f);
-        CGFloat endAngle = startAngle + 2.0f * (CGFloat)M_PI * self.progress;
+        CGFloat startAngle = -((CGFloat)M_PI / 2.0);
+        CGFloat endAngle = startAngle + 2.0 * (CGFloat)M_PI * self.progress;
         
         [processPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
         
         [processPath stroke];
     }
+    
+    UIGraphicsPopContext();
 }
 
 @end
@@ -85,44 +87,27 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
-    self = [super init];
+- (instancetype)init {
+    self = [super initWithContentView:nil];;
     
     if (self) {
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer setNeedsDisplay];
         
-        if (style == JGProgressHUDStyleDark) {
-            self.ringColor = [UIColor whiteColor];
-            self.ringBackgroundColor = [UIColor blackColor];
-        }
-        else {
-            self.ringColor = [UIColor blackColor];
-            if (style == JGProgressHUDStyleLight) {
-                self.ringBackgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-            }
-            else {
-                self.ringBackgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-            }
-        }
+        self.ringWidth = 3.0;
+        self.ringColor = [UIColor clearColor];
+        self.ringBackgroundColor = [UIColor clearColor];
     }
     
     return self;
 }
 
+- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
+    return [self init];
+}
+
 - (instancetype)initWithContentView:(UIView *)contentView {
-    self = [super initWithContentView:contentView];
-    
-    if (self) {
-        self.layer.contentsScale = [UIScreen mainScreen].scale;
-        [self.layer setNeedsDisplay];
-        
-        self.ringColor = [UIColor whiteColor];
-        self.ringBackgroundColor = [UIColor blackColor];
-        self.ringWidth = 3.0f;
-    }
-    
-    return self;
+    return [self init];
 }
 
 #pragma mark - Getters & Setters
@@ -183,6 +168,24 @@
 }
 
 #pragma mark - Overrides
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
+    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
+    
+    if (style == JGProgressHUDStyleDark) {
+        self.ringColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        self.ringBackgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+    }
+    else {
+        self.ringColor = [UIColor blackColor];
+        if (style == JGProgressHUDStyleLight) {
+            self.ringBackgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+        }
+        else {
+            self.ringBackgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        }
+    }
+}
 
 + (Class)layerClass {
     return [JGProgressHUDRingIndicatorLayer class];

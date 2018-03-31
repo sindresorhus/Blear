@@ -8,11 +8,14 @@
 
 #import "JGProgressHUDImageIndicatorView.h"
 
+/**
+ An image indicator showing a checkmark, representing a failed operation.
+ */
 @interface JGProgressHUDSuccessIndicatorView : JGProgressHUDImageIndicatorView
 
 /**
  Default initializer for this class.
  */
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end

@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NZAssetsLibrary.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Blear.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -31,32 +26,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>070756EE46368824081EF55C7FB671FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>24F73826C21CBCBE186224114BD582A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>27AD9C7944FAF57264B4FD435B8578D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5E11766826DB31FCF1B52AD596D1885C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E25D1347A59BFC223372DC9BB39811DF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

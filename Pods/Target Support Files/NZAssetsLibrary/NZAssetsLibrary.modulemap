@@ -1,6 +1,0 @@
-framework module NZAssetsLibrary {
-  umbrella header "NZAssetsLibrary-umbrella.h"
-
-  export *
-  module * { export * }
-}

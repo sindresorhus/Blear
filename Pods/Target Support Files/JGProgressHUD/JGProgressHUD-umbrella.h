@@ -21,6 +21,7 @@
 #import "JGProgressHUDIndicatorView.h"
 #import "JGProgressHUDPieIndicatorView.h"
 #import "JGProgressHUDRingIndicatorView.h"
+#import "JGProgressHUDShadow.h"
 #import "JGProgressHUDSuccessIndicatorView.h"
 
 FOUNDATION_EXPORT double JGProgressHUDVersionNumber;

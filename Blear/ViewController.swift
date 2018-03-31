@@ -1,7 +1,7 @@
 import UIKit
+import Photos
 import FDTake
 import IIDelayedAction
-import NZAssetsLibrary
 import JGProgressHUD
 
 let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
@@ -17,32 +17,30 @@ final class ViewController: UIViewController {
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
 
-	lazy var imageView: UIImageView = {
-		let imageView = UIImageView(image: UIImage(color: .black, size: view.frame.size))
-		imageView.contentMode = .scaleAspectFill
-		imageView.clipsToBounds = true
-		imageView.frame = view.bounds
-		return imageView
-	}()
+	lazy var imageView = with(UIImageView()) {
+		$0.image = UIImage(color: .black, size: view.frame.size)
+		$0.contentMode = .scaleAspectFill
+		$0.clipsToBounds = true
+		$0.frame = view.bounds
+	}
 
-	lazy var slider: UISlider = {
+	lazy var slider = with(UISlider()) {
 		let SLIDER_MARGIN: CGFloat = 120
-		let slider = UISlider(frame: CGRect(x: 0, y: 0, width: view.frame.size.width - SLIDER_MARGIN, height: view.frame.size.height))
-		slider.minimumValue = 10
-		slider.maximumValue = 100
-		slider.value = blurAmount
-		slider.isContinuous = true
-		slider.setThumbImage(#imageLiteral(resourceName: "SliderThumb"), for: .normal)
-		slider.autoresizingMask = [
+		$0.frame = CGRect(x: 0, y: 0, width: view.frame.size.width - SLIDER_MARGIN, height: view.frame.size.height)
+		$0.minimumValue = 10
+		$0.maximumValue = 100
+		$0.value = blurAmount
+		$0.isContinuous = true
+		$0.setThumbImage(#imageLiteral(resourceName: "SliderThumb"), for: .normal)
+		$0.autoresizingMask = [
 			.flexibleWidth,
 			.flexibleTopMargin,
 			.flexibleBottomMargin,
 			.flexibleLeftMargin,
 			.flexibleRightMargin
 		]
-		slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
-		return slider
-	}()
+		$0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+	}
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -151,30 +149,30 @@ final class ViewController: UIViewController {
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
-		// Rewrap the image as PNG
-		let pngImage = UIImage(data: UIImagePNGRepresentation(imageView.image!)!)
-		let assetsLibrary = NZAssetsLibrary.default()
-
-		assetsLibrary?.save(pngImage, toAlbum: "Blear") { error in
+		PHPhotoLibrary.save(image: imageView.image!, toAlbum: "Blear") { _, error in
 			button.isEnabled = true
 
-			let HUD = JGProgressHUD(style: .light)!
-			HUD.indicatorView = nil
+			let HUD = JGProgressHUD(style: .dark)
+			HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
 			HUD.animation = JGProgressHUDFadeZoomAnimation()
+			HUD.vibrancyEnabled = true
+			HUD.contentInsets = UIEdgeInsets(all: 30)
 
 			if let error = error {
+				HUD.indicatorView = JGProgressHUDErrorIndicatorView()
 				HUD.textLabel.text = error.localizedDescription
-			} else {
-				HUD.indicatorView = JGProgressHUDImageIndicatorView(image: #imageLiteral(resourceName: "HudSaved"))
-				HUD.indicatorView.tintColor = .black
+				HUD.show(in: self.view)
+				HUD.dismiss(afterDelay: 3)
+				return
 			}
 
+			//HUD.indicatorView = JGProgressHUDImageIndicatorView(image: #imageLiteral(resourceName: "HudSaved"))
 			HUD.show(in: self.view)
 			HUD.dismiss(afterDelay: 0.8)
 
 			// Only on first save
 			if UserDefaults.standard.isFirstLaunch {
-				Util.delay(seconds: 1) {
+				delay(seconds: 1) {
 					let alert = UIAlertController(
 						title: "Changing Wallpaper",
 						message: "In the Photos app go to the wallpaper you just saved, tap the action button on the bottom left and choose 'Use as Wallpaper'.",

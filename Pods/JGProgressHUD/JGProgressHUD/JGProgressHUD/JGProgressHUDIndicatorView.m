@@ -17,7 +17,7 @@
 
 @end
 
-NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
+static void runOnNextRunLoop(void (^block)(void)) {
     [[NSRunLoop currentRunLoop] performSelector:@selector(runBlock:) target:[JGProgressHUDIndicatorView class] argument:(id)block order:0 modes:@[NSRunLoopCommonModes]];
 }
 
@@ -34,7 +34,7 @@ NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
 }
 
 - (instancetype)initWithContentView:(UIView *)contentView {
-    self = [super initWithFrame:(contentView ? contentView.frame : CGRectMake(0.0f, 0.0f, 50.0f, 50.0f))];
+    self = [super initWithFrame:(contentView ? contentView.frame : CGRectMake(0.0, 0.0, 50.0, 50.0))];
     if (self) {
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
@@ -50,6 +50,10 @@ NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
     }
     return self;
 }
+
+#pragma mark - Setup
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {}
 
 #pragma mark - Accessibility
 

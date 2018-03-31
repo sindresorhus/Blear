@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* AppDelegate.swift */; };
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
-		E3A0368F17E6214600892B76 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0368E17E6214500892B76 /* Util.swift */; };
+		E3A0368F17E6214600892B76 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0368E17E6214500892B76 /* util.swift */; };
 		E3E2320E1B0396EA003376C6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E2320D1B0396EA003376C6 /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
@@ -35,11 +35,11 @@
 		E3A0364B17E5E7AE00892B76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E3A0364D17E5E7AE00892B76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E3A0365117E5E7AE00892B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3A0365917E5E7AE00892B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E3A0365917E5E7AE00892B76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3A0365B17E5E7AE00892B76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E3A0367917E5E94E00892B76 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3A0367917E5E94E00892B76 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3A0368B17E619F300892B76 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		E3A0368E17E6214500892B76 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		E3A0368E17E6214500892B76 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = util.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Blear-Bridging-Header.h"; sourceTree = "<group>"; };
 		E3E2320D1B0396EA003376C6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +111,7 @@
 			children = (
 				E3A0365917E5E7AE00892B76 /* AppDelegate.swift */,
 				E3A0367917E5E94E00892B76 /* ViewController.swift */,
-				E3A0368E17E6214500892B76 /* Util.swift */,
+				E3A0368E17E6214500892B76 /* util.swift */,
 				E3A0365B17E5E7AE00892B76 /* Images.xcassets */,
 				E3A0365017E5E7AE00892B76 /* Supporting Files */,
 			);
@@ -163,7 +163,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SS;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Sindre Sorhus";
 				TargetAttributes = {
 					E3A0364517E5E7AE00892B76 = {
@@ -174,7 +174,7 @@
 				};
 			};
 			buildConfigurationList = E3A0364117E5E7AE00892B76 /* Build configuration list for PBXProject "Blear" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -215,14 +215,12 @@
 				"${BUILT_PRODUCTS_DIR}/FDTake/FDTake.framework",
 				"${BUILT_PRODUCTS_DIR}/IIDelayedAction/IIDelayedAction.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/NZAssetsLibrary/NZAssetsLibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDTake.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IIDelayedAction.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NZAssetsLibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -287,7 +285,7 @@
 				E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */,
 				E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */,
 				E38F930D189885370091DEAD /* PerformSelectorWithDebounce.m in Sources */,
-				E3A0368F17E6214600892B76 /* Util.swift in Sources */,
+				E3A0368F17E6214600892B76 /* util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,12 +304,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -360,12 +360,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -388,7 +390,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -410,6 +413,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.${PRODUCT_NAME:rfc1034identifier:lower}";
 				PRODUCT_NAME = Blear;
 				PROVISIONING_PROFILE = "";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
