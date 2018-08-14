@@ -12,7 +12,6 @@
 		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
 		E38F930C189885370091DEAD /* LICENSE-MIT.txt in Resources */ = {isa = PBXBuildFile; fileRef = E38F9308189885370091DEAD /* LICENSE-MIT.txt */; };
 		E38F930D189885370091DEAD /* PerformSelectorWithDebounce.m in Sources */ = {isa = PBXBuildFile; fileRef = E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */; };
-		E3A0364A17E5E7AE00892B76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A0364917E5E7AE00892B76 /* Foundation.framework */; };
 		E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* AppDelegate.swift */; };
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
@@ -49,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3A0364A17E5E7AE00892B76 /* Foundation.framework in Frameworks */,
 				B4402B6BE736FE94384151F3 /* Pods_Blear.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +143,6 @@
 				E3A0364317E5E7AE00892B76 /* Frameworks */,
 				E3A0364417E5E7AE00892B76 /* Resources */,
 				7EC73C20B14FCE576B7B6E01 /* [CP] Embed Pods Frameworks */,
-				FFBC1111BE4376981A16D750 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,21 +255,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint";
-		};
-		FFBC1111BE4376981A16D750 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Blear/Pods-Blear-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

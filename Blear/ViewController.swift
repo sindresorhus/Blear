@@ -194,11 +194,16 @@ final class ViewController: UIViewController {
 		updateImageDebounced()
 
 		// The delay here is important so it has time to blur the image before we start fading
-		UIView.animate(withDuration: 0.6, delay: 0.3, options: .curveEaseInOut, animations: {
-			tmp.alpha = 0
-		}, completion: { _ in
-			tmp.removeFromSuperview()
-		})
+		UIView.animate(
+			withDuration: 0.6,
+			delay: 0.3,
+			options: .curveEaseInOut,
+			animations: {
+				tmp.alpha = 0
+			}, completion: { _ in
+				tmp.removeFromSuperview()
+			}
+		)
 	}
 
 	func randomImage() {
