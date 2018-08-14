@@ -21,17 +21,17 @@
 	<key>CFBundleVersion</key>
 	<string>7</string>
 	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.utilities</string>
+	<string>public.app-category.photography</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Required so you can capture a photo to blur.</string>
+	<string>This is required so you can capture a photo to blur.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app does not require access to the microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Required so you can save the blurred photo to your library.</string>
+	<string>This is required to save the blurred photo to your library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Required so you can pick a photo from your library to blur.</string>
+	<string>This is required to be able to pick a photo to blur from your library and to save it.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>

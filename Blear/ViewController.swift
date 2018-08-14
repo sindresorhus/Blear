@@ -149,7 +149,7 @@ final class ViewController: UIViewController {
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
-		PHPhotoLibrary.save(image: imageView.image!, toAlbum: "Blear") { _, error in
+		PHPhotoLibrary.save(image: imageView.image!, toAlbum: "Blear") { result in
 			button.isEnabled = true
 
 			let HUD = JGProgressHUD(style: .dark)
@@ -158,7 +158,7 @@ final class ViewController: UIViewController {
 			HUD.vibrancyEnabled = true
 			HUD.contentInsets = UIEdgeInsets(all: 30)
 
-			if let error = error {
+			if case .failure(let error) = result {
 				HUD.indicatorView = JGProgressHUDErrorIndicatorView()
 				HUD.textLabel.text = error.localizedDescription
 				HUD.show(in: self.view)

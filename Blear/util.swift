@@ -25,69 +25,116 @@ func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 }
 
 
+enum Result<Value> {
+	case success(Value)
+	case failure(Error)
+}
+
 // TODO: Move it to a SPM module
-// TODO: Test without permissions
 // TODO: Add this as note to module readme:
 // > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
 // Name: `PHPhotoLibraryExtras` or `PhotosExtras`. Probably the latter.
+// Document that the handler is guaranteed to be executed in the main thread.
 extension PHPhotoLibrary {
-	static func getAlbum(withTitle title: String) -> PHAssetCollection? {
-		let fetchOptions = PHFetchOptions()
-		fetchOptions.predicate = NSPredicate(format: "title = %@", title)
-		let albums = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-		return albums.firstObject
+	enum Error: Swift.Error, LocalizedError {
+		case noAccess
+
+		var errorDescription: String? {
+			switch self {
+			case .noAccess:
+				return "Could not access the photo library. Please allow access in Settings."
+			}
+		}
 	}
 
-	static func createAlbum(withTitle title: String, completionHandler: @escaping (PHAssetCollection?, Error?) -> Void) {
-		if let album = getAlbum(withTitle: title) {
+	static func runOrFail(completionHandler: @escaping (Result<Void>) -> Void) {
+		PHPhotoLibrary.requestAuthorization { status in
 			DispatchQueue.main.async {
-				completionHandler(album, nil)
+				switch status {
+				case .authorized:
+					completionHandler(Result.success(()))
+				default:
+					completionHandler(Result.failure(Error.noAccess))
+				}
 			}
-			return
 		}
+	}
 
-		var localIdentifier: String!
+	static func getAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection?>) -> Void) {
+		runOrFail { result in
+			switch result {
+			case .failure(let error):
+				completionHandler(.failure(error))
+			case .success:
+				let fetchOptions = PHFetchOptions()
+				fetchOptions.predicate = NSPredicate(format: "title = %@", title)
+				let albums = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+				completionHandler(.success(albums.firstObject))
+			}
+		}
+	}
 
-		shared().performChanges({
-			localIdentifier = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
-		}, completionHandler: { success, error in
-			// The `completionHandler` here could be executed on any queue, so we ensure
-			// the user's handler is always executed on the main queue, for convenience
-			DispatchQueue.main.async {
-				guard success else {
-					completionHandler(nil, error)
+	static func createAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection>) -> Void) {
+		getAlbum(withTitle: title) { result in
+			switch result {
+			case .failure(let error):
+				completionHandler(.failure(error))
+			case .success(let value):
+				guard let album = value else {
+					var localIdentifier: String!
+
+					shared().performChanges({
+						localIdentifier = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
+					}, completionHandler: { success, error in
+						print("created album")
+						// The `completionHandler` here could be executed on any queue, so we ensure
+						// the user's handler is always executed on the main queue, for convenience
+						DispatchQueue.main.async {
+							guard success else {
+								completionHandler(.failure(error!))
+								return
+							}
+
+							let collections = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [localIdentifier], options: nil)
+
+							guard let album = collections.firstObject else {
+								fatalError("Album does not exist even though we just successfully created it. This should not happen!")
+							}
+
+							completionHandler(.success(album))
+						}
+					})
 					return
 				}
 
-				let collections = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [localIdentifier], options: nil)
-				completionHandler(collections.firstObject, nil)
+				completionHandler(.success(album))
 			}
-		})
+		}
 	}
 
-	static func save(image: UIImage, toAlbum album: String, completionHandler: @escaping (String?, Error?) -> Void) {
-		createAlbum(withTitle: album) { album, error in
-			guard let album = album else {
-				completionHandler(nil, error)
-				return
-			}
+	static func save(image: UIImage, toAlbum album: String, completionHandler: @escaping (Result<String>) -> Void) {
+		createAlbum(withTitle: album) { result in
+			switch result {
+			case .failure(let error):
+				completionHandler(.failure(error))
+			case .success(let album):
+				var localIdentifier: String!
 
-			var localIdentifier: String?
+				self.shared().performChanges({
+					let placeholder = PHAssetChangeRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
+					PHAssetCollectionChangeRequest(for: album)?.addAssets([placeholder as Any] as NSArray)
+					localIdentifier = placeholder?.localIdentifier
+				}, completionHandler: { success, error in
+					DispatchQueue.main.async {
+						guard success else {
+							completionHandler(.failure(error!))
+							return
+						}
 
-			self.shared().performChanges({
-				let placeholder = PHAssetChangeRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
-				PHAssetCollectionChangeRequest(for: album)?.addAssets([placeholder as Any] as NSArray)
-				localIdentifier = placeholder?.localIdentifier
-			}, completionHandler: { success, error in
-				DispatchQueue.main.async {
-					guard success else {
-						completionHandler(nil, error)
-						return
+						completionHandler(.success(localIdentifier))
 					}
-
-					completionHandler(localIdentifier, nil)
-				}
-			})
+				})
+			}
 		}
 	}
 }
