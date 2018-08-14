@@ -2,12 +2,11 @@ import UIKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-	var window: UIWindow?
+	let window = UIWindow(frame: UIScreen.main.bounds)
 
 	func applicationDidFinishLaunching(_ application: UIApplication) {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = ViewController()
-		window?.makeKeyAndVisible()
+		window.rootViewController = ViewController()
+		window.makeKeyAndVisible()
 
 		if UserDefaults.standard.isFirstLaunch {
 			let alert = UIAlertController(
@@ -16,7 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 				preferredStyle: .alert
 			)
 			alert.addAction(UIAlertAction(title: "OK", style: .default))
-			window?.rootViewController?.present(alert, animated: true)
+			window.rootViewController?.present(alert, animated: true)
 		}
 	}
 }

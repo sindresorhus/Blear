@@ -66,8 +66,7 @@ final class ViewController: UIViewController {
 
 		view.addSubview(imageView)
 
-		// TODO: Is this still relevant?
-		let TOOLBAR_HEIGHT: CGFloat = IS_IPAD ? 80 : 70
+		let TOOLBAR_HEIGHT: CGFloat = 80 + window.safeAreaInsets.bottom
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - TOOLBAR_HEIGHT, width: view.frame.size.width, height: TOOLBAR_HEIGHT))
 		toolbar.autoresizingMask = .flexibleWidth
 		toolbar.alpha = 0.6

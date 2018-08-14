@@ -86,7 +86,6 @@ extension PHPhotoLibrary {
 					shared().performChanges({
 						localIdentifier = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
 					}, completionHandler: { success, error in
-						print("created album")
 						// The `completionHandler` here could be executed on any queue, so we ensure
 						// the user's handler is always executed on the main queue, for convenience
 						DispatchQueue.main.async {
@@ -224,5 +223,11 @@ extension UIEdgeInsets {
 
 	func inset(rect: CGRect) -> CGRect {
 		return UIEdgeInsetsInsetRect(rect, self)
+	}
+}
+
+extension UIViewController {
+	var window: UIWindow {
+		return UIApplication.shared.windows.first!
 	}
 }
