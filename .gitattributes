@@ -2,3 +2,4 @@
 *.pdf binary
 *.ai binary
 *.psd binary
+Pods/* linguist-vendored
