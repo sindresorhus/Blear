@@ -165,7 +165,7 @@
 				TargetAttributes = {
 					E3A0364517E5E7AE00892B76 = {
 						DevelopmentTeam = YG56YK5RN5;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -173,8 +173,6 @@
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-			);
 			mainGroup = E3A0363D17E5E7AE00892B76;
 			productRefGroup = E3A0364717E5E7AE00892B76 /* Products */;
 			projectDirPath = "";
@@ -206,7 +204,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Blear/Pods-Blear-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Blear/Pods-Blear-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FDTake/FDTake.framework",
 				"${BUILT_PRODUCTS_DIR}/IIDelayedAction/IIDelayedAction.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
@@ -219,7 +217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Blear/Pods-Blear-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Blear/Pods-Blear-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91143AF7CEB346D3B7208BD4 /* [CP] Check Pods Manifest.lock */ = {
@@ -394,8 +392,7 @@
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALID_ARCHS = arm64;
 				WRAPPER_EXTENSION = app;
 			};
@@ -419,8 +416,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALID_ARCHS = arm64;
 				WRAPPER_EXTENSION = app;
 			};

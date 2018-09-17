@@ -219,7 +219,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
     /// Presents the user with an option to take a photo or choose a photo from the library
     open func present() {
         //TODO: maybe encapsulate source selection?
-        var titleToSource = [(buttonTitle: FDTakeControllerLocalizableStrings, source: UIImagePickerControllerSourceType)]()
+        var titleToSource = [(buttonTitle: FDTakeControllerLocalizableStrings, source: UIImagePickerController.SourceType)]()
 
         if self.allowsTake && UIImagePickerController.isSourceTypeAvailable(.camera) {
             if self.allowsPhoto {
@@ -248,7 +248,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
             // http://stackoverflow.com/a/34487871/300224
             let alertWindow = UIWindow(frame: UIScreen.main.bounds)
             alertWindow.rootViewController = UIViewController()
-            alertWindow.windowLevel = UIWindowLevelAlert + 1;
+            alertWindow.windowLevel = UIWindow.Level.alert + 1;
             alertWindow.makeKeyAndVisible()
             alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
             return
@@ -323,15 +323,18 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
 
 extension FDTakeController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     /// Conformance for ImagePicker delegate
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         UIApplication.shared.isStatusBarHidden = true
-        let mediaType: String = info[UIImagePickerControllerMediaType] as! String
+        let mediaType: String = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as! String
         var imageToSave: UIImage
         // Handle a still image capture
         if mediaType == kUTTypeImage as String {
-            if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
                 imageToSave = editedImage
-            } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            } else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
                 imageToSave = originalImage
             } else {
                 self.didCancel?()
@@ -342,7 +345,7 @@ extension FDTakeController : UIImagePickerControllerDelegate, UINavigationContro
                 self.popover.dismiss(animated: true)
             }
         } else if mediaType == kUTTypeMovie as String {
-            self.didGetVideo?(info[UIImagePickerControllerMediaURL] as! URL, info)
+            self.didGetVideo?(info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as! URL, info)
         }
 
         picker.dismiss(animated: true, completion: nil)
@@ -354,4 +357,14 @@ extension FDTakeController : UIImagePickerControllerDelegate, UINavigationContro
         picker.dismiss(animated: true, completion: nil)
         self.didDeny?()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

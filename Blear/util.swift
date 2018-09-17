@@ -222,7 +222,7 @@ extension UIEdgeInsets {
 	}
 
 	func inset(rect: CGRect) -> CGRect {
-		return UIEdgeInsetsInsetRect(rect, self)
+		return rect.inset(by: self)
 	}
 }
 
