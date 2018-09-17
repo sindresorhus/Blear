@@ -18,7 +18,7 @@
 
 ## Info
 
-Requires minimum iOS 11.
+Requires minimum iOS 12.
 
 
 ## Dev
