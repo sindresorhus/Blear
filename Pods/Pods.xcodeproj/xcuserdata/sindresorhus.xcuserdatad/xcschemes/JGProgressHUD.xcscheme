@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A1A1048AE6CFBBBFC483A4ED93CF568"
+               BlueprintIdentifier = "6F3964F174D0EBFB0D64F8DBC20E1429"
                BuildableName = "JGProgressHUD.framework"
                BlueprintName = "JGProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8A1A1048AE6CFBBBFC483A4ED93CF568"
+            BlueprintIdentifier = "6F3964F174D0EBFB0D64F8DBC20E1429"
             BuildableName = "JGProgressHUD.framework"
             BlueprintName = "JGProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -24,12 +24,6 @@ func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 	DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: closure)
 }
 
-
-enum Result<Value> {
-	case success(Value)
-	case failure(Error)
-}
-
 // TODO: Move it to a SPM module
 // TODO: Add this as note to module readme:
 // > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
@@ -47,7 +41,7 @@ extension PHPhotoLibrary {
 		}
 	}
 
-	static func runOrFail(completionHandler: @escaping (Result<Void>) -> Void) {
+	static func runOrFail(completionHandler: @escaping (Result<Void, Swift.Error>) -> Void) {
 		PHPhotoLibrary.requestAuthorization { status in
 			DispatchQueue.main.async {
 				switch status {
@@ -60,7 +54,10 @@ extension PHPhotoLibrary {
 		}
 	}
 
-	static func getAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection?>) -> Void) {
+	static func getAlbum(
+		withTitle title: String,
+		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>
+	) -> Void) {
 		runOrFail { result in
 			switch result {
 			case .failure(let error):
@@ -74,7 +71,7 @@ extension PHPhotoLibrary {
 		}
 	}
 
-	static func createAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection>) -> Void) {
+	static func createAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection, Swift.Error>) -> Void) {
 		getAlbum(withTitle: title) { result in
 			switch result {
 			case .failure(let error):
@@ -111,7 +108,11 @@ extension PHPhotoLibrary {
 		}
 	}
 
-	static func save(image: UIImage, toAlbum album: String, completionHandler: @escaping (Result<String>) -> Void) {
+	static func save(
+		image: UIImage,
+		toAlbum album: String,
+		completionHandler: @escaping (Result<String, Swift.Error>) -> Void
+	) {
 		createAlbum(withTitle: album) { result in
 			switch result {
 			case .failure(let error):
@@ -156,19 +157,37 @@ extension UIBarButtonItem {
 	}
 }
 
-extension Collection where Index == Int {
+extension Collection {
+	/**
+	Returns a infinite sequence with consecutively unique random elements from the collection.
+
+	```
+	let x = [1, 2, 3].uniqueRandomElementIterator()
+
+	x.next()
+	//=> 2
+	x.next()
+	//=> 1
+
+	for element in x.prefix(2) {
+		print(element)
+	}
+	//=> 3
+	//=> 1
+	```
+	*/
 	func uniqueRandomElement() -> AnyIterator<Element> {
 		var previousNumber: Int?
 
 		return AnyIterator {
 			var offset: Int
 			repeat {
-				offset = Int(arc4random_uniform(UInt32(self.count)))
+				offset = Int.random(in: 0..<self.count)
 			} while offset == previousNumber
-
 			previousNumber = offset
 
-			return self[offset]
+			let index = self.index(self.startIndex, offsetBy: offset)
+			return self[index]
 		}
 	}
 }

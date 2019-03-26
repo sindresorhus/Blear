@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E5D781263A585F2315021375BD4F454"
+               BlueprintIdentifier = "E4BECB02819B9EF52BA2C8C073EFA4F6"
                BuildableName = "FDTake.framework"
                BlueprintName = "FDTake"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E5D781263A585F2315021375BD4F454"
+            BlueprintIdentifier = "E4BECB02819B9EF52BA2C8C073EFA4F6"
             BuildableName = "FDTake.framework"
             BlueprintName = "FDTake"
             ReferencedContainer = "container:Pods.xcodeproj">

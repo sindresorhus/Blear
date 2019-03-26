@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '12.2'
 
 target 'Blear' do
 	use_frameworks!

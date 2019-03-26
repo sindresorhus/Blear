@@ -31,7 +31,7 @@ final class ViewController: UIViewController {
 		$0.maximumValue = 100
 		$0.value = blurAmount
 		$0.isContinuous = true
-		$0.setThumbImage(#imageLiteral(resourceName: "SliderThumb"), for: .normal)
+		$0.setThumbImage(UIImage(named: "SliderThumb")!, for: .normal)
 		$0.autoresizingMask = [
 			.flexibleWidth,
 			.flexibleTopMargin,
@@ -89,11 +89,11 @@ final class ViewController: UIViewController {
 		toolbar.layer.addSublayer(gradient)
 
 		toolbar.items = [
-			UIBarButtonItem(image: #imageLiteral(resourceName: "PickButton"), target: self, action: #selector(pickImage), width: 20),
+			UIBarButtonItem(image: UIImage(named: "PickButton")!, target: self, action: #selector(pickImage), width: 20),
 			.flexibleSpace,
 			UIBarButtonItem(customView: slider),
 			.flexibleSpace,
-			UIBarButtonItem(image: #imageLiteral(resourceName: "SaveButton"), target: self, action: #selector(saveImage), width: 20)
+			UIBarButtonItem(image: UIImage(named: "SaveButton")!, target: self, action: #selector(saveImage), width: 20)
 		]
 		view.addSubview(toolbar)
 

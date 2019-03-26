@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Blear/Pods-Blear-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FDTake/FDTake.framework
+${BUILT_PRODUCTS_DIR}/IIDelayedAction/IIDelayedAction.framework
+${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework
