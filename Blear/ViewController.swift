@@ -156,8 +156,11 @@ final class ViewController: UIViewController {
 	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
-
-		PHPhotoLibrary.save(image: scrollView.snapshot()!, toAlbum: "Blear") { result in
+		guard let snapshot = scrollView.snapshot() else {
+			button.isEnabled = true
+			return
+		}
+		PHPhotoLibrary.save(image: snapshot, toAlbum: "Blear") { result in
 			button.isEnabled = true
 
 			let HUD = JGProgressHUD(style: .dark)

@@ -254,9 +254,9 @@ extension UIScrollView {
 	func snapshot() -> UIImage? {
 		UIGraphicsBeginImageContext(frame.size)
 		let offset = contentOffset
-		let thisContext = UIGraphicsGetCurrentContext()
-		thisContext?.translateBy(x: -offset.x, y: -offset.y)
-		layer.render(in: thisContext!)
+		guard let thisContext = UIGraphicsGetCurrentContext() else { return nil }
+		thisContext.translateBy(x: -offset.x, y: -offset.y)
+		layer.render(in: thisContext)
 		let visibleScrollViewImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		return visibleScrollViewImage
