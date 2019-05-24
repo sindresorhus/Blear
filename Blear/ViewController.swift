@@ -17,10 +17,18 @@ final class ViewController: UIViewController {
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
 
+	lazy var scrollView = with(UIScrollView()) {
+		$0.frame = view.bounds
+		$0.bounces = false
+		$0.showsHorizontalScrollIndicator = false
+		$0.showsVerticalScrollIndicator = false
+	}
+
 	lazy var imageView = with(UIImageView()) {
 		$0.image = UIImage(color: .black, size: view.frame.size)
-		$0.contentMode = .scaleAspectFill
+		$0.contentMode = .scaleAspectFit
 		$0.clipsToBounds = true
+		$0.backgroundColor = .yellow
 		$0.frame = view.bounds
 	}
 
@@ -64,7 +72,8 @@ final class ViewController: UIViewController {
 		delayedAction = IIDelayedAction({}, withDelay: 0.2)
 		delayedAction?.onMainThread = false
 
-		view.addSubview(imageView)
+		view.addSubview(scrollView)
+		scrollView.addSubview(imageView)
 
 		let TOOLBAR_HEIGHT: CGFloat = 80 + window.safeAreaInsets.bottom
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - TOOLBAR_HEIGHT, width: view.frame.size.width, height: TOOLBAR_HEIGHT))
@@ -148,7 +157,7 @@ final class ViewController: UIViewController {
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
-		PHPhotoLibrary.save(image: imageView.image!, toAlbum: "Blear") { result in
+		PHPhotoLibrary.save(image: scrollView.snapshot()!, toAlbum: "Blear") { result in
 			button.isEnabled = true
 
 			let HUD = JGProgressHUD(style: .dark)
@@ -188,6 +197,22 @@ final class ViewController: UIViewController {
 	func changeImage(_ image: UIImage) {
 		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
 		view.insertSubview(tmp, aboveSubview: imageView)
+		let imageSize = image.size
+		var width, height: CGFloat
+		// TODO: improve this
+		if imageSize.width > imageSize.height {
+			height = view.frame.size.height
+			width = imageSize.width * height / imageSize.height
+		} else {
+			width = view.frame.size.width
+			height = imageSize.height * width / imageSize.width
+			if height < view.frame.size.height {
+				height = view.frame.size.height
+				width = imageSize.width * height / imageSize.height
+			}
+		}
+		scrollView.contentSize = CGSize(width: width, height: height)
+		imageView.frame = CGRect(x: 0, y: 0, width: width, height: height)
 		imageView.image = image
 		sourceImage = imageView.toImage()
 		updateImageDebounced()

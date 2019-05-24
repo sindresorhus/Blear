@@ -56,8 +56,7 @@ extension PHPhotoLibrary {
 
 	static func getAlbum(
 		withTitle title: String,
-		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>
-	) -> Void) {
+		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>) -> Void) {
 		runOrFail { result in
 			switch result {
 			case .failure(let error):
@@ -248,5 +247,18 @@ extension UIEdgeInsets {
 extension UIViewController {
 	var window: UIWindow {
 		return UIApplication.shared.windows.first!
+	}
+}
+
+extension UIScrollView {
+	func snapshot() -> UIImage? {
+		UIGraphicsBeginImageContext(frame.size)
+		let offset = contentOffset
+		let thisContext = UIGraphicsGetCurrentContext()
+		thisContext?.translateBy(x: -offset.x, y: -offset.y)
+		layer.render(in: thisContext!)
+		let visibleScrollViewImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return visibleScrollViewImage
 	}
 }
