@@ -29,7 +29,6 @@ final class ViewController: UIViewController {
 		$0.image = UIImage(color: .black, size: view.frame.size)
 		$0.contentMode = .scaleAspectFit
 		$0.clipsToBounds = true
-		$0.backgroundColor = .yellow
 		$0.frame = view.bounds
 	}
 
