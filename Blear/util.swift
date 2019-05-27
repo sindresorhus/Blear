@@ -24,6 +24,19 @@ func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 	DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: closure)
 }
 
+func calculateSize(with imageSize: CGSize, and screenSize: CGSize) -> CGSize {
+	var width, height: CGFloat
+	let aspectRatio = imageSize.width / imageSize.height
+	if screenSize.width / aspectRatio < screenSize.height {
+		height = screenSize.height
+		width = height * aspectRatio
+	} else {
+		width = screenSize.width
+		height = width / aspectRatio
+	}
+	return CGSize(width: width, height: height)
+}
+
 // TODO: Move it to a SPM module
 // TODO: Add this as note to module readme:
 // > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
@@ -254,7 +267,9 @@ extension UIScrollView {
 	func snapshot() -> UIImage? {
 		UIGraphicsBeginImageContext(frame.size)
 		let offset = contentOffset
-		guard let thisContext = UIGraphicsGetCurrentContext() else { return nil }
+		guard let thisContext = UIGraphicsGetCurrentContext() else {
+			return nil
+		}
 		thisContext.translateBy(x: -offset.x, y: -offset.y)
 		layer.render(in: thisContext)
 		let visibleScrollViewImage = UIGraphicsGetImageFromCurrentImageContext()

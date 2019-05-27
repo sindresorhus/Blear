@@ -22,6 +22,7 @@ final class ViewController: UIViewController {
 		$0.bounces = false
 		$0.showsHorizontalScrollIndicator = false
 		$0.showsVerticalScrollIndicator = false
+		$0.contentInsetAdjustmentBehavior = .never
 	}
 
 	lazy var imageView = with(UIImageView()) {
@@ -200,22 +201,10 @@ final class ViewController: UIViewController {
 	func changeImage(_ image: UIImage) {
 		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
 		view.insertSubview(tmp, aboveSubview: imageView)
-		let imageSize = image.size
-		var width, height: CGFloat
-		// TODO: improve this
-		if imageSize.width > imageSize.height {
-			height = view.frame.size.height
-			width = imageSize.width * height / imageSize.height
-		} else {
-			width = view.frame.size.width
-			height = imageSize.height * width / imageSize.width
-			if height < view.frame.size.height {
-				height = view.frame.size.height
-				width = imageSize.width * height / imageSize.height
-			}
-		}
-		scrollView.contentSize = CGSize(width: width, height: height)
-		imageView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+		let imageSize = calculateSize(with: image.size, and: view.frame.size)
+		scrollView.contentSize = imageSize
+		scrollView.contentOffset = CGPoint.zero
+		imageView.frame = CGRect(origin: CGPoint.zero, size: imageSize)
 		imageView.image = image
 		sourceImage = imageView.toImage()
 		updateImageDebounced()
