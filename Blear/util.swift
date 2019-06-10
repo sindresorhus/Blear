@@ -24,19 +24,6 @@ func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 	DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: closure)
 }
 
-func calculateSize(with imageSize: CGSize, and screenSize: CGSize) -> CGSize {
-	var width, height: CGFloat
-	let aspectRatio = imageSize.width / imageSize.height
-	if screenSize.width / aspectRatio < screenSize.height {
-		height = screenSize.height
-		width = height * aspectRatio
-	} else {
-		width = screenSize.width
-		height = width / aspectRatio
-	}
-	return CGSize(width: width, height: height)
-}
-
 // TODO: Move it to a SPM module
 // TODO: Add this as note to module readme:
 // > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
@@ -237,6 +224,7 @@ extension UIImage {
 
 extension UIView {
 	/// The most efficient solution
+	@objc
 	func toImage() -> UIImage {
 		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
 			self.drawHierarchy(in: bounds, afterScreenUpdates: true)
@@ -265,16 +253,26 @@ extension UIViewController {
 }
 
 extension UIScrollView {
-	func snapshot() -> UIImage? {
-		UIGraphicsBeginImageContext(frame.size)
-		let offset = contentOffset
-		guard let thisContext = UIGraphicsGetCurrentContext() else {
-			return nil
+	@objc
+	override func toImage() -> UIImage {
+		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+			let newBounds = bounds.offsetBy(dx: -contentOffset.x, dy: -contentOffset.y)
+			self.drawHierarchy(in: newBounds, afterScreenUpdates: true)
 		}
-		thisContext.translateBy(x: -offset.x, y: -offset.y)
-		layer.render(in: thisContext)
-		let visibleScrollViewImage = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		return visibleScrollViewImage
+	}
+}
+
+extension CGSize {
+	func aspectFitSize(to otherSize: CGSize) -> CGSize {
+		var width, height: CGFloat
+		let aspectRatio = self.width / self.height
+		if otherSize.width / aspectRatio < otherSize.height {
+			height = otherSize.height
+			width = height * aspectRatio
+		} else {
+			width = otherSize.width
+			height = width / aspectRatio
+		}
+		return CGSize(width: width, height: height)
 	}
 }

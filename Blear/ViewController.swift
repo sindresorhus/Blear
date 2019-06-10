@@ -156,11 +156,7 @@ final class ViewController: UIViewController {
 	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
-		guard let snapshot = scrollView.snapshot() else {
-			button.isEnabled = true
-			return
-		}
-		PHPhotoLibrary.save(image: snapshot, toAlbum: "Blear") { result in
+		PHPhotoLibrary.save(image: scrollView.toImage(), toAlbum: "Blear") { result in
 			button.isEnabled = true
 
 			let HUD = JGProgressHUD(style: .dark)
@@ -199,11 +195,11 @@ final class ViewController: UIViewController {
 	/// TODO: Improve this method
 	func changeImage(_ image: UIImage) {
 		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
-		view.insertSubview(tmp, aboveSubview: imageView)
-		let imageSize = calculateSize(with: image.size, and: view.frame.size)
-		scrollView.contentSize = imageSize
+		view.insertSubview(tmp, aboveSubview: scrollView)
+		let imageViewSize = image.size.aspectFitSize(to: view.frame.size)
+		scrollView.contentSize = imageViewSize
 		scrollView.contentOffset = CGPoint.zero
-		imageView.frame = CGRect(origin: CGPoint.zero, size: imageSize)
+		imageView.frame = CGRect(origin: CGPoint.zero, size: imageViewSize)
 		imageView.image = image
 		sourceImage = imageView.toImage()
 		updateImageDebounced()
