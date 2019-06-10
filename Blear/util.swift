@@ -69,7 +69,8 @@ extension PHPhotoLibrary {
 
 	static func getAlbum(
 		withTitle title: String,
-		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>) -> Void) {
+		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>) -> Void
+	) {
 		runOrFail { result in
 			switch result {
 			case .failure(let error):
