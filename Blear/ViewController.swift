@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
 	var blurAmount: Float = 50
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
-
+	var workItem: DispatchWorkItem?
 	lazy var scrollView = with(UIScrollView()) {
 		$0.frame = view.bounds
 		$0.bounces = false
@@ -132,25 +132,22 @@ final class ViewController: UIViewController {
 
 	@objc
 	func updateImage() {
-		DispatchQueue.global(qos: .userInteractive).async {
+		if let workItem = workItem {
+			workItem.cancel()
+		}
+		workItem = DispatchWorkItem {
 			let tmp = self.blurImage(self.blurAmount)
 			DispatchQueue.main.async {
 				self.imageView.image = tmp
 			}
 		}
-	}
-
-	func updateImageDebounced() {
-		performSelector(inBackground: #selector(updateImage), with: IS_IPAD ? 0.1 : 0.06)
+		DispatchQueue.global(qos: .userInteractive).async(execute: workItem!)
 	}
 
 	@objc
 	func sliderChanged(_ sender: UISlider) {
 		blurAmount = sender.value
-		updateImageDebounced()
-		delayedAction?.action {
-			self.updateImage()
-		}
+		updateImage()
 	}
 
 	@objc
@@ -192,17 +189,16 @@ final class ViewController: UIViewController {
 		}
 	}
 
-	/// TODO: Improve this method
 	func changeImage(_ image: UIImage) {
-		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
+		let tmp = UIImageView(image: scrollView.toImage())
 		view.insertSubview(tmp, aboveSubview: scrollView)
-		let imageViewSize = image.size.aspectFitSize(to: view.frame.size)
+		let imageViewSize = image.size.aspectFit(to: view.frame.size)
 		scrollView.contentSize = imageViewSize
 		scrollView.contentOffset = CGPoint.zero
 		imageView.frame = CGRect(origin: CGPoint.zero, size: imageViewSize)
 		imageView.image = image
 		sourceImage = imageView.toImage()
-		updateImageDebounced()
+		updateImage()
 
 		// The delay here is important so it has time to blur the image before we start fading
 		UIView.animate(
