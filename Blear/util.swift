@@ -263,16 +263,8 @@ extension UIScrollView {
 }
 
 extension CGSize {
-	func aspectFitSize(to otherSize: CGSize) -> CGSize {
-		var width, height: CGFloat
-		let aspectRatio = self.width / self.height
-		if otherSize.width / aspectRatio < otherSize.height {
-			height = otherSize.height
-			width = height * aspectRatio
-		} else {
-			width = otherSize.width
-			height = width / aspectRatio
-		}
-		return CGSize(width: width, height: height)
+	func aspectFit(to size: CGSize) -> CGSize {
+		let ratio = max(size.width / width, size.height / height)
+		return CGSize(width: width * CGFloat(ratio), height: height * CGFloat(ratio))
 	}
 }
