@@ -194,8 +194,8 @@ final class ViewController: UIViewController {
 		view.insertSubview(tmp, aboveSubview: scrollView)
 		let imageViewSize = image.size.aspectFit(to: view.frame.size)
 		scrollView.contentSize = imageViewSize
-		scrollView.contentOffset = CGPoint.zero
-		imageView.frame = CGRect(origin: CGPoint.zero, size: imageViewSize)
+		scrollView.contentOffset = .zero
+		imageView.frame = CGRect(origin: .zero, size: imageViewSize)
 		imageView.image = image
 		sourceImage = imageView.toImage()
 		updateImage()
