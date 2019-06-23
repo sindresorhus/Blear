@@ -197,7 +197,7 @@ final class ViewController: UIViewController {
 		scrollView.contentOffset = .zero
 		imageView.frame = CGRect(origin: .zero, size: imageViewSize)
 		imageView.image = image
-		sourceImage = imageView.toImage()
+		sourceImage = image.resize(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
 		updateImage()
 
 		// The delay here is important so it has time to blur the image before we start fading
