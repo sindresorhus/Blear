@@ -209,8 +209,15 @@ final class ViewController: UIViewController {
 				tmp.alpha = 0
 			}, completion: { _ in
 				tmp.removeFromSuperview()
+				self.showScrollPreviewIfNeeded()
 			}
 		)
+	}
+	
+	func showScrollPreviewIfNeeded() {
+		if UserDefaults.standard.showedScrollPreview {
+			self.scrollView.showPreview()
+		}
 	}
 
 	func randomImage() {
