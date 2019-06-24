@@ -109,6 +109,21 @@ final class ViewController: UIViewController {
 		// Important that this is here at the end for the fading to work
 		randomImage()
 	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if UserDefaults.standard.isFirstLaunch {
+			let alert = UIAlertController(
+				title: "Tip",
+				message: "Shake the device to get a random image.",
+				preferredStyle: .alert
+			)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+				self.scrollView.showPreview()
+			}))
+			self.present(alert, animated: true)
+		}
+	}
 
 	@objc
 	func pickImage() {
@@ -209,17 +224,10 @@ final class ViewController: UIViewController {
 				tmp.alpha = 0
 			}, completion: { _ in
 				tmp.removeFromSuperview()
-				self.showScrollPreviewIfNeeded()
 			}
 		)
 	}
 	
-	func showScrollPreviewIfNeeded() {
-		if UserDefaults.standard.showedScrollPreview {
-			self.scrollView.showPreview()
-		}
-	}
-
 	func randomImage() {
 		changeImage(UIImage(contentsOf: randomImageIterator.next()!)!)
 	}
