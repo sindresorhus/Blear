@@ -155,12 +155,14 @@ final class ViewController: UIViewController {
 		if let workItem = workItem {
 			workItem.cancel()
 		}
+
 		workItem = DispatchWorkItem {
 			let tmp = self.blurImage(self.blurAmount)
 			DispatchQueue.main.async {
 				self.imageView.image = tmp
 			}
 		}
+
 		DispatchQueue.global(qos: .userInteractive).async(execute: workItem!)
 	}
 
@@ -173,6 +175,7 @@ final class ViewController: UIViewController {
 	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
+
 		PHPhotoLibrary.save(image: scrollView.toImage(), toAlbum: "Blear") { result in
 			button.isEnabled = true
 
