@@ -56,8 +56,8 @@ extension PHPhotoLibrary {
 
 	static func getAlbum(
 		withTitle title: String,
-		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>
-	) -> Void) {
+		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>) -> Void
+	) {
 		runOrFail { result in
 			switch result {
 			case .failure(let error):
@@ -203,6 +203,16 @@ extension UserDefaults {
 			return true
 		}
 	}
+	var showedScrollPreview: Bool {
+		let key = "__showedScrollPreview__"
+		
+		if bool(forKey: key) {
+			return false
+		} else {
+			set(true, forKey: key)
+			return true
+		}
+	}
 }
 
 extension UIImage {
@@ -220,10 +230,18 @@ extension UIImage {
 		UIGraphicsEndImageContext()
 		self.init(cgImage: image!.cgImage!)
 	}
+	
+	func resize(to size: CGSize) -> UIImage {
+		let renderer = UIGraphicsImageRenderer(size: size)
+		return renderer.image { _ in
+			draw(in: CGRect(origin: .zero, size: size))
+		}
+	}
 }
 
 extension UIView {
 	/// The most efficient solution
+	@objc
 	func toImage() -> UIImage {
 		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
 			self.drawHierarchy(in: bounds, afterScreenUpdates: true)
@@ -248,5 +266,30 @@ extension UIEdgeInsets {
 extension UIViewController {
 	var window: UIWindow {
 		return UIApplication.shared.windows.first!
+	}
+}
+
+extension UIScrollView {
+	@objc
+	override func toImage() -> UIImage {
+		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+			let newBounds = bounds.offsetBy(dx: -contentOffset.x, dy: -contentOffset.y)
+			self.drawHierarchy(in: newBounds, afterScreenUpdates: true)
+		}
+	}
+	func showPreview() {
+		let x = contentSize.width - frame.size.width
+		let y = contentSize.height - frame.size.height
+		setContentOffset(CGPoint(x: x, y: y), animated: true)
+		delay(seconds: 1) {
+			self.setContentOffset(.zero, animated: true)
+		}
+	}
+}
+
+extension CGSize {
+	func aspectFit(to size: CGSize) -> CGSize {
+		let ratio = max(size.width / width, size.height / height)
+		return CGSize(width: width * CGFloat(ratio), height: height * CGFloat(ratio))
 	}
 }

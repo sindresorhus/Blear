@@ -17,9 +17,19 @@ final class ViewController: UIViewController {
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
 
+	var workItem: DispatchWorkItem?
+
+	lazy var scrollView = with(UIScrollView()) {
+		$0.frame = view.bounds
+		$0.bounces = false
+		$0.showsHorizontalScrollIndicator = false
+		$0.showsVerticalScrollIndicator = false
+		$0.contentInsetAdjustmentBehavior = .never
+	}
+
 	lazy var imageView = with(UIImageView()) {
 		$0.image = UIImage(color: .black, size: view.frame.size)
-		$0.contentMode = .scaleAspectFill
+		$0.contentMode = .scaleAspectFit
 		$0.clipsToBounds = true
 		$0.frame = view.bounds
 	}
@@ -64,7 +74,8 @@ final class ViewController: UIViewController {
 		delayedAction = IIDelayedAction({}, withDelay: 0.2)
 		delayedAction?.onMainThread = false
 
-		view.addSubview(imageView)
+		view.addSubview(scrollView)
+		scrollView.addSubview(imageView)
 
 		let TOOLBAR_HEIGHT: CGFloat = 80 + window.safeAreaInsets.bottom
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - TOOLBAR_HEIGHT, width: view.frame.size.width, height: TOOLBAR_HEIGHT))
@@ -100,6 +111,24 @@ final class ViewController: UIViewController {
 		// Important that this is here at the end for the fading to work
 		randomImage()
 	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		if UserDefaults.standard.isFirstLaunch {
+			let alert = UIAlertController(
+				title: "Tip",
+				message: "Shake the device to get a random image.",
+				preferredStyle: .alert
+			)
+
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+				self.scrollView.showPreview()
+			}))
+
+			self.present(alert, animated: true)
+		}
+	}
 
 	@objc
 	func pickImage() {
@@ -123,32 +152,31 @@ final class ViewController: UIViewController {
 
 	@objc
 	func updateImage() {
-		DispatchQueue.global(qos: .userInteractive).async {
+		if let workItem = workItem {
+			workItem.cancel()
+		}
+
+		workItem = DispatchWorkItem {
 			let tmp = self.blurImage(self.blurAmount)
 			DispatchQueue.main.async {
 				self.imageView.image = tmp
 			}
 		}
-	}
 
-	func updateImageDebounced() {
-		performSelector(inBackground: #selector(updateImage), with: IS_IPAD ? 0.1 : 0.06)
+		DispatchQueue.global(qos: .userInteractive).async(execute: workItem!)
 	}
 
 	@objc
 	func sliderChanged(_ sender: UISlider) {
 		blurAmount = sender.value
-		updateImageDebounced()
-		delayedAction?.action {
-			self.updateImage()
-		}
+		updateImage()
 	}
 
 	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
-		PHPhotoLibrary.save(image: imageView.image!, toAlbum: "Blear") { result in
+		PHPhotoLibrary.save(image: scrollView.toImage(), toAlbum: "Blear") { result in
 			button.isEnabled = true
 
 			let HUD = JGProgressHUD(style: .dark)
@@ -184,13 +212,16 @@ final class ViewController: UIViewController {
 		}
 	}
 
-	/// TODO: Improve this method
 	func changeImage(_ image: UIImage) {
-		let tmp = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: imageView)) as! UIImageView
-		view.insertSubview(tmp, aboveSubview: imageView)
+		let tmp = UIImageView(image: scrollView.toImage())
+		view.insertSubview(tmp, aboveSubview: scrollView)
+		let imageViewSize = image.size.aspectFit(to: view.frame.size)
+		scrollView.contentSize = imageViewSize
+		scrollView.contentOffset = .zero
+		imageView.frame = CGRect(origin: .zero, size: imageViewSize)
 		imageView.image = image
-		sourceImage = imageView.toImage()
-		updateImageDebounced()
+		sourceImage = image.resize(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
+		updateImage()
 
 		// The delay here is important so it has time to blur the image before we start fading
 		UIView.animate(
