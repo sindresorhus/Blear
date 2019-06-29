@@ -2,16 +2,16 @@
 "cancel" = "Cancel";
 
 /* Option to select photo from library */
-"chooseFromLibrary" = "Choose from library";
+"chooseFromLibrary" = "Choose from Library";
 
 /* Option to select photo from photo roll */
-"chooseFromPhotoRoll" = "Choose from photo roll";
+"chooseFromPhotoRoll" = "Choose from Photo Roll";
 
 /* There are no sources available to select a photo */
 "noSources" = "There are no sources available to select a photo";
 
 /* Option to take photo using camera */
-"takePhoto" = "Take photo";
+"takePhoto" = "Take Photo";
 
 /* Option to take video using camera */
-"takeVideo" = "Take video";
+"takeVideo" = "Take Video";

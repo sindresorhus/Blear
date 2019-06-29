@@ -203,16 +203,6 @@ extension UserDefaults {
 			return true
 		}
 	}
-	var showedScrollPreview: Bool {
-		let key = "__showedScrollPreview__"
-		
-		if bool(forKey: key) {
-			return false
-		} else {
-			set(true, forKey: key)
-			return true
-		}
-	}
 }
 
 extension UIImage {
@@ -230,10 +220,9 @@ extension UIImage {
 		UIGraphicsEndImageContext()
 		self.init(cgImage: image!.cgImage!)
 	}
-	
-	func resize(to size: CGSize) -> UIImage {
-		let renderer = UIGraphicsImageRenderer(size: size)
-		return renderer.image { _ in
+
+	func resized(to size: CGSize) -> UIImage {
+		return UIGraphicsImageRenderer(size: size).image { _ in
 			draw(in: CGRect(origin: .zero, size: size))
 		}
 	}
@@ -275,14 +264,6 @@ extension UIScrollView {
 		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
 			let newBounds = bounds.offsetBy(dx: -contentOffset.x, dy: -contentOffset.y)
 			self.drawHierarchy(in: newBounds, afterScreenUpdates: true)
-		}
-	}
-	func showPreview() {
-		let x = contentSize.width - frame.size.width
-		let y = contentSize.height - frame.size.height
-		setContentOffset(CGPoint(x: x, y: y), animated: true)
-		delay(seconds: 1) {
-			self.setContentOffset(.zero, animated: true)
 		}
 	}
 }

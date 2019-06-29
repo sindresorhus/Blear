@@ -52,11 +52,6 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
 
     // MARK: - Initializers & Class Convenience Methods
 
-    /// Public initializer
-    public override init() {
-        super.init()
-    }
-
     /// Convenience method for getting a photo
     open class func getPhotoWithCallback(getPhotoWithCallback callback: @escaping (_ photo: UIImage, _ info: [AnyHashable: Any]) -> Void) {
         let fdTake = FDTakeController()
@@ -123,7 +118,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
     /// A video was selected
     open var didGetVideo: ((_ video: URL, _ info: [AnyHashable: Any]) -> Void)?
 
-    /// The user selected did not attempt to select a photo
+    /// The user did not attempt to select a photo
     open var didDeny: (() -> Void)?
 
     /// The user started selecting a photo or took a photo and then hit cancel
@@ -156,7 +151,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
 
     // MARK: - Private
 
-    fileprivate lazy var imagePicker: UIImagePickerController = {
+    private lazy var imagePicker: UIImagePickerController = {
         [unowned self] in
         let retval = UIImagePickerController()
         retval.delegate = self
@@ -164,31 +159,27 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
         return retval
         }()
 
-    fileprivate lazy var popover: UIPopoverController = {
-        [unowned self] in
-        return UIPopoverController(contentViewController: self.imagePicker)
-        }()
-
-    fileprivate var alertController: UIAlertController? = nil
+    private var alertController: UIAlertController? = nil
 
     // This is a hack required on iPad if you want to select a photo and you already have a popup on the screen
-    // see: http://stackoverflow.com/a/34392409/300224
-    fileprivate func topViewController(_ rootViewController: UIViewController) -> UIViewController {
+    // see: https://stackoverflow.com/a/35209728/300224
+    private func topViewController(rootViewController: UIViewController) -> UIViewController {
         var rootViewController = UIApplication.shared.keyWindow!.rootViewController!
         repeat {
             guard let presentedViewController = rootViewController.presentedViewController else {
                 return rootViewController
             }
-
+            
             if let navigationController = rootViewController.presentedViewController as? UINavigationController {
                 rootViewController = navigationController.topViewController ?? navigationController
-
+                
             } else {
                 rootViewController = presentedViewController
             }
         } while true
     }
 
+    
     // MARK: - Localization
 
     private func localizeString(_ string:FDTakeControllerLocalizableStrings) -> String {
@@ -283,14 +274,15 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
                 if popOverPresentRect.size.height == 0 || popOverPresentRect.size.width == 0 {
                     popOverPresentRect = CGRect(x: 0, y: 0, width: 1, height: 1)
                 }
-                let topVC = self.topViewController(self.presentingViewController)
+                let topVC = self.topViewController(rootViewController: self.presentingViewController)
 
-                //
                 if UI_USER_INTERFACE_IDIOM() == .phone || (source == .camera && self.iPadUsesFullScreenCamera) {
                     topVC.present(self.imagePicker, animated: true, completion: nil)
                 } else {
                     // On iPad use pop-overs.
-                    self.popover.present(from: popOverPresentRect, in: topVC.view!, permittedArrowDirections: .any, animated: true)
+                    self.imagePicker.modalPresentationStyle = .popover
+                    self.imagePicker.popoverPresentationController?.sourceRect = popOverPresentRect
+                    topVC.present(self.imagePicker, animated: true, completion: nil)
                 }
             }
             alertController!.addAction(action)
@@ -301,7 +293,7 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
         }
         alertController!.addAction(cancelAction)
 
-        let topVC = topViewController(presentingViewController)
+        let topVC = topViewController(rootViewController: presentingViewController)
 
         alertController?.modalPresentationStyle = .popover
         if let presenter = alertController!.popoverPresentationController {
@@ -324,8 +316,8 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
 extension FDTakeController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     /// Conformance for ImagePicker delegate
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         UIApplication.shared.isStatusBarHidden = true
         let mediaType: String = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as! String
@@ -342,7 +334,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             }
             self.didGetPhoto?(imageToSave, info)
             if UI_USER_INTERFACE_IDIOM() == .pad {
-                self.popover.dismiss(animated: true)
+                self.imagePicker.dismiss(animated: true)
             }
         } else if mediaType == kUTTypeMovie as String {
             self.didGetVideo?(info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as! URL, info)
@@ -357,14 +349,15 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         picker.dismiss(animated: true, completion: nil)
         self.didDeny?()
     }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
 }
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
-}

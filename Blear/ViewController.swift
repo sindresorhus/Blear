@@ -10,6 +10,20 @@ let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let IS_LARGE_SCREEN = IS_IPHONE && max(SCREEN_WIDTH, SCREEN_HEIGHT) >= 736.0
 
+// TODO: Use `@propertyWrapper` for this when it's out.
+extension UserDefaults {
+	var showedScrollPreview: Bool {
+		let key = "__showedScrollPreview__"
+
+		if bool(forKey: key) {
+			return false
+		} else {
+			set(true, forKey: key)
+			return true
+		}
+	}
+}
+
 final class ViewController: UIViewController {
 	var sourceImage: UIImage?
 	var delayedAction: IIDelayedAction?
@@ -111,7 +125,7 @@ final class ViewController: UIViewController {
 		// Important that this is here at the end for the fading to work
 		randomImage()
 	}
-	
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
@@ -122,9 +136,9 @@ final class ViewController: UIViewController {
 				preferredStyle: .alert
 			)
 
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-				self.scrollView.showPreview()
-			}))
+			alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+				self.previewScrollingToUser()
+			})
 
 			self.present(alert, animated: true)
 		}
@@ -157,9 +171,9 @@ final class ViewController: UIViewController {
 		}
 
 		workItem = DispatchWorkItem {
-			let tmp = self.blurImage(self.blurAmount)
+			let temp = self.blurImage(self.blurAmount)
 			DispatchQueue.main.async {
-				self.imageView.image = tmp
+				self.imageView.image = temp
 			}
 		}
 
@@ -213,14 +227,14 @@ final class ViewController: UIViewController {
 	}
 
 	func changeImage(_ image: UIImage) {
-		let tmp = UIImageView(image: scrollView.toImage())
-		view.insertSubview(tmp, aboveSubview: scrollView)
+		let temp = UIImageView(image: scrollView.toImage())
+		view.insertSubview(temp, aboveSubview: scrollView)
 		let imageViewSize = image.size.aspectFit(to: view.frame.size)
 		scrollView.contentSize = imageViewSize
 		scrollView.contentOffset = .zero
 		imageView.frame = CGRect(origin: .zero, size: imageViewSize)
 		imageView.image = image
-		sourceImage = image.resize(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
+		sourceImage = image.resized(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
 		updateImage()
 
 		// The delay here is important so it has time to blur the image before we start fading
@@ -229,14 +243,24 @@ final class ViewController: UIViewController {
 			delay: 0.3,
 			options: .curveEaseInOut,
 			animations: {
-				tmp.alpha = 0
+				temp.alpha = 0
 			}, completion: { _ in
-				tmp.removeFromSuperview()
+				temp.removeFromSuperview()
 			}
 		)
 	}
 
 	func randomImage() {
 		changeImage(UIImage(contentsOf: randomImageIterator.next()!)!)
+	}
+
+	func previewScrollingToUser() {
+		let x = scrollView.contentSize.width - scrollView.frame.size.width
+		let y = scrollView.contentSize.height - scrollView.frame.size.height
+		scrollView.setContentOffset(CGPoint(x: x, y: y), animated: true)
+
+		delay(seconds: 1) {
+			self.scrollView.setContentOffset(.zero, animated: true)
+		}
 	}
 }

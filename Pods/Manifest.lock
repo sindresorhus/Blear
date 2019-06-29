@@ -1,11 +1,11 @@
 PODS:
-  - FDTake (2.0.0)
+  - FDTake (3.0.0)
   - IIDelayedAction (1.0.1)
   - JGProgressHUD (2.0.3)
-  - SwiftLint (0.31.0)
+  - SwiftLint (0.33.0)
 
 DEPENDENCIES:
-  - FDTake (~> 2.0)
+  - FDTake (~> 3.0)
   - IIDelayedAction (~> 1.0)
   - JGProgressHUD (~> 2.0)
   - SwiftLint
@@ -18,11 +18,11 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  FDTake: 21152c660ddf075a859f86af83f9d17dc4b5a539
+  FDTake: cbae493765483304fbaa48e402ea3d7b22ba86d0
   IIDelayedAction: bc1193338973d9fbe99c38da71f6d777a12a5a6e
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: c14bfdc27f9695495afa3fcf2ff94d55d6461cb5
+PODFILE CHECKSUM: 831af1270629800f9cca0c826aaf539ec1c2d0df
 
-COCOAPODS: 1.7.0.beta.2
+COCOAPODS: 1.7.3
