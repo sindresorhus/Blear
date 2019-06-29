@@ -16,7 +16,9 @@ final class ViewController: UIViewController {
 	var blurAmount: Float = 50
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
+
 	var workItem: DispatchWorkItem?
+
 	lazy var scrollView = with(UIScrollView()) {
 		$0.frame = view.bounds
 		$0.bounces = false
@@ -112,15 +114,18 @@ final class ViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+
 		if UserDefaults.standard.isFirstLaunch {
 			let alert = UIAlertController(
 				title: "Tip",
 				message: "Shake the device to get a random image.",
 				preferredStyle: .alert
 			)
+
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
 				self.scrollView.showPreview()
 			}))
+
 			self.present(alert, animated: true)
 		}
 	}
@@ -227,7 +232,7 @@ final class ViewController: UIViewController {
 			}
 		)
 	}
-	
+
 	func randomImage() {
 		changeImage(UIImage(contentsOf: randomImageIterator.next()!)!)
 	}
