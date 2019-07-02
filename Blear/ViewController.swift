@@ -1,6 +1,5 @@
 import UIKit
 import Photos
-import JGProgressHUD
 
 let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
 let IS_IPHONE = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
