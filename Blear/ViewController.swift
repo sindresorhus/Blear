@@ -1,6 +1,5 @@
 import UIKit
 import Photos
-import FDTake
 import JGProgressHUD
 
 let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
@@ -139,14 +138,30 @@ final class ViewController: UIViewController {
 
 	@objc
 	func pickImage() {
-		let fdTake = FDTakeController()
-		fdTake.allowsVideo = false
-		fdTake.didGetPhoto = { photo, _ in
-			self.changeImage(photo)
-		}
-		fdTake.present()
+		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+		actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default, handler: ({ _ in
+			self.showCameraPicker()
+		})))
+		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default, handler: ({ _ in
+			self.showLibraryPicker()
+		})))
+		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		present(actionSheet, animated: true, completion: nil)
 	}
-
+	func showCameraPicker() {
+		let picker = UIImagePickerController()
+		picker.allowsEditing = false
+		picker.sourceType = .camera
+		picker.delegate = self
+		present(picker, animated: true, completion: nil)
+	}
+	func showLibraryPicker() {
+		let picker = UIImagePickerController()
+		picker.allowsEditing = false
+		picker.sourceType = .savedPhotosAlbum
+		picker.delegate = self
+		present(picker, animated: true, completion: nil)
+	}
 	func blurImage(_ blurAmount: Float) -> UIImage {
 		return UIImageEffects.imageByApplyingBlur(
 			to: sourceImage,
@@ -255,5 +270,19 @@ final class ViewController: UIViewController {
 		delay(seconds: 1) {
 			self.scrollView.setContentOffset(.zero, animated: true)
 		}
+	}
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		guard let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+			dismiss(animated: true, completion: nil)
+			return
+		}
+		changeImage(chosenImage)
+		dismiss(animated: true, completion: nil)
+	}
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		dismiss(animated: true, completion: nil)
 	}
 }

@@ -7,62 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AFBBDFABA3EEE604DEAA9323F04FA42 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 298301154CB25BCD868E145927CCD6C5 /* JGProgressHUDFadeZoomAnimation.m */; };
-		196E6CF6216F7615BF6BE8BBA787A780 /* Pods-Blear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 595DC2984CF9AE311E229443B3BA3F2B /* Pods-Blear-dummy.m */; };
-		22347863AF710BA745CFCCD0EEF4450E /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1775FF90559FBC501DBE118B47E8 /* JGProgressHUDFadeAnimation.m */; };
-		241534CCDECA04BD2E6833161C3FDF1C /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF165AA9A2F47BCA6DFDAA58FA11726 /* JGProgressHUDErrorIndicatorView.m */; };
-		24BC264ADE9FA4BCDA958B52E020FDA5 /* FDTakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D23DFA3F9690E2B98736B98F5FCEB6 /* FDTakeController.swift */; };
-		24DD376E33CA7E55C9EE6586BA6376FC /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = A26A4FF4677512F2D6C5378B36B57DF7 /* jg_hud_success.png */; };
-		24E5B7A2F5AF10470CF66DB155813E0B /* FDTake-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F4EC15116C64353FAE3B531B854FBF /* FDTake-dummy.m */; };
-		2E97DE8783FB5F25F354162601B516D7 /* Pods-Blear-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FDBD77E5999006B2606753475BBED16 /* Pods-Blear-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		38E07C8DCFBDA12729D554DB88C76371 /* JGProgressHUDImageIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6EF898EE4506EEC7FC465B28F71D27 /* JGProgressHUDImageIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3F49EC4A3D683A85925C225796AE84B5 /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109FF27242C19CBC761D5235BBC353F6 /* jg_hud_error@3x.png */; };
-		4616671249DCE58357AE706BD96FE80D /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCAE66116A9244DD46EA298A054B299 /* JGProgressHUDAnimation.m */; };
-		492B67ACA2C6226D3A1849AE55B2EF6A /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DABCF5D408AF17678C66B1B2AF0C78A /* jg_hud_success@3x.png */; };
-		51D05897307803F9D73B108590106E79 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D0E0FB7F84C98854EE3437FF344751 /* JGProgressHUDIndeterminateIndicatorView.m */; };
-		61AB7BBA9379C3566B60586169A209C8 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CE5A32F7037ED82842CF961F851778 /* JGProgressHUDPieIndicatorView.m */; };
-		67560DC2155B11E98E780C55B90C86B0 /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E2392428964E22B26C0F266E2FFA9F /* JGProgressHUDShadow.m */; };
-		6D0870CC82FB47D1735981E75679EB33 /* JGProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 457B0C0965A96C994F794B9B4A049BB3 /* JGProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6D9B467BEB2EC77C07443B66C204F6BA /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A86F755BEE99200E53297372D36BD38 /* jg_hud_error@2x.png */; };
-		6E91FA5B1D40BB52DCD2CD815BC57437 /* JGProgressHUDIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A106485D80904722970BE1E1DE859A9 /* JGProgressHUDIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7B09EA32CF78133CBFB70BC38200FE35 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5622803CD7B0BCC9661DA2888D9DC716 /* JGProgressHUDRingIndicatorView.m */; };
-		7C7FEF72AF8064DAD1FD6F3795AD3F29 /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 53BF6ED48B48BA7CBEE2089396C64EEE /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7D1004D59B5E5E4095E49DE849E1433B /* JGProgressHUDRingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B3DF8BEB3087A6FB772B888CD5C5F25F /* JGProgressHUDRingIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		87D4DE99CD248D5068135CF8CEA248A2 /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBE1F44964A8A6B7D1B09A93B11A573 /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8E58CDE8E73099F5DF306312786C4F80 /* FDTake.h in Headers */ = {isa = PBXBuildFile; fileRef = 377A5BDD92FBD9065F93816F3CBCC7FC /* FDTake.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		90C0D4EE88142B58E262823988552862 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB029BF3663FCC92276D7B5247CF07F /* JGProgressHUDIndicatorView.m */; };
-		96651238D8A8C9E43ABAB66B86705FDC /* JGProgressHUDFadeZoomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = DBB1644FB3349DBA9E4BCF04E4B091D6 /* JGProgressHUDFadeZoomAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9C29A13C69860FB77C4AD49040EC697B /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 43829C406BC7EE362DADEA456E3697E3 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A8AB21AC4CF23C5B2F29EC82FA56FB8F /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C693FD3F01D414E01CBB3BFF86C9E968 /* JGProgressHUD.m */; };
-		B17BD18FB7A7B4C11F326BEFE5949ED0 /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = A87C2101705BC5D8DFB8DB2EEB6183EB /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B6E36F301D33A5AED6BC7CDB158543EF /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 308CA190BDFD96E4A472AA4949F3B5E3 /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BABC3529949FD9D1E625B8F932495FCD /* FDTake-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD09F280AD68777097A2F0C878C7B3ED /* FDTake-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BEA811584C7EEB15D82B4CB9FCE29EBF /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = C069C470057E0223226CF4D03B0FE5DA /* jg_hud_error.png */; };
-		C3359DB630C64D68EF15A58DDDE936B3 /* JGProgressHUDFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = F0E59C87B5CF7BEE6FDE37C4A6C54AE9 /* JGProgressHUDFadeAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C405A47D528652C600C0E659D550E22A /* JGProgressHUDErrorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AC5A60C946C9EA82880D216960E641 /* JGProgressHUDErrorIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CF665B543BE28CC79062D7F8F4045059 /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D84419DCF78273C7D891440F5A244B16 /* JGProgressHUDImageIndicatorView.m */; };
-		CF8FAA59E6084DEF0487376CCD76F616 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14365028962CF368F270F6E503D0D9EF /* JGProgressHUDSuccessIndicatorView.m */; };
-		DB90647D94C0B67B7ED1CCF229D08BDD /* JGProgressHUDIndeterminateIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 28B08B41A5E5FD0A94F557A6A5B6ADF3 /* JGProgressHUDIndeterminateIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E07245F71D120F50B3C55CE38C66F619 /* JGProgressHUDAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A8FB0BD7750040B0038FDE35F123627D /* JGProgressHUDAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EC354CA128B7A068F76E241F87CF663D /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD60AEE812E99C15E1CC7F19A099FBD /* jg_hud_success@2x.png */; };
-		F5D7149C5042BDA78378C1DC8B67921E /* JGProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAC8C5CF52B6ED9E4F30FE1CF3B6A07 /* JGProgressHUD-dummy.m */; };
+		0AFBBDFABA3EEE604DEAA9323F04FA42 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B203DEB79390425E4ACBF2027E702 /* JGProgressHUDFadeZoomAnimation.m */; };
+		22347863AF710BA745CFCCD0EEF4450E /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C265FF95BECDFDEE4D48D5EFDA3E0E /* JGProgressHUDFadeAnimation.m */; };
+		241534CCDECA04BD2E6833161C3FDF1C /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 723E4EED71197FD605FE6F4A67E3DCAF /* JGProgressHUDErrorIndicatorView.m */; };
+		24DD376E33CA7E55C9EE6586BA6376FC /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 595BA3BDD33B9F7DD4DE738C4361B5F0 /* jg_hud_success.png */; };
+		38E07C8DCFBDA12729D554DB88C76371 /* JGProgressHUDImageIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2594EB2791C9255AFAA2E5235BF6264 /* JGProgressHUDImageIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3F49EC4A3D683A85925C225796AE84B5 /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0281DA453329A0599D35673CA597E0 /* jg_hud_error@3x.png */; };
+		4616671249DCE58357AE706BD96FE80D /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E5E8C363E302BDEDB92681A11C0154 /* JGProgressHUDAnimation.m */; };
+		492B67ACA2C6226D3A1849AE55B2EF6A /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374352A5E0509503FEF249BAA91ED5AC /* jg_hud_success@3x.png */; };
+		51D05897307803F9D73B108590106E79 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85561C6DFF82BE46E04C8079933B5F09 /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		61AB7BBA9379C3566B60586169A209C8 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 309339336248B4A74ADF08FD1E775E5D /* JGProgressHUDPieIndicatorView.m */; };
+		67560DC2155B11E98E780C55B90C86B0 /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FB5E9AAE25CDF288B648FA0B69C70 /* JGProgressHUDShadow.m */; };
+		6D0870CC82FB47D1735981E75679EB33 /* JGProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD2D43A0FEEF0DB1FBC8B2FC798DEFC /* JGProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6D9B467BEB2EC77C07443B66C204F6BA /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B53546149339884C86685431FC2EFE7 /* jg_hud_error@2x.png */; };
+		6E91FA5B1D40BB52DCD2CD815BC57437 /* JGProgressHUDIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = CF49F8545808C88581FCC3793B4ACDE2 /* JGProgressHUDIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7B09EA32CF78133CBFB70BC38200FE35 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE0A0C197AD8B78B48BC71F0968513F /* JGProgressHUDRingIndicatorView.m */; };
+		7C7FEF72AF8064DAD1FD6F3795AD3F29 /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 041B0EE7DC1F6BA1D215D6F6A0BBB28C /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7D1004D59B5E5E4095E49DE849E1433B /* JGProgressHUDRingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB5F1C3C9833CBC17E9D9AC9BE7DB7A /* JGProgressHUDRingIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		87D4DE99CD248D5068135CF8CEA248A2 /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6EB5EF6C042FA00D9445D001A662A4 /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		90C0D4EE88142B58E262823988552862 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E77CCBD346E90C6AD7E958EE2A7D4 /* JGProgressHUDIndicatorView.m */; };
+		96651238D8A8C9E43ABAB66B86705FDC /* JGProgressHUDFadeZoomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = D719A4D73E313E9B32E9049AEE1E2524 /* JGProgressHUDFadeZoomAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C29A13C69860FB77C4AD49040EC697B /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = AA16DDE572763CADA93229448BCAA211 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A8AB21AC4CF23C5B2F29EC82FA56FB8F /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 495C2F2AD512A4A22519063056B88431 /* JGProgressHUD.m */; };
+		B17BD18FB7A7B4C11F326BEFE5949ED0 /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA90C0DF9CAB0A1ED46EBE1B67FBCED /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B6E36F301D33A5AED6BC7CDB158543EF /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = FBFEE3ED7D7F7E4A4B0AD065E58CF234 /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BEA811584C7EEB15D82B4CB9FCE29EBF /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E3426D70D846C3B9565A0BCC774D09 /* jg_hud_error.png */; };
+		C3359DB630C64D68EF15A58DDDE936B3 /* JGProgressHUDFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A44634E4A5196E6289B1674503F4EBB0 /* JGProgressHUDFadeAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C405A47D528652C600C0E659D550E22A /* JGProgressHUDErrorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 062F9FB647650CA1405A83C6A52447BC /* JGProgressHUDErrorIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CF665B543BE28CC79062D7F8F4045059 /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2DB8E99021F3261BD6DDD530E3859B5 /* JGProgressHUDImageIndicatorView.m */; };
+		CF8FAA59E6084DEF0487376CCD76F616 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F10BD9E29C7980D5F0E8028F16B6D52 /* JGProgressHUDSuccessIndicatorView.m */; };
+		DB90647D94C0B67B7ED1CCF229D08BDD /* JGProgressHUDIndeterminateIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E42E4875A16574B63BACAB96EC1327 /* JGProgressHUDIndeterminateIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E07245F71D120F50B3C55CE38C66F619 /* JGProgressHUDAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 960748E8E8EF304561A026B7B41F709B /* JGProgressHUDAnimation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EC354CA128B7A068F76E241F87CF663D /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE739337CEFECDBAD6683FB55F42060F /* jg_hud_success@2x.png */; };
+		F5D7149C5042BDA78378C1DC8B67921E /* JGProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE946B3C6A22B496F5FCE186298D9F /* JGProgressHUD-dummy.m */; };
+		F79F8A5457002F2348577053172101ED /* Pods-Blear-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6152A235A8EB2672F0716AC1EAAABC /* Pods-Blear-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6ECAB43BBB7667F742C1CD767ACC8070 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E4BECB02819B9EF52BA2C8C073EFA4F6;
-			remoteInfo = FDTake;
-		};
-		764F2FB55631FA67D9B9688D8FFCBE93 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6F3964F174D0EBFB0D64F8DBC20E1429;
-			remoteInfo = JGProgressHUD;
-		};
 		B0B022DFC8742A1E678BD3C025FE4BB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -70,85 +51,63 @@
 			remoteGlobalIDString = BBD6B43FA0F7FFBCD1978EBE76F99021;
 			remoteInfo = "JGProgressHUD-JGProgressHUD";
 		};
+		BCDDD73808D8CEF6BC92ACD5A16E588B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F3964F174D0EBFB0D64F8DBC20E1429;
+			remoteInfo = JGProgressHUD;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A86F755BEE99200E53297372D36BD38 /* jg_hud_error@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_error@2x.png"; path = "JGProgressHUD/Resources/jg_hud_error@2x.png"; sourceTree = "<group>"; };
-		0E458687E04861B0597BC05EB140EBEC /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		109FF27242C19CBC761D5235BBC353F6 /* jg_hud_error@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_error@3x.png"; path = "JGProgressHUD/Resources/jg_hud_error@3x.png"; sourceTree = "<group>"; };
-		14365028962CF368F270F6E503D0D9EF /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDSuccessIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
-		18EA1775FF90559FBC501DBE118B47E8 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
-		1BF165AA9A2F47BCA6DFDAA58FA11726 /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDErrorIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
-		20D23DFA3F9690E2B98736B98F5FCEB6 /* FDTakeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FDTakeController.swift; path = Source/FDTakeController.swift; sourceTree = "<group>"; };
-		22AE3DE09248A20C0382A65DD512ECE0 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		28B08B41A5E5FD0A94F557A6A5B6ADF3 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndeterminateIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
-		298301154CB25BCD868E145927CCD6C5 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeZoomAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
-		2CD60AEE812E99C15E1CC7F19A099FBD /* jg_hud_success@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@2x.png"; path = "JGProgressHUD/Resources/jg_hud_success@2x.png"; sourceTree = "<group>"; };
-		2DABCF5D408AF17678C66B1B2AF0C78A /* jg_hud_success@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@3x.png"; path = "JGProgressHUD/Resources/jg_hud_success@3x.png"; sourceTree = "<group>"; };
-		308CA190BDFD96E4A472AA4949F3B5E3 /* JGProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.h; sourceTree = "<group>"; };
-		34CA450E1AC53419DB8FDF57BBF895B1 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		377A5BDD92FBD9065F93816F3CBCC7FC /* FDTake.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FDTake.h; path = Source/FDTake.h; sourceTree = "<group>"; };
-		38122445CBD3511B1B86E83E58BE68E5 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist"; sourceTree = "<group>"; };
-		3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JGProgressHUD.xcconfig; sourceTree = "<group>"; };
-		3E144870E30087242A2E792FDF803D93 /* libFDTake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDTake.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		43829C406BC7EE362DADEA456E3697E3 /* JGProgressHUDShadow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDShadow.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDShadow.h; sourceTree = "<group>"; };
-		43AC5A60C946C9EA82880D216960E641 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
-		457B0C0965A96C994F794B9B4A049BB3 /* JGProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		461A67B72A257A7C23A3818DA6D6909E /* JGProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JGProgressHUD.modulemap; sourceTree = "<group>"; };
-		46C5DBD9555DBF5270748F74EAD810AC /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4B5CDCAE3EAE6014B46B0C37DAFAE7DB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4BF9F77C2909A0B20320E47A155753DD /* Pods-Blear-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Blear-acknowledgements.plist"; sourceTree = "<group>"; };
-		4F3A195F2FA19324998EEA4E422F1879 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
-		50BFFE42053E6D006359F73E08370CE1 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JGProgressHUD.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CE5A32F7037ED82842CF961F851778 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDPieIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
-		53BF6ED48B48BA7CBEE2089396C64EEE /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDSuccessIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
-		5488F3B1E3D48ACCAF8FFFDF2F84ABED /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5622803CD7B0BCC9661DA2888D9DC716 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
-		595DC2984CF9AE311E229443B3BA3F2B /* Pods-Blear-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Blear-dummy.m"; sourceTree = "<group>"; };
-		5A106485D80904722970BE1E1DE859A9 /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
-		5E40619E88689CC0158516BF84E8F627 /* Pods-Blear-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Blear-acknowledgements.markdown"; sourceTree = "<group>"; };
-		63321289ED898B03612E97EB4CA238F1 /* JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		6CBE1F44964A8A6B7D1B09A93B11A573 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDPieIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
-		75D0E0FB7F84C98854EE3437FF344751 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndeterminateIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
-		78485161401DF83AA1D53CE91A1975F5 /* Pods-Blear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.release.xcconfig"; sourceTree = "<group>"; };
-		7AB029BF3663FCC92276D7B5247CF07F /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
-		7D777F468A4581B6EE84FEE836694A9A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		7DF793A4732AFD705DBA0E940D14E12D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		7FBAFAA66E9C7401884F439AE8BC662C /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		801CF83CAAA4ACA6E3A9FCF4F36D5E14 /* FDTake-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDTake-prefix.pch"; sourceTree = "<group>"; };
-		836EAD9B38D24D056B16877B84BC46A2 /* libPods-Blear.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blear.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8613A6481578653D49865716C6155655 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8C72E862AE21E7F8AFCBF2744F306FC3 /* Pods-Blear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.debug.xcconfig"; sourceTree = "<group>"; };
-		8FDBD77E5999006B2606753475BBED16 /* Pods-Blear-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Blear-umbrella.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0569665FC6AE911A76F68FCB3420FA5 /* FDTake.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FDTake.modulemap; sourceTree = "<group>"; };
-		A26A4FF4677512F2D6C5378B36B57DF7 /* jg_hud_success.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_success.png; path = JGProgressHUD/Resources/jg_hud_success.png; sourceTree = "<group>"; };
-		A87C2101705BC5D8DFB8DB2EEB6183EB /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JGProgressHUD-Defines.h"; path = "JGProgressHUD/JGProgressHUD/JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
-		A8FB0BD7750040B0038FDE35F123627D /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.h; sourceTree = "<group>"; };
-		AFF30B9407182E7661DC3BF23DC45D08 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B3DF8BEB3087A6FB772B888CD5C5F25F /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDRingIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
-		B46F5DE430A61B23C5382E60A7826AF6 /* Pods-Blear.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Blear.modulemap"; sourceTree = "<group>"; };
-		B841DEC5BF66C1599C7EB90574E2B71B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BDCAE66116A9244DD46EA298A054B299 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.m; sourceTree = "<group>"; };
-		BFAC8C5CF52B6ED9E4F30FE1CF3B6A07 /* JGProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		C069C470057E0223226CF4D03B0FE5DA /* jg_hud_error.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_error.png; path = JGProgressHUD/Resources/jg_hud_error.png; sourceTree = "<group>"; };
-		C583AB61AD18E2EC216F7BF2C7F4EA30 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C693FD3F01D414E01CBB3BFF86C9E968 /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
-		D4C3DFFE83075479B859521642987475 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D564876056A294282F64685E080392F2 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D84419DCF78273C7D891440F5A244B16 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDImageIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
-		DB8B53279A74F2D82AAAF3EEB3B25203 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DBB1644FB3349DBA9E4BCF04E4B091D6 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeZoomAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
-		DD09F280AD68777097A2F0C878C7B3ED /* FDTake-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDTake-umbrella.h"; sourceTree = "<group>"; };
-		DD8886E25DC459DE8020893C43DBB199 /* Pods-Blear-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Blear-resources.sh"; sourceTree = "<group>"; };
-		DE2B9BC7BAB14A6B8E06631F8C4AEA2D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DEF17BFF2A23F5FC761370A67EF36CDF /* FDTake.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FDTake.xcconfig; sourceTree = "<group>"; };
-		E5C738D276A25B540000679F7A89212C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EF6EF898EE4506EEC7FC465B28F71D27 /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDImageIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
-		F0E59C87B5CF7BEE6FDE37C4A6C54AE9 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
-		F3E2392428964E22B26C0F266E2FFA9F /* JGProgressHUDShadow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDShadow.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDShadow.m; sourceTree = "<group>"; };
-		F4F4EC15116C64353FAE3B531B854FBF /* FDTake-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FDTake-dummy.m"; sourceTree = "<group>"; };
-		FF176B39DAF54C735C7312B757A789C4 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		041B0EE7DC1F6BA1D215D6F6A0BBB28C /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDSuccessIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
+		049B203DEB79390425E4ACBF2027E702 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeZoomAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		062F9FB647650CA1405A83C6A52447BC /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
+		1AB5F1C3C9833CBC17E9D9AC9BE7DB7A /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDRingIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		228FB5E9AAE25CDF288B648FA0B69C70 /* JGProgressHUDShadow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDShadow.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDShadow.m; sourceTree = "<group>"; };
+		2CA90C0DF9CAB0A1ED46EBE1B67FBCED /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JGProgressHUD-Defines.h"; path = "JGProgressHUD/JGProgressHUD/JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
+		2E0281DA453329A0599D35673CA597E0 /* jg_hud_error@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_error@3x.png"; path = "JGProgressHUD/Resources/jg_hud_error@3x.png"; sourceTree = "<group>"; };
+		2F10BD9E29C7980D5F0E8028F16B6D52 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDSuccessIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
+		2FD2D43A0FEEF0DB1FBC8B2FC798DEFC /* JGProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		309339336248B4A74ADF08FD1E775E5D /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDPieIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		374352A5E0509503FEF249BAA91ED5AC /* jg_hud_success@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@3x.png"; path = "JGProgressHUD/Resources/jg_hud_success@3x.png"; sourceTree = "<group>"; };
+		3A6152A235A8EB2672F0716AC1EAAABC /* Pods-Blear-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Blear-dummy.m"; sourceTree = "<group>"; };
+		40E34E98F55707847F86443AE9CD02A2 /* Pods-Blear-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Blear-acknowledgements.plist"; sourceTree = "<group>"; };
+		4679BD3D6F9F9A3EBF50BBC45C03B42D /* Pods-Blear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.debug.xcconfig"; sourceTree = "<group>"; };
+		495C2F2AD512A4A22519063056B88431 /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
+		4DE0A0C197AD8B78B48BC71F0968513F /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		50BFFE42053E6D006359F73E08370CE1 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = JGProgressHUD.bundle; path = "JGProgressHUD-JGProgressHUD.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		595BA3BDD33B9F7DD4DE738C4361B5F0 /* jg_hud_success.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_success.png; path = JGProgressHUD/Resources/jg_hud_success.png; sourceTree = "<group>"; };
+		5E654F335FD89E237AEF32AC10F831C7 /* Pods-Blear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Blear.release.xcconfig"; sourceTree = "<group>"; };
+		723E4EED71197FD605FE6F4A67E3DCAF /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDErrorIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		7B53546149339884C86685431FC2EFE7 /* jg_hud_error@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_error@2x.png"; path = "JGProgressHUD/Resources/jg_hud_error@2x.png"; sourceTree = "<group>"; };
+		7FBAFAA66E9C7401884F439AE8BC662C /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJGProgressHUD.a; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		833E77CCBD346E90C6AD7E958EE2A7D4 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		836EAD9B38D24D056B16877B84BC46A2 /* libPods-Blear.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Blear.a"; path = "libPods-Blear.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85561C6DFF82BE46E04C8079933B5F09 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndeterminateIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		8719D8DFB212BD38C3C800D912B4B3A3 /* Pods-Blear-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Blear-resources.sh"; sourceTree = "<group>"; };
+		95B39060D871BD84FC368F4B24018310 /* JGProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JGProgressHUD.modulemap; sourceTree = "<group>"; };
+		960748E8E8EF304561A026B7B41F709B /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		97E3426D70D846C3B9565A0BCC774D09 /* jg_hud_error.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_error.png; path = JGProgressHUD/Resources/jg_hud_error.png; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9EFE946B3C6A22B496F5FCE186298D9F /* JGProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		A2DB8E99021F3261BD6DDD530E3859B5 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDImageIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
+		A3D033610284F587CD9BB9497E965010 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist"; sourceTree = "<group>"; };
+		A44634E4A5196E6289B1674503F4EBB0 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		AA16DDE572763CADA93229448BCAA211 /* JGProgressHUDShadow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDShadow.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDShadow.h; sourceTree = "<group>"; };
+		ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JGProgressHUD.xcconfig; sourceTree = "<group>"; };
+		C6A0D739698E9200BAA08CF57ACA73AF /* JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		CC6EB5EF6C042FA00D9445D001A662A4 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDPieIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		CF49F8545808C88581FCC3793B4ACDE2 /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		D1C265FF95BECDFDEE4D48D5EFDA3E0E /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		D2594EB2791C9255AFAA2E5235BF6264 /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDImageIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
+		D3E42E4875A16574B63BACAB96EC1327 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndeterminateIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		D719A4D73E313E9B32E9049AEE1E2524 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeZoomAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		E8E5E8C363E302BDEDB92681A11C0154 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		EE739337CEFECDBAD6683FB55F42060F /* jg_hud_success@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@2x.png"; path = "JGProgressHUD/Resources/jg_hud_success@2x.png"; sourceTree = "<group>"; };
+		FBFEE3ED7D7F7E4A4B0AD065E58CF234 /* JGProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.h; sourceTree = "<group>"; };
+		FFB9E40157F59E6CDC51A835F153794A /* Pods-Blear-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Blear-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,14 +118,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D6C9CF72F9CD016D48BA3826C0F525F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B139138EA72BE821554840E302336D4E /* Frameworks */ = {
+		B85E2D3026F6FA0F3C9D0D75347970E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,133 +135,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1740AAD86D0ED1EAB8EB23F030D884CF /* Pods */ = {
+		1236EA19A7DB419BBE8AFDE896375849 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6F1EBA07625E508C7AC2CC8681135E02 /* FDTake */,
-				7D080F67BAACAD0777EDB9459B71712A /* JGProgressHUD */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		378654E6D8F4ECA4BC15A3923850B11B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C069C470057E0223226CF4D03B0FE5DA /* jg_hud_error.png */,
-				0A86F755BEE99200E53297372D36BD38 /* jg_hud_error@2x.png */,
-				109FF27242C19CBC761D5235BBC353F6 /* jg_hud_error@3x.png */,
-				A26A4FF4677512F2D6C5378B36B57DF7 /* jg_hud_success.png */,
-				2CD60AEE812E99C15E1CC7F19A099FBD /* jg_hud_success@2x.png */,
-				2DABCF5D408AF17678C66B1B2AF0C78A /* jg_hud_success@3x.png */,
+				97E3426D70D846C3B9565A0BCC774D09 /* jg_hud_error.png */,
+				7B53546149339884C86685431FC2EFE7 /* jg_hud_error@2x.png */,
+				2E0281DA453329A0599D35673CA597E0 /* jg_hud_error@3x.png */,
+				595BA3BDD33B9F7DD4DE738C4361B5F0 /* jg_hud_success.png */,
+				EE739337CEFECDBAD6683FB55F42060F /* jg_hud_success@2x.png */,
+				374352A5E0509503FEF249BAA91ED5AC /* jg_hud_success@3x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		4C02C733CBD1E70C15B0870DFB6D06E2 /* Pods-Blear */ = {
+		193BE522FA64C2FBC8FDDE5CA94544B3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B46F5DE430A61B23C5382E60A7826AF6 /* Pods-Blear.modulemap */,
-				5E40619E88689CC0158516BF84E8F627 /* Pods-Blear-acknowledgements.markdown */,
-				4BF9F77C2909A0B20320E47A155753DD /* Pods-Blear-acknowledgements.plist */,
-				595DC2984CF9AE311E229443B3BA3F2B /* Pods-Blear-dummy.m */,
-				DD8886E25DC459DE8020893C43DBB199 /* Pods-Blear-resources.sh */,
-				8FDBD77E5999006B2606753475BBED16 /* Pods-Blear-umbrella.h */,
-				8C72E862AE21E7F8AFCBF2744F306FC3 /* Pods-Blear.debug.xcconfig */,
-				78485161401DF83AA1D53CE91A1975F5 /* Pods-Blear.release.xcconfig */,
+				F306314F9C172A7ED25EB4756687D9E9 /* JGProgressHUD */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		251303110429BCB590CC546F0D08A692 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4DAC40BE6BA86E9FF281C46E8574B81D /* Pods-Blear */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		46A4F02F56642B0F9C616B8D478F6118 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				95B39060D871BD84FC368F4B24018310 /* JGProgressHUD.modulemap */,
+				ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */,
+				9EFE946B3C6A22B496F5FCE186298D9F /* JGProgressHUD-dummy.m */,
+				C6A0D739698E9200BAA08CF57ACA73AF /* JGProgressHUD-prefix.pch */,
+				2FD2D43A0FEEF0DB1FBC8B2FC798DEFC /* JGProgressHUD-umbrella.h */,
+				A3D033610284F587CD9BB9497E965010 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JGProgressHUD";
+			sourceTree = "<group>";
+		};
+		4DAC40BE6BA86E9FF281C46E8574B81D /* Pods-Blear */ = {
+			isa = PBXGroup;
+			children = (
+				FFB9E40157F59E6CDC51A835F153794A /* Pods-Blear-acknowledgements.markdown */,
+				40E34E98F55707847F86443AE9CD02A2 /* Pods-Blear-acknowledgements.plist */,
+				3A6152A235A8EB2672F0716AC1EAAABC /* Pods-Blear-dummy.m */,
+				8719D8DFB212BD38C3C800D912B4B3A3 /* Pods-Blear-resources.sh */,
+				4679BD3D6F9F9A3EBF50BBC45C03B42D /* Pods-Blear.debug.xcconfig */,
+				5E654F335FD89E237AEF32AC10F831C7 /* Pods-Blear.release.xcconfig */,
 			);
 			name = "Pods-Blear";
 			path = "Target Support Files/Pods-Blear";
 			sourceTree = "<group>";
 		};
-		6B5E930311D5C4AACC71812894AD9CCB /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A0569665FC6AE911A76F68FCB3420FA5 /* FDTake.modulemap */,
-				DEF17BFF2A23F5FC761370A67EF36CDF /* FDTake.xcconfig */,
-				F4F4EC15116C64353FAE3B531B854FBF /* FDTake-dummy.m */,
-				801CF83CAAA4ACA6E3A9FCF4F36D5E14 /* FDTake-prefix.pch */,
-				DD09F280AD68777097A2F0C878C7B3ED /* FDTake-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FDTake";
-			sourceTree = "<group>";
-		};
-		6F1EBA07625E508C7AC2CC8681135E02 /* FDTake */ = {
-			isa = PBXGroup;
-			children = (
-				377A5BDD92FBD9065F93816F3CBCC7FC /* FDTake.h */,
-				20D23DFA3F9690E2B98736B98F5FCEB6 /* FDTakeController.swift */,
-				D58B8B49A5259CE0AA812941489ADC57 /* Resources */,
-				6B5E930311D5C4AACC71812894AD9CCB /* Support Files */,
-			);
-			path = FDTake;
-			sourceTree = "<group>";
-		};
-		7D080F67BAACAD0777EDB9459B71712A /* JGProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				308CA190BDFD96E4A472AA4949F3B5E3 /* JGProgressHUD.h */,
-				C693FD3F01D414E01CBB3BFF86C9E968 /* JGProgressHUD.m */,
-				A87C2101705BC5D8DFB8DB2EEB6183EB /* JGProgressHUD-Defines.h */,
-				A8FB0BD7750040B0038FDE35F123627D /* JGProgressHUDAnimation.h */,
-				BDCAE66116A9244DD46EA298A054B299 /* JGProgressHUDAnimation.m */,
-				43AC5A60C946C9EA82880D216960E641 /* JGProgressHUDErrorIndicatorView.h */,
-				1BF165AA9A2F47BCA6DFDAA58FA11726 /* JGProgressHUDErrorIndicatorView.m */,
-				F0E59C87B5CF7BEE6FDE37C4A6C54AE9 /* JGProgressHUDFadeAnimation.h */,
-				18EA1775FF90559FBC501DBE118B47E8 /* JGProgressHUDFadeAnimation.m */,
-				DBB1644FB3349DBA9E4BCF04E4B091D6 /* JGProgressHUDFadeZoomAnimation.h */,
-				298301154CB25BCD868E145927CCD6C5 /* JGProgressHUDFadeZoomAnimation.m */,
-				EF6EF898EE4506EEC7FC465B28F71D27 /* JGProgressHUDImageIndicatorView.h */,
-				D84419DCF78273C7D891440F5A244B16 /* JGProgressHUDImageIndicatorView.m */,
-				28B08B41A5E5FD0A94F557A6A5B6ADF3 /* JGProgressHUDIndeterminateIndicatorView.h */,
-				75D0E0FB7F84C98854EE3437FF344751 /* JGProgressHUDIndeterminateIndicatorView.m */,
-				5A106485D80904722970BE1E1DE859A9 /* JGProgressHUDIndicatorView.h */,
-				7AB029BF3663FCC92276D7B5247CF07F /* JGProgressHUDIndicatorView.m */,
-				6CBE1F44964A8A6B7D1B09A93B11A573 /* JGProgressHUDPieIndicatorView.h */,
-				50CE5A32F7037ED82842CF961F851778 /* JGProgressHUDPieIndicatorView.m */,
-				B3DF8BEB3087A6FB772B888CD5C5F25F /* JGProgressHUDRingIndicatorView.h */,
-				5622803CD7B0BCC9661DA2888D9DC716 /* JGProgressHUDRingIndicatorView.m */,
-				43829C406BC7EE362DADEA456E3697E3 /* JGProgressHUDShadow.h */,
-				F3E2392428964E22B26C0F266E2FFA9F /* JGProgressHUDShadow.m */,
-				53BF6ED48B48BA7CBEE2089396C64EEE /* JGProgressHUDSuccessIndicatorView.h */,
-				14365028962CF368F270F6E503D0D9EF /* JGProgressHUDSuccessIndicatorView.m */,
-				378654E6D8F4ECA4BC15A3923850B11B /* Resources */,
-				C9A4820D99EA198FF5C00D9EF0D54536 /* Support Files */,
-			);
-			path = JGProgressHUD;
-			sourceTree = "<group>";
-		};
-		80756C97BEAE41271F5FEEB4974BAA54 /* Products */ = {
+		CAEF0912589AC19F85E2FC50DB2E4013 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				50BFFE42053E6D006359F73E08370CE1 /* JGProgressHUD.bundle */,
-				3E144870E30087242A2E792FDF803D93 /* libFDTake.a */,
 				7FBAFAA66E9C7401884F439AE8BC662C /* libJGProgressHUD.a */,
 				836EAD9B38D24D056B16877B84BC46A2 /* libPods-Blear.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		8361EC65C26949A3DDD95EB256B68075 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C02C733CBD1E70C15B0870DFB6D06E2 /* Pods-Blear */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		C9A4820D99EA198FF5C00D9EF0D54536 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				461A67B72A257A7C23A3818DA6D6909E /* JGProgressHUD.modulemap */,
-				3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */,
-				BFAC8C5CF52B6ED9E4F30FE1CF3B6A07 /* JGProgressHUD-dummy.m */,
-				63321289ED898B03612E97EB4CA238F1 /* JGProgressHUD-prefix.pch */,
-				457B0C0965A96C994F794B9B4A049BB3 /* JGProgressHUD-umbrella.h */,
-				38122445CBD3511B1B86E83E58BE68E5 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/JGProgressHUD";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -317,18 +207,10 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				1740AAD86D0ED1EAB8EB23F030D884CF /* Pods */,
-				80756C97BEAE41271F5FEEB4974BAA54 /* Products */,
-				8361EC65C26949A3DDD95EB256B68075 /* Targets Support Files */,
+				193BE522FA64C2FBC8FDDE5CA94544B3 /* Pods */,
+				CAEF0912589AC19F85E2FC50DB2E4013 /* Products */,
+				251303110429BCB590CC546F0D08A692 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D58B8B49A5259CE0AA812941489ADC57 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3FF26D3AB8BBA0AC75D7418EAD167209 /* Localizable.strings */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -338,9 +220,51 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F306314F9C172A7ED25EB4756687D9E9 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FBFEE3ED7D7F7E4A4B0AD065E58CF234 /* JGProgressHUD.h */,
+				495C2F2AD512A4A22519063056B88431 /* JGProgressHUD.m */,
+				2CA90C0DF9CAB0A1ED46EBE1B67FBCED /* JGProgressHUD-Defines.h */,
+				960748E8E8EF304561A026B7B41F709B /* JGProgressHUDAnimation.h */,
+				E8E5E8C363E302BDEDB92681A11C0154 /* JGProgressHUDAnimation.m */,
+				062F9FB647650CA1405A83C6A52447BC /* JGProgressHUDErrorIndicatorView.h */,
+				723E4EED71197FD605FE6F4A67E3DCAF /* JGProgressHUDErrorIndicatorView.m */,
+				A44634E4A5196E6289B1674503F4EBB0 /* JGProgressHUDFadeAnimation.h */,
+				D1C265FF95BECDFDEE4D48D5EFDA3E0E /* JGProgressHUDFadeAnimation.m */,
+				D719A4D73E313E9B32E9049AEE1E2524 /* JGProgressHUDFadeZoomAnimation.h */,
+				049B203DEB79390425E4ACBF2027E702 /* JGProgressHUDFadeZoomAnimation.m */,
+				D2594EB2791C9255AFAA2E5235BF6264 /* JGProgressHUDImageIndicatorView.h */,
+				A2DB8E99021F3261BD6DDD530E3859B5 /* JGProgressHUDImageIndicatorView.m */,
+				D3E42E4875A16574B63BACAB96EC1327 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				85561C6DFF82BE46E04C8079933B5F09 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				CF49F8545808C88581FCC3793B4ACDE2 /* JGProgressHUDIndicatorView.h */,
+				833E77CCBD346E90C6AD7E958EE2A7D4 /* JGProgressHUDIndicatorView.m */,
+				CC6EB5EF6C042FA00D9445D001A662A4 /* JGProgressHUDPieIndicatorView.h */,
+				309339336248B4A74ADF08FD1E775E5D /* JGProgressHUDPieIndicatorView.m */,
+				1AB5F1C3C9833CBC17E9D9AC9BE7DB7A /* JGProgressHUDRingIndicatorView.h */,
+				4DE0A0C197AD8B78B48BC71F0968513F /* JGProgressHUDRingIndicatorView.m */,
+				AA16DDE572763CADA93229448BCAA211 /* JGProgressHUDShadow.h */,
+				228FB5E9AAE25CDF288B648FA0B69C70 /* JGProgressHUDShadow.m */,
+				041B0EE7DC1F6BA1D215D6F6A0BBB28C /* JGProgressHUDSuccessIndicatorView.h */,
+				2F10BD9E29C7980D5F0E8028F16B6D52 /* JGProgressHUDSuccessIndicatorView.m */,
+				1236EA19A7DB419BBE8AFDE896375849 /* Resources */,
+				46A4F02F56642B0F9C616B8D478F6118 /* Support Files */,
+			);
+			name = JGProgressHUD;
+			path = JGProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		29D33C940E2607510F0D63CD5DB747D8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BC1DEC9E128FD40D2B58F74E8E183EB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,23 +283,6 @@
 				7D1004D59B5E5E4095E49DE849E1433B /* JGProgressHUDRingIndicatorView.h in Headers */,
 				9C29A13C69860FB77C4AD49040EC697B /* JGProgressHUDShadow.h in Headers */,
 				7C7FEF72AF8064DAD1FD6F3795AD3F29 /* JGProgressHUDSuccessIndicatorView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BBDC637DB70215D54D8A2889210AD8AE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BABC3529949FD9D1E625B8F932495FCD /* FDTake-umbrella.h in Headers */,
-				8E58CDE8E73099F5DF306312786C4F80 /* FDTake.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C304F5314D78EE87AFB97CF504BD780D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2E97DE8783FB5F25F354162601B516D7 /* Pods-Blear-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,39 +326,20 @@
 		};
 		D8B85512F71CC9033BA554B0CED2D57B /* Pods-Blear */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C0D4811898A1855EC7E24F174E00CCF5 /* Build configuration list for PBXNativeTarget "Pods-Blear" */;
+			buildConfigurationList = A9C37E4C60978854A7044F47AFE886C7 /* Build configuration list for PBXNativeTarget "Pods-Blear" */;
 			buildPhases = (
-				C304F5314D78EE87AFB97CF504BD780D /* Headers */,
-				D73C8020BF0B2290F66ED28F5D41030E /* Sources */,
-				B139138EA72BE821554840E302336D4E /* Frameworks */,
+				29D33C940E2607510F0D63CD5DB747D8 /* Headers */,
+				DD0D1579F6E1FCB4ACB07A934B655FC3 /* Sources */,
+				B85E2D3026F6FA0F3C9D0D75347970E8 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C8265682FDA7AD817FD15F9994C094A0 /* PBXTargetDependency */,
-				E4CC608469F1A1B01263D482677DA851 /* PBXTargetDependency */,
+				E84A786305FE1409AAE18F75BB4BFC15 /* PBXTargetDependency */,
 			);
 			name = "Pods-Blear";
 			productName = "Pods-Blear";
 			productReference = 836EAD9B38D24D056B16877B84BC46A2 /* libPods-Blear.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AB81606FBCE2C7292F583DF35C9F58D0 /* Build configuration list for PBXNativeTarget "FDTake" */;
-			buildPhases = (
-				BBDC637DB70215D54D8A2889210AD8AE /* Headers */,
-				69C6AD60653C7CE9201E3217DD090CCC /* Sources */,
-				6D6C9CF72F9CD016D48BA3826C0F525F /* Frameworks */,
-				A428BF780BC3B8AA32D28DCF96A825DB /* Copy generated compatibility header */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = FDTake;
-			productName = FDTake;
-			productReference = 3E144870E30087242A2E792FDF803D93 /* libFDTake.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -469,31 +357,12 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				"zh-Hant",
-				da,
-				de,
-				el,
-				es,
-				fr,
-				he,
-				hu,
-				it,
-				nb,
-				nl,
-				pl,
-				"pt-PT",
-				ru,
-				sv,
-				tr,
-				"zh-Hans",
-				ar,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 80756C97BEAE41271F5FEEB4974BAA54 /* Products */;
+			productRefGroup = CAEF0912589AC19F85E2FC50DB2E4013 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */,
 				6F3964F174D0EBFB0D64F8DBC20E1429 /* JGProgressHUD */,
 				BBD6B43FA0F7FFBCD1978EBE76F99021 /* JGProgressHUD-JGProgressHUD */,
 				D8B85512F71CC9033BA554B0CED2D57B /* Pods-Blear */,
@@ -517,47 +386,11 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A428BF780BC3B8AA32D28DCF96A825DB /* Copy generated compatibility header */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
-				"${PODS_ROOT}/Headers/Public/FDTake/FDTake.modulemap",
-				"${PODS_ROOT}/Headers/Public/FDTake/FDTake-umbrella.h",
-			);
-			name = "Copy generated compatibility header";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
-				"${BUILT_PRODUCTS_DIR}/FDTake-umbrella.h",
-				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/FDTake/FDTake.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/FDTake/FDTake-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		5CC6BD6DF4E676197B80E600B41D7917 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		69C6AD60653C7CE9201E3217DD090CCC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24E5B7A2F5AF10470CF66DB155813E0B /* FDTake-dummy.m in Sources */,
-				24BC264ADE9FA4BCDA958B52E020FDA5 /* FDTakeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,28 +414,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D73C8020BF0B2290F66ED28F5D41030E /* Sources */ = {
+		DD0D1579F6E1FCB4ACB07A934B655FC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196E6CF6216F7615BF6BE8BBA787A780 /* Pods-Blear-dummy.m in Sources */,
+				F79F8A5457002F2348577053172101ED /* Pods-Blear-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C8265682FDA7AD817FD15F9994C094A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FDTake;
-			target = E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */;
-			targetProxy = 6ECAB43BBB7667F742C1CD767ACC8070 /* PBXContainerItemProxy */;
-		};
-		E4CC608469F1A1B01263D482677DA851 /* PBXTargetDependency */ = {
+		E84A786305FE1409AAE18F75BB4BFC15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
 			target = 6F3964F174D0EBFB0D64F8DBC20E1429 /* JGProgressHUD */;
-			targetProxy = 764F2FB55631FA67D9B9688D8FFCBE93 /* PBXContainerItemProxy */;
+			targetProxy = BCDDD73808D8CEF6BC92ACD5A16E588B /* PBXContainerItemProxy */;
 		};
 		F670FDFDD1D61CFA140F39F44475BD64 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -611,36 +438,6 @@
 			targetProxy = B0B022DFC8742A1E678BD3C025FE4BB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		3FF26D3AB8BBA0AC75D7418EAD167209 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4C3DFFE83075479B859521642987475 /* Localizable.strings */,
-				0E458687E04861B0597BC05EB140EBEC /* Localizable.strings */,
-				E5C738D276A25B540000679F7A89212C /* Localizable.strings */,
-				4B5CDCAE3EAE6014B46B0C37DAFAE7DB /* Localizable.strings */,
-				8613A6481578653D49865716C6155655 /* Localizable.strings */,
-				DB8B53279A74F2D82AAAF3EEB3B25203 /* Localizable.strings */,
-				DE2B9BC7BAB14A6B8E06631F8C4AEA2D /* Localizable.strings */,
-				4F3A195F2FA19324998EEA4E422F1879 /* Localizable.strings */,
-				FF176B39DAF54C735C7312B757A789C4 /* Localizable.strings */,
-				D564876056A294282F64685E080392F2 /* Localizable.strings */,
-				C583AB61AD18E2EC216F7BF2C7F4EA30 /* Localizable.strings */,
-				5488F3B1E3D48ACCAF8FFFDF2F84ABED /* Localizable.strings */,
-				22AE3DE09248A20C0382A65DD512ECE0 /* Localizable.strings */,
-				7DF793A4732AFD705DBA0E940D14E12D /* Localizable.strings */,
-				46C5DBD9555DBF5270748F74EAD810AC /* Localizable.strings */,
-				AFF30B9407182E7661DC3BF23DC45D08 /* Localizable.strings */,
-				34CA450E1AC53419DB8FDF57BBF895B1 /* Localizable.strings */,
-				7D777F468A4581B6EE84FEE836694A9A /* Localizable.strings */,
-				B841DEC5BF66C1599C7EB90574E2B71B /* Localizable.strings */,
-			);
-			name = Localizable.strings;
-			path = Source;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */ = {
@@ -709,7 +506,7 @@
 		};
 		21E4FFD85C34EB87C6E0E560142DDD2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */;
+			baseConfigurationReference = ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JGProgressHUD";
@@ -722,33 +519,6 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
-		};
-		2A285423BC22B507585833B43AF5C070 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEF17BFF2A23F5FC761370A67EF36CDF /* FDTake.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MODULEMAP_FILE = Headers/Public/FDTake/FDTake.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FDTake;
-				PRODUCT_NAME = FDTake;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -810,9 +580,9 @@
 			};
 			name = Release;
 		};
-		5124F9B2EAE09708343F2BE496C7EBAB /* Debug */ = {
+		70BC06C1F331031F4ED660456F133333 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C72E862AE21E7F8AFCBF2744F306FC3 /* Pods-Blear.debug.xcconfig */;
+			baseConfigurationReference = 5E654F335FD89E237AEF32AC10F831C7 /* Pods-Blear.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -822,7 +592,6 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Blear/Pods-Blear.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -830,12 +599,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		7B788D030775CCFD56A474D5912FDF38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */;
+			baseConfigurationReference = ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -861,7 +631,7 @@
 		};
 		9F07E595A990E53300EF74339A8F6F5B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */;
+			baseConfigurationReference = ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -886,7 +656,7 @@
 		};
 		B7A4BBBE6B44D5F39AB063AB490741EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C25BE036107BB1439FE55EFA63E7BF6 /* JGProgressHUD.xcconfig */;
+			baseConfigurationReference = ACEC69EA9531B638F57A07480D7D7ED5 /* JGProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JGProgressHUD";
@@ -900,9 +670,9 @@
 			};
 			name = Release;
 		};
-		CC3DFB957C19361E86B5C606985EA88E /* Release */ = {
+		D4477ADBE8D0518EB0F94D62D82F9462 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78485161401DF83AA1D53CE91A1975F5 /* Pods-Blear.release.xcconfig */;
+			baseConfigurationReference = 4679BD3D6F9F9A3EBF50BBC45C03B42D /* Pods-Blear.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -912,40 +682,12 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Blear/Pods-Blear.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D801ACF7B84EC4D0E81068E361D5FD4A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEF17BFF2A23F5FC761370A67EF36CDF /* FDTake.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MODULEMAP_FILE = Headers/Public/FDTake/FDTake.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FDTake;
-				PRODUCT_NAME = FDTake;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -971,20 +713,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB81606FBCE2C7292F583DF35C9F58D0 /* Build configuration list for PBXNativeTarget "FDTake" */ = {
+		A9C37E4C60978854A7044F47AFE886C7 /* Build configuration list for PBXNativeTarget "Pods-Blear" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D801ACF7B84EC4D0E81068E361D5FD4A /* Debug */,
-				2A285423BC22B507585833B43AF5C070 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C0D4811898A1855EC7E24F174E00CCF5 /* Build configuration list for PBXNativeTarget "Pods-Blear" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5124F9B2EAE09708343F2BE496C7EBAB /* Debug */,
-				CC3DFB957C19361E86B5C606985EA88E /* Release */,
+				D4477ADBE8D0518EB0F94D62D82F9462 /* Debug */,
+				70BC06C1F331031F4ED660456F133333 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
