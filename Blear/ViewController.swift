@@ -139,25 +139,17 @@ final class ViewController: UIViewController {
 	func pickImage() {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 		actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default, handler: ({ _ in
-			self.showCameraPicker()
+			self.showImagePicker(with: .camera)
 		})))
 		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default, handler: ({ _ in
-			self.showLibraryPicker()
+			self.showImagePicker(with: .photoLibrary)
 		})))
 		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 		present(actionSheet, animated: true, completion: nil)
 	}
-	func showCameraPicker() {
+	func showImagePicker(with type: UIImagePickerController.SourceType) {
 		let picker = UIImagePickerController()
-		picker.allowsEditing = false
-		picker.sourceType = .camera
-		picker.delegate = self
-		present(picker, animated: true, completion: nil)
-	}
-	func showLibraryPicker() {
-		let picker = UIImagePickerController()
-		picker.allowsEditing = false
-		picker.sourceType = .savedPhotosAlbum
+		picker.sourceType = type
 		picker.delegate = self
 		present(picker, animated: true, completion: nil)
 	}
