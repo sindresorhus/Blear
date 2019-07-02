@@ -1,5 +1,6 @@
 import UIKit
 import Photos
+import MobileCoreServices
 
 let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
 let IS_IPHONE = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
@@ -150,6 +151,7 @@ final class ViewController: UIViewController {
 	func showImagePicker(with type: UIImagePickerController.SourceType) {
 		let picker = UIImagePickerController()
 		picker.sourceType = type
+		picker.mediaTypes = [kUTTypeImage as String]
 		picker.delegate = self
 		present(picker, animated: true, completion: nil)
 	}
