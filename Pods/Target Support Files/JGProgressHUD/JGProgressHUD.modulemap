@@ -1,4 +1,4 @@
-framework module JGProgressHUD {
+module JGProgressHUD {
   umbrella header "JGProgressHUD-umbrella.h"
 
   export *

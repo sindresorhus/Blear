@@ -1,6 +1,0 @@
-framework module IIDelayedAction {
-  umbrella header "IIDelayedAction-umbrella.h"
-
-  export *
-  module * { export * }
-}

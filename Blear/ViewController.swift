@@ -1,7 +1,6 @@
 import UIKit
 import Photos
 import FDTake
-import IIDelayedAction
 import JGProgressHUD
 
 let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
@@ -26,7 +25,6 @@ extension UserDefaults {
 
 final class ViewController: UIViewController {
 	var sourceImage: UIImage?
-	var delayedAction: IIDelayedAction?
 	var blurAmount: Float = 50
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
@@ -82,11 +80,6 @@ final class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// This is to ensure that it always ends up with the current blur amount when the slider stops
-		// since we're using `DispatchQueue.global().async` the order of events aren't serial
-		delayedAction = IIDelayedAction({}, withDelay: 0.2)
-		delayedAction?.onMainThread = false
 
 		view.addSubview(scrollView)
 		scrollView.addSubview(imageView)

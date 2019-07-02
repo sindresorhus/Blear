@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6F3964F174D0EBFB0D64F8DBC20E1429"
-               BuildableName = "JGProgressHUD.framework"
+               BuildableName = "libJGProgressHUD.a"
                BlueprintName = "JGProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

@@ -1,4 +1,4 @@
-framework module Pods_Blear {
+module Pods_Blear {
   umbrella header "Pods-Blear-umbrella.h"
 
   export *

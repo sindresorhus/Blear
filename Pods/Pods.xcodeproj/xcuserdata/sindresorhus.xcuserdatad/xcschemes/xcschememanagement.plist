@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>IIDelayedAction.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>JGProgressHUD-JGProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,11 +20,6 @@
 			<false/>
 		</dict>
 		<key>Pods-Blear.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SwiftLint.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

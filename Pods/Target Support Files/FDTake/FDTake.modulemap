@@ -1,4 +1,4 @@
-framework module FDTake {
+module FDTake {
   umbrella header "FDTake-umbrella.h"
 
   export *
