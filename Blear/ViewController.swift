@@ -139,17 +139,22 @@ final class ViewController: UIViewController {
 	@objc
 	func pickImage() {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default, handler: ({ _ in
+			actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default) { _ in
 				self.showImagePicker(with: .camera)
-			})))
+			})
 		}
-		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default, handler: ({ _ in
+
+		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default) { _ in
 			self.showImagePicker(with: .photoLibrary)
-		})))
+		})
+
 		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
 		present(actionSheet, animated: true, completion: nil)
 	}
+
 	func showImagePicker(with type: UIImagePickerController.SourceType) {
 		let picker = UIImagePickerController()
 		picker.sourceType = type
@@ -157,6 +162,7 @@ final class ViewController: UIViewController {
 		picker.delegate = self
 		present(picker, animated: true, completion: nil)
 	}
+
 	func blurImage(_ blurAmount: Float) -> UIImage {
 		return UIImageEffects.imageByApplyingBlur(
 			to: sourceImage,
@@ -274,9 +280,11 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 			dismiss(animated: true, completion: nil)
 			return
 		}
+
 		changeImage(chosenImage)
 		dismiss(animated: true, completion: nil)
 	}
+
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		dismiss(animated: true, completion: nil)
 	}

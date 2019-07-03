@@ -158,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E3A0364F17E5E7AE00892B76 /* Blear */,
+				E3B0ED1522CCE084001D4F9E /* Vendor */,
 				E3A0364717E5E7AE00892B76 /* Products */,
 				BA30F9B1BA4BBAB35BCD89A2 /* Pods */,
 			);
@@ -186,15 +187,30 @@
 		E3A0365017E5E7AE00892B76 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				923B25CD22CB8281001181DC /* JGProgressHUD */,
 				E3430F421B27AD5800AF3F80 /* Bundled Photos */,
-				E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */,
-				E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */,
 				E3A0365117E5E7AE00892B76 /* Info.plist */,
 				E3E2320D1B0396EA003376C6 /* Launch Screen.xib */,
 				E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E3B0ED1522CCE084001D4F9E /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E3B0ED1622CCE0A8001D4F9E /* UIImageEffects */,
+				923B25CD22CB8281001181DC /* JGProgressHUD */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		E3B0ED1622CCE0A8001D4F9E /* UIImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */,
+				E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */,
+			);
+			path = UIImageEffects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
