@@ -1,6 +1,0 @@
-module Pods_Blear {
-  umbrella header "Pods-Blear-umbrella.h"
-
-  export *
-  module * { export * }
-}

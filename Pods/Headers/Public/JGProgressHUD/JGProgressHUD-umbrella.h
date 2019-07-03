@@ -1,1 +1,0 @@
-../../../Target Support Files/JGProgressHUD/JGProgressHUD-umbrella.h
