@@ -28,7 +28,6 @@
 		923B260222CB8281001181DC /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B25EF22CB8281001181DC /* JGProgressHUDShadow.m */; };
 		E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */; };
 		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
-		E38F930D189885370091DEAD /* PerformSelectorWithDebounce.m in Sources */ = {isa = PBXBuildFile; fileRef = E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */; };
 		E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* AppDelegate.swift */; };
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
@@ -72,9 +71,6 @@
 		E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		E3430F421B27AD5800AF3F80 /* Bundled Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Bundled Photos"; sourceTree = "<group>"; };
-		E38F9308189885370091DEAD /* LICENSE-MIT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-MIT.txt"; sourceTree = "<group>"; };
-		E38F9309189885370091DEAD /* PerformSelectorWithDebounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformSelectorWithDebounce.h; sourceTree = "<group>"; };
-		E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformSelectorWithDebounce.m; sourceTree = "<group>"; };
 		E3A0364617E5E7AE00892B76 /* Blear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A0365117E5E7AE00892B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3A0365917E5E7AE00892B76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -158,16 +154,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E38F9307189885370091DEAD /* PerformSelectorWithDebounce */ = {
-			isa = PBXGroup;
-			children = (
-				E38F9308189885370091DEAD /* LICENSE-MIT.txt */,
-				E38F9309189885370091DEAD /* PerformSelectorWithDebounce.h */,
-				E38F930A189885370091DEAD /* PerformSelectorWithDebounce.m */,
-			);
-			path = PerformSelectorWithDebounce;
-			sourceTree = "<group>";
-		};
 		E3A0363D17E5E7AE00892B76 = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +188,6 @@
 			children = (
 				923B25CD22CB8281001181DC /* JGProgressHUD */,
 				E3430F421B27AD5800AF3F80 /* Bundled Photos */,
-				E38F9307189885370091DEAD /* PerformSelectorWithDebounce */,
 				E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */,
 				E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */,
 				E3A0365117E5E7AE00892B76 /* Info.plist */,
@@ -318,7 +303,6 @@
 				E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */,
 				923B260122CB8281001181DC /* JGProgressHUDPieIndicatorView.m in Sources */,
 				923B260022CB8281001181DC /* JGProgressHUDRingIndicatorView.m in Sources */,
-				E38F930D189885370091DEAD /* PerformSelectorWithDebounce.m in Sources */,
 				923B25FF22CB8281001181DC /* JGProgressHUDFadeAnimation.m in Sources */,
 				923B260222CB8281001181DC /* JGProgressHUDShadow.m in Sources */,
 				923B25FC22CB8281001181DC /* JGProgressHUDSuccessIndicatorView.m in Sources */,
