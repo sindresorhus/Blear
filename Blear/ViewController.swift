@@ -139,9 +139,11 @@ final class ViewController: UIViewController {
 	@objc
 	func pickImage() {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-		actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default, handler: ({ _ in
-			self.showImagePicker(with: .camera)
-		})))
+		if UIImagePickerController.isSourceTypeAvailable(.camera) {
+			actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default, handler: ({ _ in
+				self.showImagePicker(with: .camera)
+			})))
+		}
 		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default, handler: ({ _ in
 			self.showImagePicker(with: .photoLibrary)
 		})))
