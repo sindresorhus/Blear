@@ -20,12 +20,6 @@
 
 Requires minimum iOS 12.2.
 
-
-## Dev
-
-Make sure to open `Blear.xcworkspace`, not `Blear.xcodeproj`.
-
-
 ## License
 
 MIT © [Sindre Sorhus](https://sindresorhus.com)
