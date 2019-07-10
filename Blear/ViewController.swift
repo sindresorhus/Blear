@@ -62,6 +62,8 @@ final class ViewController: UIViewController {
 		]
 		$0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
 	}
+	
+	var saveBarButton: UIBarButtonItem!
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -104,9 +106,9 @@ final class ViewController: UIViewController {
 			UIColor.black.withAlphaComponent(0.4).cgColor
 		]
 		toolbar.layer.addSublayer(gradient)
-
+		saveBarButton = UIBarButtonItem(image: UIImage(named: "PickButton")!, target: self, action: #selector(pickImage), width: 20)
 		toolbar.items = [
-			UIBarButtonItem(image: UIImage(named: "PickButton")!, target: self, action: #selector(pickImage), width: 20),
+			saveBarButton,
 			.flexibleSpace,
 			UIBarButtonItem(customView: slider),
 			.flexibleSpace,
@@ -151,7 +153,9 @@ final class ViewController: UIViewController {
 		})
 
 		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
+		if let popoverPresentationController = actionSheet.popoverPresentationController {
+			popoverPresentationController.barButtonItem = saveBarButton
+		}
 		present(actionSheet, animated: true, completion: nil)
 	}
 
