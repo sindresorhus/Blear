@@ -2,26 +2,6 @@ import UIKit
 import Photos
 import MobileCoreServices
 
-let IS_IPAD = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
-let IS_IPHONE = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
-let SCREEN_WIDTH = UIScreen.main.bounds.size.width
-let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
-let IS_LARGE_SCREEN = IS_IPHONE && max(SCREEN_WIDTH, SCREEN_HEIGHT) >= 736.0
-
-// TODO: Use `@propertyWrapper` for this when it's out.
-extension UserDefaults {
-	var showedScrollPreview: Bool {
-		let key = "__showedScrollPreview__"
-
-		if bool(forKey: key) {
-			return false
-		} else {
-			set(true, forKey: key)
-			return true
-		}
-	}
-}
-
 final class ViewController: UIViewController {
 	var sourceImage: UIImage?
 	var blurAmount: Float = 50
@@ -62,16 +42,12 @@ final class ViewController: UIViewController {
 		]
 		$0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
 	}
-	
+
 	var saveBarButton: UIBarButtonItem!
 
-	override var canBecomeFirstResponder: Bool {
-		return true
-	}
+	override var canBecomeFirstResponder: Bool { true }
 
-	override var prefersStatusBarHidden: Bool {
-		return true
-	}
+	override var prefersStatusBarHidden: Bool { true }
 
 	override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
 		if motion == .motionShake {
@@ -116,7 +92,7 @@ final class ViewController: UIViewController {
 		]
 		view.addSubview(toolbar)
 
-		// Important that this is here at the end for the fading to work
+		// Important that this is here at the end for the fading to work.
 		randomImage()
 	}
 
@@ -134,7 +110,7 @@ final class ViewController: UIViewController {
 				self.previewScrollingToUser()
 			})
 
-			self.present(alert, animated: true)
+			present(alert, animated: true)
 		}
 	}
 
@@ -168,7 +144,7 @@ final class ViewController: UIViewController {
 	}
 
 	func blurImage(_ blurAmount: Float) -> UIImage {
-		return UIImageEffects.imageByApplyingBlur(
+		UIImageEffects.imageByApplyingBlur(
 			to: sourceImage,
 			withRadius: CGFloat(blurAmount * (IS_LARGE_SCREEN ? 0.8 : 1.2)),
 			tintColor: UIColor(white: 1, alpha: CGFloat(max(0, min(0.25, blurAmount * 0.004)))),
@@ -220,11 +196,10 @@ final class ViewController: UIViewController {
 				return
 			}
 
-			//HUD.indicatorView = JGProgressHUDImageIndicatorView(image: #imageLiteral(resourceName: "HudSaved"))
 			HUD.show(in: self.view)
 			HUD.dismiss(afterDelay: 0.8)
 
-			// Only on first save
+			// Only on first save.
 			if UserDefaults.standard.isFirstLaunch {
 				delay(seconds: 1) {
 					let alert = UIAlertController(
@@ -250,7 +225,7 @@ final class ViewController: UIViewController {
 		sourceImage = image.resized(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
 		updateImage()
 
-		// The delay here is important so it has time to blur the image before we start fading
+		// The delay here is important so it has time to blur the image before we start fading.
 		UIView.animate(
 			withDuration: 0.6,
 			delay: 0.3,

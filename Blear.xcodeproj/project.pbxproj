@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		923B260222CB8281001181DC /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B25EF22CB8281001181DC /* JGProgressHUDShadow.m */; };
 		E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */; };
 		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
+		E37D72AE2329664C008B1C48 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D72AD2329664B008B1C48 /* Constants.swift */; };
 		E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* AppDelegate.swift */; };
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
@@ -71,6 +72,7 @@
 		E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		E3430F421B27AD5800AF3F80 /* Bundled Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Bundled Photos"; sourceTree = "<group>"; };
+		E37D72AD2329664B008B1C48 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Constants.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3A0364617E5E7AE00892B76 /* Blear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A0365117E5E7AE00892B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3A0365917E5E7AE00892B76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -147,20 +149,12 @@
 			path = JGProgressHUD;
 			sourceTree = "<group>";
 		};
-		BA30F9B1BA4BBAB35BCD89A2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		E3A0363D17E5E7AE00892B76 = {
 			isa = PBXGroup;
 			children = (
 				E3A0364F17E5E7AE00892B76 /* Blear */,
 				E3B0ED1522CCE084001D4F9E /* Vendor */,
 				E3A0364717E5E7AE00892B76 /* Products */,
-				BA30F9B1BA4BBAB35BCD89A2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				E3A0365917E5E7AE00892B76 /* AppDelegate.swift */,
+				E37D72AD2329664B008B1C48 /* Constants.swift */,
 				E3A0367917E5E94E00892B76 /* ViewController.swift */,
 				E3A0368E17E6214500892B76 /* util.swift */,
 				E3A0365B17E5E7AE00892B76 /* Images.xcassets */,
@@ -251,7 +246,7 @@
 				};
 			};
 			buildConfigurationList = E3A0364117E5E7AE00892B76 /* Build configuration list for PBXProject "Blear" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -311,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				923B25FB22CB8281001181DC /* JGProgressHUDImageIndicatorView.m in Sources */,
+				E37D72AE2329664C008B1C48 /* Constants.swift in Sources */,
 				E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */,
 				923B25FE22CB8281001181DC /* JGProgressHUD.m in Sources */,
 				E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */,
@@ -378,10 +374,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -425,11 +421,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -453,7 +449,6 @@
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -475,7 +470,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -2,10 +2,11 @@ import UIKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-	let window = UIWindow(frame: UIScreen.main.bounds)
+	var window: UIWindow?
 
 	func applicationDidFinishLaunching(_ application: UIApplication) {
-		window.rootViewController = ViewController()
-		window.makeKeyAndVisible()
+		window = UIWindow(frame: UIScreen.main.bounds)
+		window?.rootViewController = ViewController()
+		window?.makeKeyAndVisible()
 	}
 }

@@ -206,8 +206,8 @@ extension UserDefaults {
 }
 
 extension UIImage {
-	/// Initialize with a URL
-	/// AppKit.NSImage polyfill
+	/// Initialize with a URL.
+	/// `AppKit.NSImage` polyfill.
 	convenience init?(contentsOf url: URL) {
 		self.init(contentsOfFile: url.path)
 	}
@@ -222,17 +222,17 @@ extension UIImage {
 	}
 
 	func resized(to size: CGSize) -> UIImage {
-		return UIGraphicsImageRenderer(size: size).image { _ in
+		UIGraphicsImageRenderer(size: size).image { _ in
 			draw(in: CGRect(origin: .zero, size: size))
 		}
 	}
 }
 
 extension UIView {
-	/// The most efficient solution
+	/// The most efficient solution.
 	@objc
 	func toImage() -> UIImage {
-		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+		UIGraphicsImageRenderer(size: bounds.size).image { _ in
 			self.drawHierarchy(in: bounds, afterScreenUpdates: true)
 		}
 	}
@@ -247,21 +247,17 @@ extension UIEdgeInsets {
 		self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
 	}
 
-	func inset(rect: CGRect) -> CGRect {
-		return rect.inset(by: self)
-	}
+	func inset(rect: CGRect) -> CGRect { rect.inset(by: self) }
 }
 
 extension UIViewController {
-	var window: UIWindow {
-		return UIApplication.shared.windows.first!
-	}
+	var window: UIWindow { UIApplication.shared.windows.first! }
 }
 
 extension UIScrollView {
 	@objc
 	override func toImage() -> UIImage {
-		return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+		UIGraphicsImageRenderer(size: bounds.size).image { _ in
 			let newBounds = bounds.offsetBy(dx: -contentOffset.x, dy: -contentOffset.y)
 			self.drawHierarchy(in: newBounds, afterScreenUpdates: true)
 		}
