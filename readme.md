@@ -15,7 +15,6 @@
 
 <img src="media/screenshot.png" height="340" align="right">
 
-
 ## Info
 
 Requires minimum iOS 13.

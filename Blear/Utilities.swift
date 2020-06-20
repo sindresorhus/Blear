@@ -20,9 +20,11 @@ func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
 	return this
 }
 
+
 func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 	DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: closure)
 }
+
 
 // TODO: Move it to a SPM module
 // TODO: Add this as note to module readme:
@@ -139,6 +141,7 @@ extension PHPhotoLibrary {
 	}
 }
 
+
 extension UIBarButtonItem {
 	/**
 	```
@@ -156,6 +159,7 @@ extension UIBarButtonItem {
 		self.width = width
 	}
 }
+
 
 extension Collection {
 	/**
@@ -192,6 +196,7 @@ extension Collection {
 	}
 }
 
+
 extension UserDefaults {
 	var isFirstLaunch: Bool {
 		let key = "__hasLaunched__"
@@ -204,6 +209,7 @@ extension UserDefaults {
 		}
 	}
 }
+
 
 extension UIImage {
 	/// Initialize with a URL.
@@ -228,6 +234,7 @@ extension UIImage {
 	}
 }
 
+
 extension UIView {
 	/// The most efficient solution.
 	@objc
@@ -237,6 +244,7 @@ extension UIView {
 		}
 	}
 }
+
 
 extension UIEdgeInsets {
 	init(all: CGFloat) {
@@ -250,9 +258,11 @@ extension UIEdgeInsets {
 	func inset(rect: CGRect) -> CGRect { rect.inset(by: self) }
 }
 
+
 extension UIViewController {
 	var window: UIWindow { UIApplication.shared.windows.first! }
 }
+
 
 extension UIScrollView {
 	@objc
@@ -264,9 +274,10 @@ extension UIScrollView {
 	}
 }
 
+
 extension CGSize {
-	func aspectFit(to size: CGSize) -> CGSize {
+	func aspectFit(to size: Self) -> Self {
 		let ratio = max(size.width / width, size.height / height)
-		return CGSize(width: width * CGFloat(ratio), height: height * CGFloat(ratio))
+		return Self(width: width * CGFloat(ratio), height: height * CGFloat(ratio))
 	}
 }

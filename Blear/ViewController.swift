@@ -1,10 +1,11 @@
 import UIKit
 import Photos
 import MobileCoreServices
+import JGProgressHUD
 
 final class ViewController: UIViewController {
 	var sourceImage: UIImage?
-	var blurAmount: Float = 50
+
 	let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
 	lazy var randomImageIterator: AnyIterator<URL> = self.stockImages.uniqueRandomElement()
 
@@ -30,7 +31,7 @@ final class ViewController: UIViewController {
 		$0.frame = CGRect(x: 0, y: 0, width: view.frame.size.width - SLIDER_MARGIN, height: view.frame.size.height)
 		$0.minimumValue = 10
 		$0.maximumValue = 100
-		$0.value = blurAmount
+		$0.value = Float(Constants.initialBlurAmount)
 		$0.isContinuous = true
 		$0.setThumbImage(UIImage(named: "SliderThumb")!, for: .normal)
 		$0.autoresizingMask = [
@@ -65,7 +66,7 @@ final class ViewController: UIViewController {
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height - TOOLBAR_HEIGHT, width: view.frame.size.width, height: TOOLBAR_HEIGHT))
 		toolbar.autoresizingMask = .flexibleWidth
 		toolbar.alpha = 0.6
-		toolbar.tintColor = #colorLiteral(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+		toolbar.tintColor = .white
 
 		// Remove background
 		toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
@@ -154,25 +155,41 @@ final class ViewController: UIViewController {
 	}
 
 	@objc
-	func updateImage() {
+	func updateImage(blurAmount: Float) {
 		if let workItem = workItem {
 			workItem.cancel()
 		}
 
-		workItem = DispatchWorkItem {
-			let temp = self.blurImage(self.blurAmount)
+		let workItem = DispatchWorkItem {
+			let temp = self.blurImage(blurAmount)
 			DispatchQueue.main.async {
 				self.imageView.image = temp
 			}
 		}
+		self.workItem = workItem
 
-		DispatchQueue.global(qos: .userInteractive).async(execute: workItem!)
+		DispatchQueue.global(qos: .userInteractive).async(execute: workItem)
 	}
 
 	@objc
 	func sliderChanged(_ sender: UISlider) {
-		blurAmount = sender.value
-		updateImage()
+		updateImage(blurAmount: sender.value)
+	}
+
+	func showWallpaperTipIfNeeded() {
+		guard UserDefaults.standard.isFirstLaunch else {
+			return
+		}
+
+		delay(seconds: 1) {
+			let alert = UIAlertController(
+				title: "Changing Wallpaper",
+				message: "In the Photos app, go to the wallpaper you just saved, tap the action button on the bottom left, and choose “Use as Wallpaper”.",
+				preferredStyle: .alert
+			)
+			alert.addAction(UIAlertAction(title: "OK", style: .default))
+			self.present(alert, animated: true)
+		}
 	}
 
 	@objc
@@ -199,18 +216,7 @@ final class ViewController: UIViewController {
 			HUD.show(in: self.view)
 			HUD.dismiss(afterDelay: 0.8)
 
-			// Only on first save.
-			if UserDefaults.standard.isFirstLaunch {
-				delay(seconds: 1) {
-					let alert = UIAlertController(
-						title: "Changing Wallpaper",
-						message: "In the Photos app go to the wallpaper you just saved, tap the action button on the bottom left and choose 'Use as Wallpaper'.",
-						preferredStyle: .alert
-					)
-					alert.addAction(UIAlertAction(title: "OK", style: .default))
-					self.present(alert, animated: true)
-				}
-			}
+			self.showWallpaperTipIfNeeded()
 		}
 	}
 
@@ -223,7 +229,7 @@ final class ViewController: UIViewController {
 		imageView.frame = CGRect(origin: .zero, size: imageViewSize)
 		imageView.image = image
 		sourceImage = image.resized(to: CGSize(width: imageViewSize.width / 2, height: imageViewSize.height / 2))
-		updateImage()
+		updateImage(blurAmount: slider.value)
 
 		// The delay here is important so it has time to blur the image before we start fading.
 		UIView.animate(

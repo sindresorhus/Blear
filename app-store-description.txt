@@ -1,0 +1,12 @@
+Transform your photos into stunning blurry wallpapers. Make your Home/Lock screen shine!
+
+Drag the image horizontally to change the crop.
+
+You get the best result with bright colorful photos, like a handful of jellybeans or unicorns.
+
+The app comes bundled with some beautiful photos to get you started. Just shake to get another one.
+
+When you have swiped your preferred blurriness, tap the save button on the right. In the Photos app, go to the wallpaper you just saved, tap the action button on the bottom left, and choose “Use as Wallpaper”.
+
+
+Blear is open source: https://github.com/sindresorhus/blear
