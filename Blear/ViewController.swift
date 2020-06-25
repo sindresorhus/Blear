@@ -1,6 +1,7 @@
 import UIKit
 import Photos
 import MobileCoreServices
+import Combine
 import JGProgressHUD
 
 final class ViewController: UIViewController {
@@ -100,19 +101,7 @@ final class ViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		if UserDefaults.standard.isFirstLaunch {
-			let alert = UIAlertController(
-				title: "Tip",
-				message: "Shake the device to get a random image.",
-				preferredStyle: .alert
-			)
-
-			alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-				self.previewScrollingToUser()
-			})
-
-			present(alert, animated: true)
-		}
+		showShakeTipIfNeeded()
 	}
 
 	@objc
@@ -120,12 +109,12 @@ final class ViewController: UIViewController {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			actionSheet.addAction(UIAlertAction(title: "Take photo", style: .default) { _ in
+			actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default) { _ in
 				self.showImagePicker(with: .camera)
 			})
 		}
 
-		actionSheet.addAction(UIAlertAction(title: "Choose from library", style: .default) { _ in
+		actionSheet.addAction(UIAlertAction(title: "Choose from Library", style: .default) { _ in
 			self.showImagePicker(with: .photoLibrary)
 		})
 
@@ -176,48 +165,41 @@ final class ViewController: UIViewController {
 		updateImage(blurAmount: sender.value)
 	}
 
-	func showWallpaperTipIfNeeded() {
-		guard UserDefaults.standard.isFirstLaunch else {
-			return
-		}
-
-		delay(seconds: 1) {
-			let alert = UIAlertController(
-				title: "Changing Wallpaper",
-				message: "In the Photos app, go to the wallpaper you just saved, tap the action button on the bottom left, and choose “Use as Wallpaper”.",
-				preferredStyle: .alert
-			)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
-			self.present(alert, animated: true)
-		}
-	}
+	var saveImageCancellable: AnyCancellable?
 
 	@objc
 	func saveImage(_ button: UIBarButtonItem) {
 		button.isEnabled = false
 
-		PHPhotoLibrary.save(image: scrollView.toImage(), toAlbum: "Blear") { result in
-			button.isEnabled = true
+		let HUD = JGProgressHUD(style: .dark)
+		HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+		HUD.animation = JGProgressHUDFadeZoomAnimation()
+		HUD.vibrancyEnabled = true
+		HUD.contentInsets = UIEdgeInsets(all: 30)
 
-			let HUD = JGProgressHUD(style: .dark)
-			HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-			HUD.animation = JGProgressHUDFadeZoomAnimation()
-			HUD.vibrancyEnabled = true
-			HUD.contentInsets = UIEdgeInsets(all: 30)
+		saveImageCancellable = PHPhotoLibrary.save(
+			image: scrollView.toImage(),
+			toAlbum: "Blear"
+		)
+			.receive(on: DispatchQueue.main)
+			.sink(receiveCompletion: { error in
+				switch error {
+				case .finished:
+					HUD.show(in: self.view)
+					HUD.dismiss(afterDelay: 0.8)
 
-			if case .failure(let error) = result {
-				HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-				HUD.textLabel.text = error.localizedDescription
-				HUD.show(in: self.view)
-				HUD.dismiss(afterDelay: 3)
-				return
-			}
+					button.isEnabled = true
 
-			HUD.show(in: self.view)
-			HUD.dismiss(afterDelay: 0.8)
+					self.showWallpaperTipIfNeeded()
+				case .failure(let error):
+					HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+					HUD.textLabel.text = error.localizedDescription
+					HUD.show(in: self.view)
+					HUD.dismiss(afterDelay: 3)
+				}
 
-			self.showWallpaperTipIfNeeded()
-		}
+				button.isEnabled = true
+			}, receiveValue: { _ in })
 	}
 
 	func changeImage(_ image: UIImage) {
@@ -255,6 +237,40 @@ final class ViewController: UIViewController {
 
 		delay(seconds: 1) {
 			self.scrollView.setContentOffset(.zero, animated: true)
+		}
+	}
+
+	func showShakeTipIfNeeded() {
+		guard App.isFirstLaunch else {
+			return
+		}
+
+		let alert = UIAlertController(
+			title: "Tip",
+			message: "Shake the device to get a random image.",
+			preferredStyle: .alert
+		)
+
+		alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+			self.previewScrollingToUser()
+		})
+
+		present(alert, animated: true)
+	}
+
+	func showWallpaperTipIfNeeded() {
+		guard App.isFirstLaunch else {
+			return
+		}
+
+		delay(seconds: 1) {
+			let alert = UIAlertController(
+				title: "Changing Wallpaper",
+				message: "In the Photos app, go to the wallpaper you just saved, tap the action button on the bottom left, and choose “Use as Wallpaper”.",
+				preferredStyle: .alert
+			)
+			alert.addAction(UIAlertAction(title: "OK", style: .default))
+			self.present(alert, animated: true)
 		}
 	}
 }

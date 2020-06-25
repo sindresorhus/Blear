@@ -1,6 +1,7 @@
 import UIKit
 import QuartzCore
 import Photos
+import Combine
 
 /**
 Convenience function for initializing an object and modifying its properties
@@ -30,7 +31,6 @@ func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 // TODO: Add this as note to module readme:
 // > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
 // Name: `PHPhotoLibraryExtras` or `PhotosExtras`. Probably the latter.
-// Document that the handler is guaranteed to be executed in the main thread.
 extension PHPhotoLibrary {
 	enum Error: Swift.Error, LocalizedError {
 		case noAccess
@@ -43,101 +43,108 @@ extension PHPhotoLibrary {
 		}
 	}
 
-	static func runOrFail(completionHandler: @escaping (Result<Void, Swift.Error>) -> Void) {
-		PHPhotoLibrary.requestAuthorization { status in
-			DispatchQueue.main.async {
-				switch status {
-				case .authorized:
-					completionHandler(Result.success(()))
-				default:
-					completionHandler(Result.failure(Error.noAccess))
-				}
+	static func requestAuthorization() -> Future<PHAuthorizationStatus, Never> {
+		Future { resolve in
+			requestAuthorization { status in
+				resolve(.success(status))
 			}
 		}
+	}
+
+	/// Checks authorization and fails with an error if not.
+	static func checkAuthorization() -> AnyPublisher<Void, Swift.Error> {
+		requestAuthorization()
+			.tryMap {
+				switch $0 {
+				case .authorized:
+					return
+				default:
+					throw Error.noAccess
+				}
+			}
+			.eraseToAnyPublisher()
 	}
 
 	static func getAlbum(
-		withTitle title: String,
-		completionHandler: @escaping (Result<PHAssetCollection?, Swift.Error>) -> Void
-	) {
-		runOrFail { result in
-			switch result {
-			case .failure(let error):
-				completionHandler(.failure(error))
-			case .success:
+		withTitle title: String
+	) -> AnyPublisher<PHAssetCollection?, Swift.Error> {
+		checkAuthorization()
+			.map { _ in
 				let fetchOptions = PHFetchOptions()
 				fetchOptions.predicate = NSPredicate(format: "title = %@", title)
-				let albums = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-				completionHandler(.success(albums.firstObject))
+
+				let albums = PHAssetCollection.fetchAssetCollections(
+					with: .album,
+					subtype: .albumRegular,
+					options: fetchOptions
+				)
+
+				return albums.firstObject
 			}
-		}
+			.eraseToAnyPublisher()
 	}
 
-	static func createAlbum(withTitle title: String, completionHandler: @escaping (Result<PHAssetCollection, Swift.Error>) -> Void) {
-		getAlbum(withTitle: title) { result in
-			switch result {
-			case .failure(let error):
-				completionHandler(.failure(error))
-			case .success(let value):
-				guard let album = value else {
-					var localIdentifier: String!
+	private static func performChanges<T>(_ changeBlock: @escaping () -> T) -> Future<T, Swift.Error> {
+		Future { resolve in
+			var returnValue: T!
 
-					shared().performChanges({
-						localIdentifier = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
-					}, completionHandler: { success, error in
-						// The `completionHandler` here could be executed on any queue, so we ensure
-						// the user's handler is always executed on the main queue, for convenience
-						DispatchQueue.main.async {
-							guard success else {
-								completionHandler(.failure(error!))
-								return
-							}
-
-							let collections = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [localIdentifier], options: nil)
-
-							guard let album = collections.firstObject else {
-								fatalError("Album does not exist even though we just successfully created it. This should not happen!")
-							}
-
-							completionHandler(.success(album))
-						}
-					})
+			shared().performChanges({
+				returnValue = changeBlock()
+			}) { success, error in
+				guard success else {
+					resolve(.failure(error!))
 					return
 				}
 
-				completionHandler(.success(album))
+				resolve(.success(returnValue))
 			}
 		}
 	}
 
-	static func save(
-		image: UIImage,
-		toAlbum album: String,
-		completionHandler: @escaping (Result<String, Swift.Error>) -> Void
-	) {
-		createAlbum(withTitle: album) { result in
-			switch result {
-			case .failure(let error):
-				completionHandler(.failure(error))
-			case .success(let album):
-				var localIdentifier: String!
+	static func createAlbum(
+		withTitle title: String
+	) -> AnyPublisher<PHAssetCollection, Swift.Error> {
+		getAlbum(withTitle: title)
+			.flatMap { album -> AnyPublisher<PHAssetCollection, Swift.Error> in
+				if let album = album {
+					return Just(album)
+						.setFailureType(to: Swift.Error.self)
+						.eraseToAnyPublisher()
+				}
 
-				self.shared().performChanges({
-					let placeholder = PHAssetChangeRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
-					PHAssetCollectionChangeRequest(for: album)?.addAssets([placeholder as Any] as NSArray)
-					localIdentifier = placeholder?.localIdentifier
-				}, completionHandler: { success, error in
-					DispatchQueue.main.async {
-						guard success else {
-							completionHandler(.failure(error!))
-							return
+				return performChanges {
+					PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
+				}
+					.tryMap { localIdentifier in
+						let collections = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [localIdentifier], options: nil)
+
+						guard let album = collections.firstObject else {
+							// TODO: Look into why this happens on iOS 14.
+							throw NSError.appError("Album does not exist even though we just successfully created it. This should not happen!")
 						}
 
-						completionHandler(.success(localIdentifier))
+						return album
 					}
-				})
+					.eraseToAnyPublisher()
 			}
-		}
+			.eraseToAnyPublisher()
+	}
+
+	/// - Returns: The identifier for the album.
+	static func save(
+		image: UIImage,
+		toAlbum album: String
+	) -> AnyPublisher<String, Swift.Error> {
+		createAlbum(withTitle: album)
+			.flatMap { album -> AnyPublisher<String, Swift.Error> in
+				performChanges {
+					let placeholder = PHAssetChangeRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
+					PHAssetCollectionChangeRequest(for: album)?.addAssets([placeholder as Any] as NSArray)
+					return placeholder!.localIdentifier
+				}
+					.eraseToAnyPublisher()
+			}
+			.eraseToAnyPublisher()
 	}
 }
 
@@ -192,20 +199,6 @@ extension Collection {
 
 			let index = self.index(self.startIndex, offsetBy: offset)
 			return self[index]
-		}
-	}
-}
-
-
-extension UserDefaults {
-	var isFirstLaunch: Bool {
-		let key = "__hasLaunched__"
-
-		if bool(forKey: key) {
-			return false
-		} else {
-			set(true, forKey: key)
-			return true
 		}
 	}
 }
@@ -279,5 +272,55 @@ extension CGSize {
 	func aspectFit(to size: Self) -> Self {
 		let ratio = max(size.width / width, size.height / height)
 		return Self(width: width * CGFloat(ratio), height: height * CGFloat(ratio))
+	}
+}
+
+
+enum App {
+	static let id = Bundle.main.bundleIdentifier!
+	static let name = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+
+	static let isFirstLaunch: Bool = {
+		let key = "__hasLaunched__"
+
+		if UserDefaults.standard.bool(forKey: key) {
+			return false
+		} else {
+			UserDefaults.standard.set(true, forKey: key)
+			return true
+		}
+	}()
+}
+
+
+extension NSError {
+	/**
+	Use this for generic app errors.
+
+	- Note: Prefer using a specific enum-type error whenever possible.
+
+	- Parameter description: The description of the error. This is shown as the first line in error dialogs.
+	- Parameter recoverySuggestion: Explain how the user how they can recover from the error. For example, "Try choosing a different directory". This is usually shown as the second line in error dialogs.
+	- Parameter userInfo: Metadata to add to the error. Can be a custom key or any of the `NSLocalizedDescriptionKey` keys except `NSLocalizedDescriptionKey` and `NSLocalizedRecoverySuggestionErrorKey`.
+	- Parameter domainPostfix: String to append to the `domain` to make it easier to identify the error. The domain is the app's bundle identifier.
+	*/
+	static func appError(
+		_ description: String,
+		recoverySuggestion: String? = nil,
+		userInfo: [String: Any] = [:],
+		domainPostfix: String? = nil
+	) -> Self {
+		var userInfo = userInfo
+		userInfo[NSLocalizedDescriptionKey] = description
+
+		if let recoverySuggestion = recoverySuggestion {
+			userInfo[NSLocalizedRecoverySuggestionErrorKey] = recoverySuggestion
+		}
+
+		return .init(
+			domain: domainPostfix.map { "\(App.id) - \($0)" } ?? App.id,
+			code: 1, // This is what Swift errors end up as.
+			userInfo: userInfo
+		)
 	}
 }
