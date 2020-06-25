@@ -15,7 +15,9 @@
 		E3A0365C17E5E7AE00892B76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A0365B17E5E7AE00892B76 /* Images.xcassets */; };
 		E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0367917E5E94E00892B76 /* ViewController.swift */; };
 		E3A0368F17E6214600892B76 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0368E17E6214500892B76 /* Utilities.swift */; };
+		E3DD2D0724A51942004C5121 /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD2D0624A51942004C5121 /* ImagePickerButton.swift */; };
 		E3E2320E1B0396EA003376C6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E2320D1B0396EA003376C6 /* Launch Screen.xib */; };
+		E3ECA0C224A4FC5A00A1864E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ECA0C124A4FC5900A1864E /* ContentView.swift */; };
 		E3FC17DE24A101EC00142253 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = E3FC17DD24A101EC00142253 /* AppCenterCrashes */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +33,9 @@
 		E3A0367917E5E94E00892B76 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3A0368E17E6214500892B76 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utilities.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Blear-Bridging-Header.h"; sourceTree = "<group>"; };
+		E3DD2D0624A51942004C5121 /* ImagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerButton.swift; sourceTree = "<group>"; };
 		E3E2320D1B0396EA003376C6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		E3ECA0C124A4FC5900A1864E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				E3A0365917E5E7AE00892B76 /* AppDelegate.swift */,
 				E37D72AD2329664B008B1C48 /* Constants.swift */,
 				E3A0367917E5E94E00892B76 /* ViewController.swift */,
+				E3ECA0C124A4FC5900A1864E /* ContentView.swift */,
+				E3DD2D0624A51942004C5121 /* ImagePickerButton.swift */,
 				E3A0368E17E6214500892B76 /* Utilities.swift */,
 				E3A0365B17E5E7AE00892B76 /* Images.xcassets */,
 				E3A0365017E5E7AE00892B76 /* Supporting Files */,
@@ -204,9 +210,11 @@
 			files = (
 				E37D72AE2329664C008B1C48 /* Constants.swift in Sources */,
 				E3A0367A17E5E94E00892B76 /* ViewController.swift in Sources */,
+				E3ECA0C224A4FC5A00A1864E /* ContentView.swift in Sources */,
 				E3A0365A17E5E7AE00892B76 /* AppDelegate.swift in Sources */,
 				E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */,
 				E3A0368F17E6214600892B76 /* Utilities.swift in Sources */,
+				E3DD2D0724A51942004C5121 /* ImagePickerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

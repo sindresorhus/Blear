@@ -1,7 +1,9 @@
-import UIKit
 import QuartzCore
 import Photos
 import Combine
+import SwiftUI
+import MobileCoreServices
+
 
 /**
 Convenience function for initializing an object and modifying its properties
@@ -22,8 +24,22 @@ func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
 }
 
 
+extension DispatchQueue {
+	/**
+	```
+	DispatchQueue.main.asyncAfter(duration: 100.milliseconds) {
+		print("100ms later")
+	}
+	```
+	*/
+	func asyncAfter(duration: TimeInterval, execute: @escaping () -> Void) {
+		asyncAfter(deadline: .now() + duration, execute: execute)
+	}
+}
+
+
 func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
-	DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: closure)
+	DispatchQueue.main.asyncAfter(duration: seconds, execute: closure)
 }
 
 
@@ -149,25 +165,6 @@ extension PHPhotoLibrary {
 }
 
 
-extension UIBarButtonItem {
-	/**
-	```
-	toolbar.items = [
-		someButton,
-		.flexibleSpace
-	]
-	```
-	*/
-	static let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-	static let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-
-	convenience init(image: UIImage?, target: Any?, action: Selector?, width: CGFloat = 0) {
-		self.init(image: image, style: .plain, target: target, action: action)
-		self.width = width
-	}
-}
-
-
 extension Collection {
 	/**
 	Returns a infinite sequence with consecutively unique random elements from the collection.
@@ -252,11 +249,6 @@ extension UIEdgeInsets {
 }
 
 
-extension UIViewController {
-	var window: UIWindow { UIApplication.shared.windows.first! }
-}
-
-
 extension UIScrollView {
 	@objc
 	override func toImage() -> UIImage {
@@ -322,5 +314,179 @@ extension NSError {
 			code: 1, // This is what Swift errors end up as.
 			userInfo: userInfo
 		)
+	}
+}
+
+
+extension AppDelegate {
+	// swiftlint:disable:next force_cast
+	static let shared = UIApplication.shared.delegate as! AppDelegate
+}
+
+
+extension Binding where Value: Equatable {
+	/**
+	Get notified when the binding value changes to a different one.
+
+	Can be useful to manually update non-reactive properties.
+
+	```
+	Toggle(
+		"Foo",
+		isOn: $foo.onChange {
+			bar.isEnabled = $0
+		}
+	)
+	```
+	*/
+	func onChange(_ action: @escaping (Value) -> Void) -> Self {
+		.init(
+			get: { self.wrappedValue },
+			set: {
+				let oldValue = self.wrappedValue
+				self.wrappedValue = $0
+				let newValue = self.wrappedValue
+				if newValue != oldValue {
+					action(newValue)
+				}
+			}
+		)
+	}
+}
+
+
+final class UIHostingView<Content: View>: UIView {
+	private let rootViewHostingController: UIHostingController<Content>
+
+	var rootView: Content {
+		get { rootViewHostingController.rootView }
+		set {
+			rootViewHostingController.rootView = newValue
+		}
+	}
+
+	required init(rootView: Content) {
+		self.rootViewHostingController = UIHostingController(rootView: rootView)
+		super.init(frame: .zero)
+		rootViewHostingController.view.backgroundColor = .clear
+		addSubview(rootViewHostingController.view)
+	}
+
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		rootViewHostingController.view.frame = bounds
+	}
+
+	override func sizeToFit() {
+		guard let superview = superview else {
+			super.sizeToFit()
+			return
+		}
+
+		frame.size = rootViewHostingController.sizeThatFits(in: superview.frame.size)
+	}
+
+	override func sizeThatFits(_ size: CGSize) -> CGSize {
+		rootViewHostingController.sizeThatFits(in: size)
+	}
+
+	override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
+		rootViewHostingController.sizeThatFits(in: targetSize)
+	}
+
+	override func systemLayoutSizeFitting(
+		_ targetSize: CGSize,
+		withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
+		verticalFittingPriority: UILayoutPriority
+	) -> CGSize {
+		rootViewHostingController.sizeThatFits(in: targetSize)
+	}
+}
+
+
+/// SwiftUI wrapper for the iOS image picker.
+struct ImagePicker: UIViewControllerRepresentable {
+	final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+		let parent: ImagePicker
+
+		init(_ parent: ImagePicker) {
+			self.parent = parent
+		}
+
+		func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+			if let uiImage = info[.originalImage] as? UIImage {
+				parent.image = uiImage
+			}
+
+			parent.presentationMode.wrappedValue.dismiss()
+		}
+	}
+
+	@Environment(\.presentationMode) private var presentationMode
+
+	var sourceType: UIImagePickerController.SourceType
+	var mediaTypes = [kUTTypeImage as String]
+	@Binding var image: UIImage?
+
+	func makeCoordinator() -> Coordinator { .init(self) }
+
+	func makeUIViewController(context: Context) -> UIImagePickerController {
+		let picker = UIImagePickerController()
+		picker.delegate = context.coordinator
+		return picker
+	}
+
+	func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+		uiViewController.sourceType = sourceType
+		uiViewController.mediaTypes = mediaTypes
+	}
+}
+
+
+private struct FadeInAfterDelayModifier: ViewModifier {
+	@State private var isShowingContent = false
+
+	let delay: TimeInterval
+
+	func body(content: Content) -> some View {
+		content
+			.disabled(!isShowingContent)
+			.opacity(isShowingContent ? 1 : 0)
+			.animation(
+				Animation
+					.easeIn(duration: 0.5)
+					.delay(delay)
+			)
+			.onAppear {
+				self.isShowingContent = true
+			}
+	}
+}
+
+extension View {
+	/**
+	Delay making a view visible. It still takes up space before it's shown.
+
+	- Important: Must be placed last.
+
+	- Note: If the view is conditionally shown, it will fade in each time it reappears. To prevent this, you can implement your own state:
+	```
+	if isLoading {
+		LoadingView()
+			.transition(.opacity)
+			.animation(
+				.easeIn(duration: 0.5)
+				.delay(1)
+			)
+	}
+	```
+	*/
+	func fadeInAfterDelay(_ delay: TimeInterval) -> some View {
+		modifier(FadeInAfterDelayModifier(delay: delay))
 	}
 }
