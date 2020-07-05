@@ -1,6 +1,3 @@
-import QuartzCore
-import Photos
-import Combine
 import SwiftUI
 import MobileCoreServices
 
@@ -40,128 +37,6 @@ extension DispatchQueue {
 
 func delay(seconds: TimeInterval, closure: @escaping () -> Void) {
 	DispatchQueue.main.asyncAfter(duration: seconds, execute: closure)
-}
-
-
-// TODO: Move it to a SPM module
-// TODO: Add this as note to module readme:
-// > Your app’s Info.plist file must provide a value for the NSPhotoLibraryUsageDescription key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
-// Name: `PHPhotoLibraryExtras` or `PhotosExtras`. Probably the latter.
-extension PHPhotoLibrary {
-	enum Error: Swift.Error, LocalizedError {
-		case noAccess
-
-		var errorDescription: String? {
-			switch self {
-			case .noAccess:
-				return "Could not access the photo library. Please allow access in Settings."
-			}
-		}
-	}
-
-	static func requestAuthorization() -> Future<PHAuthorizationStatus, Never> {
-		Future { resolve in
-			requestAuthorization { status in
-				resolve(.success(status))
-			}
-		}
-	}
-
-	/// Checks authorization and fails with an error if not.
-	static func checkAuthorization() -> AnyPublisher<Void, Swift.Error> {
-		requestAuthorization()
-			.tryMap {
-				switch $0 {
-				case .authorized:
-					return
-				default:
-					throw Error.noAccess
-				}
-			}
-			.eraseToAnyPublisher()
-	}
-
-	static func getAlbum(
-		withTitle title: String
-	) -> AnyPublisher<PHAssetCollection?, Swift.Error> {
-		checkAuthorization()
-			.map { _ in
-				let fetchOptions = PHFetchOptions()
-				fetchOptions.predicate = NSPredicate(format: "title = %@", title)
-
-				let albums = PHAssetCollection.fetchAssetCollections(
-					with: .album,
-					subtype: .albumRegular,
-					options: fetchOptions
-				)
-
-				return albums.firstObject
-			}
-			.eraseToAnyPublisher()
-	}
-
-	private static func performChanges<T>(_ changeBlock: @escaping () -> T) -> Future<T, Swift.Error> {
-		Future { resolve in
-			var returnValue: T!
-
-			shared().performChanges({
-				returnValue = changeBlock()
-			}) { success, error in
-				guard success else {
-					resolve(.failure(error!))
-					return
-				}
-
-				resolve(.success(returnValue))
-			}
-		}
-	}
-
-	static func createAlbum(
-		withTitle title: String
-	) -> AnyPublisher<PHAssetCollection, Swift.Error> {
-		getAlbum(withTitle: title)
-			.flatMap { album -> AnyPublisher<PHAssetCollection, Swift.Error> in
-				if let album = album {
-					return Just(album)
-						.setFailureType(to: Swift.Error.self)
-						.eraseToAnyPublisher()
-				}
-
-				return performChanges {
-					PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title).placeholderForCreatedAssetCollection.localIdentifier
-				}
-					.tryMap { localIdentifier in
-						let collections = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [localIdentifier], options: nil)
-
-						guard let album = collections.firstObject else {
-							// TODO: Look into why this happens on iOS 14.
-							throw NSError.appError("Album does not exist even though we just successfully created it. This should not happen!")
-						}
-
-						return album
-					}
-					.eraseToAnyPublisher()
-			}
-			.eraseToAnyPublisher()
-	}
-
-	/// - Returns: The identifier for the album.
-	static func save(
-		image: UIImage,
-		toAlbum album: String
-	) -> AnyPublisher<String, Swift.Error> {
-		createAlbum(withTitle: album)
-			.flatMap { album -> AnyPublisher<String, Swift.Error> in
-				performChanges {
-					let placeholder = PHAssetChangeRequest.creationRequestForAsset(from: image).placeholderForCreatedAsset
-					PHAssetCollectionChangeRequest(for: album)?.addAssets([placeholder as Any] as NSArray)
-					return placeholder!.localIdentifier
-				}
-					.eraseToAnyPublisher()
-			}
-			.eraseToAnyPublisher()
-	}
 }
 
 
@@ -488,5 +363,33 @@ extension View {
 	*/
 	func fadeInAfterDelay(_ delay: TimeInterval) -> some View {
 		modifier(FadeInAfterDelayModifier(delay: delay))
+	}
+}
+
+
+extension UIImage {
+	private final class ImageSaver: NSObject {
+		private let completion: (Error?) -> Void
+
+		init(image: UIImage, completion: @escaping (Error?) -> Void) {
+			self.completion = completion
+			super.init()
+
+			UIImageWriteToSavedPhotosAlbum(image, self, #selector(handler), nil)
+		}
+
+		@objc
+		private func handler(_ image: UIImage?, didFinishSavingWithError error: Error?, contextInfo: UnsafeMutableRawPointer?) {
+			completion(error)
+		}
+	}
+
+	/**
+	Save the image to the user's photo library.
+
+	The image will be saved to the “Camera Roll” album if the device has a camera or “Saved Photos” otherwise.
+	*/
+	func saveToPhotosLibrary(_ completion: @escaping (Error?) -> Void) {
+		_ = ImageSaver(image: self, completion: completion)
 	}
 }

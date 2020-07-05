@@ -5,8 +5,8 @@ import JGProgressHUD
 
 struct ContentView: View {
 	private let buttonShadowRadius: CGFloat = 4
-	@State private var cancellables = Set<AnyCancellable>() // TODO: Any better way to do this?
-	@State private var blurAmount = 0.0
+	@State private var cancellables = Set<AnyCancellable>()
+	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isShowingShakeTip = false
 	@State private var isShowingWallpaperTip = false
 
@@ -36,7 +36,7 @@ struct ContentView: View {
 					.shadow(radius: buttonShadowRadius)
 			}
 				.imageScale(.large)
-				.fadeInAfterDelay(0.5)
+				.fadeInAfterDelay(0.4)
 		}
 			.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
 			.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
@@ -63,7 +63,7 @@ struct ContentView: View {
 	}
 
 	private func saveImage() {
-		// TODO: Replace `JGProgressHUD` with a custom SwiftUI view using `View#fullscreenCover()`.
+		// TODO: Replace `JGProgressHUD` with a custom SwiftUI view.
 		let HUD = JGProgressHUD(style: .dark)
 		HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
 		HUD.animation = JGProgressHUDFadeZoomAnimation()
@@ -73,26 +73,21 @@ struct ContentView: View {
 		let view = ViewController.shared.view!
 		let image = ViewController.shared.scrollView.toImage()
 
-		PHPhotoLibrary.save(
-			image: image,
-			toAlbum: "Blear"
-		)
-			.receive(on: DispatchQueue.main)
-			.sink(receiveCompletion: { error in
-				switch error {
-				case .finished:
-					HUD.show(in: view)
-					HUD.dismiss(afterDelay: 0.8)
+		image.saveToPhotosLibrary {
+			if let error = $0 {
+				// TODO: Improve the error message when the user did not allow access. Currently, iOS just returns "Data unavilable", which is not very user-friendly.
+				HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+				HUD.textLabel.text = error.localizedDescription
+				HUD.show(in: view)
+				HUD.dismiss(afterDelay: 3)
+				return
+			}
 
-					self.showWallpaperTipIfNeeded()
-				case .failure(let error):
-					HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-					HUD.textLabel.text = error.localizedDescription
-					HUD.show(in: view)
-					HUD.dismiss(afterDelay: 3)
-				}
-			}, receiveValue: { _ in })
-			.store(in: &cancellables)
+			HUD.show(in: view)
+			HUD.dismiss(afterDelay: 0.8)
+
+			self.showWallpaperTipIfNeeded()
+		}
 	}
 
 	private func showShakeTipIfNeeded() {
