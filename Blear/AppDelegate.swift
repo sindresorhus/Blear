@@ -2,7 +2,7 @@ import UIKit
 import AppCenter
 import AppCenterCrashes
 
-@UIApplicationMain
+@main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 

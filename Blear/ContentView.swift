@@ -17,19 +17,17 @@ struct ContentView: View {
 		VStack {
 			Spacer()
 			HStack {
-				ImagePickerButton {
-					self.onImage($0)
-				}
+				ImagePickerButton(onImage: onImage)
 					.shadow(radius: buttonShadowRadius)
 				Spacer()
 				// TODO: Use a custom slider like the iOS brightness control.
-				// TODO: Use `View#onChange` when targeting iOS 14.
-				Slider(value: $blurAmount.onChange(onSliderChange), in: 10...100)
+				Slider(value: $blurAmount, in: 10...100)
 					.padding(.horizontal, DeviceInfo.isPad ? 60 : 30)
 					.frame(maxWidth: 500)
+					.onChange(of: blurAmount, perform: onSliderChange)
 				Spacer()
 				Button(action: {
-					self.saveImage()
+					saveImage()
 				}) {
 					Image(systemName: "square.and.arrow.down")
 				}
@@ -49,7 +47,7 @@ struct ContentView: View {
 			.background(
 				EmptyView()
 					// This is not at the top-level because of a SwiftUI bug.
-					// TODO: Check if it's possible to have multiple alerts on a single element in iOS 14.
+					// TODO: Check if it's possible to have multiple alerts on a single element in iOS 15.
 					.alert(isPresented: $isShowingWallpaperTip) {
 						Alert(
 							title: Text("Changing Wallpaper"),
@@ -58,7 +56,7 @@ struct ContentView: View {
 					}
 			)
 			.onAppear {
-				self.showShakeTipIfNeeded()
+				showShakeTipIfNeeded()
 			}
 	}
 
@@ -86,7 +84,7 @@ struct ContentView: View {
 			HUD.show(in: view)
 			HUD.dismiss(afterDelay: 0.8)
 
-			self.showWallpaperTipIfNeeded()
+			showWallpaperTipIfNeeded()
 		}
 	}
 
@@ -96,7 +94,7 @@ struct ContentView: View {
 		}
 
 		delay(seconds: 1.5) {
-			self.isShowingShakeTip = true
+			isShowingShakeTip = true
 		}
 	}
 
@@ -106,7 +104,7 @@ struct ContentView: View {
 		}
 
 		delay(seconds: 1) {
-			self.isShowingWallpaperTip = true
+			isShowingWallpaperTip = true
 		}
 	}
 }

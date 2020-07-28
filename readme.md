@@ -17,4 +17,4 @@
 
 ## Info
 
-Requires minimum iOS 13.
+Requires minimum iOS 14.

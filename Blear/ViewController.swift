@@ -51,14 +51,13 @@ final class ViewController: UIViewController {
 
 	func setUpContentView() {
 		let contentView = ContentView(
-			onSliderChange: {
-				self.lastBlurAmount = Float($0)
-				self.updateImage(blurAmount: Float($0))
+			onSliderChange: { [self] in
+				lastBlurAmount = Float($0)
+				updateImage(blurAmount: Float($0))
 			},
-			onImage: {
-				self.changeImage($0)
-			}
+			onImage: changeImage
 		)
+
 		let hostingView = UIHostingView(rootView: contentView)
 		hostingView.translatesAutoresizingMaskIntoConstraints = false
 		hostingView.tintColor = .white
@@ -86,12 +85,14 @@ final class ViewController: UIViewController {
 			workItem.cancel()
 		}
 
-		let workItem = DispatchWorkItem {
-			let temp = self.blurImage(blurAmount)
-			DispatchQueue.main.async {
-				self.imageView.image = temp
+		let workItem = DispatchWorkItem { [self] in
+			let temp = blurImage(blurAmount)
+
+			DispatchQueue.main.async { [self] in
+				imageView.image = temp
 			}
 		}
+
 		self.workItem = workItem
 
 		DispatchQueue.global(qos: .userInteractive).async(execute: workItem)
@@ -130,8 +131,8 @@ final class ViewController: UIViewController {
 		let y = scrollView.contentSize.height - scrollView.frame.size.height
 		scrollView.setContentOffset(CGPoint(x: x, y: y), animated: true)
 
-		delay(seconds: 1) {
-			self.scrollView.setContentOffset(.zero, animated: true)
+		delay(seconds: 1) { [self] in
+			scrollView.setContentOffset(.zero, animated: true)
 		}
 	}
 }

@@ -65,12 +65,11 @@ extension Collection {
 		return AnyIterator {
 			var offset: Int
 			repeat {
-				offset = Int.random(in: 0..<self.count)
+				offset = Int.random(in: 0..<count)
 			} while offset == previousNumber
 			previousNumber = offset
 
-			let index = self.index(self.startIndex, offsetBy: offset)
-			return self[index]
+			return self[index(startIndex, offsetBy: offset)]
 		}
 	}
 }
@@ -84,12 +83,18 @@ extension UIImage {
 	}
 
 	convenience init(color: UIColor, size: CGSize) {
-		UIGraphicsBeginImageContextWithOptions(size, true, 0)
-		color.setFill()
-		UIRectFill(CGRect(origin: .zero, size: size))
-		let image = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		self.init(cgImage: image!.cgImage!)
+		let bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+
+		let image = UIGraphicsImageRenderer(size: size).image { context in
+			color.setFill()
+			context.fill(bounds)
+		}
+
+		self.init(
+			cgImage: image.cgImage!,
+			scale: image.scale,
+			orientation: image.imageOrientation
+		)
 	}
 
 	func resized(to size: CGSize) -> UIImage {
@@ -127,9 +132,9 @@ extension UIEdgeInsets {
 extension UIScrollView {
 	@objc
 	override func toImage() -> UIImage {
-		UIGraphicsImageRenderer(size: bounds.size).image { _ in
+		UIGraphicsImageRenderer(size: bounds.size).image { [self] _ in
 			let newBounds = bounds.offsetBy(dx: -contentOffset.x, dy: -contentOffset.y)
-			self.drawHierarchy(in: newBounds, afterScreenUpdates: true)
+			drawHierarchy(in: newBounds, afterScreenUpdates: true)
 		}
 	}
 }
@@ -216,11 +221,11 @@ extension Binding where Value: Equatable {
 	*/
 	func onChange(_ action: @escaping (Value) -> Void) -> Self {
 		.init(
-			get: { self.wrappedValue },
+			get: { wrappedValue },
 			set: {
-				let oldValue = self.wrappedValue
-				self.wrappedValue = $0
-				let newValue = self.wrappedValue
+				let oldValue = wrappedValue
+				wrappedValue = $0
+				let newValue = wrappedValue
 				if newValue != oldValue {
 					action(newValue)
 				}
@@ -338,7 +343,7 @@ private struct FadeInAfterDelayModifier: ViewModifier {
 					.delay(delay)
 			)
 			.onAppear {
-				self.isShowingContent = true
+				isShowingContent = true
 			}
 	}
 }
