@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="Media/icon.png" width="90">
+	<img src="Media/AppIcon.png" width="90">
 	<h1>Blear</h1>
 	<h5>Transform your photos into stunning blurry wallpapers on your iOS device</h4>
 	<br>
