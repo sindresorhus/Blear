@@ -7,10 +7,10 @@ import AppCenterCrashes
 
 
 func initAppCenter() {
-	MSAppCenter.start(
-		"266f557d-902a-44d4-8d0e-65b3fd19ae16",
-		withServices: [
-			MSCrashes.self
+	AppCenter.start(
+		withAppSecret: "266f557d-902a-44d4-8d0e-65b3fd19ae16",
+		services: [
+			Crashes.self
 		]
 	)
 }
