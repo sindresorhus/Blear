@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct EditorView: View {
+	private static let updateImageQueue = DispatchQueue(label: "\(SSApp.id).updateImage", qos: .userInteractive)
+
 	@ViewStorage private var workItem: DispatchWorkItem?
 	@State private var blurredImage: UIImage?
 
@@ -52,7 +54,7 @@ struct EditorView: View {
 		}
 		self.workItem = workItem
 
-		DispatchQueue.global(qos: .userInteractive).async(execute: workItem)
+		Self.updateImageQueue.async(execute: workItem)
 	}
 }
 

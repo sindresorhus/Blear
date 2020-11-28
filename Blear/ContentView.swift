@@ -38,8 +38,8 @@ struct ContentView: View {
 					}
 				} label: {
 					Image(systemName: "ellipsis.circle")
-						.accessibility(label: Text("More"))
-						// TODO: Workaround for iOS 14.1 where the tap target is tiny.
+						.accessibilityLabel("More")
+						// TODO: Workaround for iOS 14.5 where the tap target is tiny.
 						.imageScale(.large)
 						.padding(.trailing, 2)
 						.contentShape(Rectangle())
@@ -54,7 +54,7 @@ struct ContentView: View {
 				SinglePhotoPickerButton { pickedImage in
 					image = Utilities.resizeImage(pickedImage)
 				}
-					.accessibility(label: Text("Pick Image"))
+					.accessibilityLabel("Pick Image")
 					.shadow(radius: Constants.buttonShadowRadius)
 				Spacer()
 				// TODO: Use a custom slider like the iOS brightness control.
@@ -67,7 +67,7 @@ struct ContentView: View {
 				} label: {
 					Image(systemName: "square.and.arrow.down")
 				}
-					.accessibility(label: Text("Save Image"))
+					.accessibilityLabel("Save Image")
 					.shadow(radius: Constants.buttonShadowRadius)
 			}
 				.imageScale(.large)
@@ -106,13 +106,13 @@ struct ContentView: View {
 				)
 			}
 			.alert(error: $saveError)
-			.sheet2(isPresented: $isShowingAboutSheet) {
+			.sheet(isPresented: $isShowingAboutSheet) {
 				AboutView()
 			}
 			.onAppear {
 				showShakeTipIfNeeded()
 			}
-			.onReceive(UIDevice.current.didShakePublisher) { _ in
+			.onDeviceShake {
 				image = Self.getRandomImage()
 			}
 			.accessNativeWindow {

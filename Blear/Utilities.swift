@@ -138,7 +138,7 @@ extension UIView {
 	@objc
 	func toImage() -> UIImage {
 		UIGraphicsImageRenderer(size: bounds.size).image { _ in
-			self.drawHierarchy(in: bounds, afterScreenUpdates: true)
+			drawHierarchy(in: bounds, afterScreenUpdates: true)
 		}
 	}
 }
@@ -471,21 +471,6 @@ extension UIImage {
 
 
 extension View {
-	/// This allows multiple sheets on a single view, which `.sheet()` doesn't.
-	func sheet2<Content: View>(
-		isPresented: Binding<Bool>,
-		onDismiss: (() -> Void)? = nil,
-		@ViewBuilder content: @escaping () -> Content
-	) -> some View {
-		background(
-			EmptyView().sheet(
-				isPresented: isPresented,
-				onDismiss: onDismiss,
-				content: content
-			)
-		)
-	}
-
 	/// This allows multiple alerts on a single view, which `.alert()` doesn't.
 	func alert2(
 		isPresented: Binding<Bool>,
@@ -614,6 +599,25 @@ extension UIWindow {
 		}
 
 		super.motionEnded(motion, with: event)
+	}
+}
+
+private struct DeviceShakeViewModifier: ViewModifier {
+	let action: (() -> Void)
+
+	func body(content: Content) -> some View {
+		content
+			.onAppear() // Shake doesn't work without this. (iOS 14.5)
+			.onReceive(UIDevice.current.didShakePublisher) { _ in
+				action()
+			}
+	}
+}
+
+extension View {
+	/// Perform sn ction when the device is shaked.
+	func onDeviceShake(perform action: @escaping (() -> Void)) -> some View {
+		modifier(DeviceShakeViewModifier(action: action))
 	}
 }
 

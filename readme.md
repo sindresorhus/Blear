@@ -6,7 +6,7 @@
 	<h4>
 		<a href="https://sindresorhus.com/blear">Website</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="https://apps.apple.com/us/app/blear-create-blurry-wallpapers/id994182280">App Store</a>
+		<a href="https://apps.apple.com/app/id994182280">App Store</a>
 	</h4>
 </div>
 <br>

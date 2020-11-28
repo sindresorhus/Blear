@@ -21,7 +21,7 @@ struct ContentView: View {
 						Image(systemName: "xmark.circle")
 							.imageScale(.large)
 					}
-						.accessibility(label: Text("Cancel"))
+						.accessibilityLabel("Cancel")
 					Spacer()
 					Button {
 						saveImage()
@@ -29,7 +29,7 @@ struct ContentView: View {
 						Image(systemName: "square.and.arrow.down")
 							.imageScale(.large)
 					}
-						.accessibility(label: Text("Save Image"))
+						.accessibilityLabel("Save Image")
 				}
 					.shadow(radius: Constants.buttonShadowRadius)
 					.accentColor(.white)
