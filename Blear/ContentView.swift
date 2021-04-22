@@ -26,7 +26,7 @@ struct ContentView: View {
 				Spacer()
 				Menu {
 					Button {
-						image = Self.getRandomImage()
+						randomImage()
 					} label: {
 						Label("Random Image", systemImage: "photo")
 					}
@@ -85,6 +85,9 @@ struct ContentView: View {
 				image: $image,
 				blurAmount: $blurAmount
 			)
+				.onTapGesture(count: 2) {
+					randomImage()
+				}
 			if !isSaving {
 				controls
 			}
@@ -93,7 +96,7 @@ struct ContentView: View {
 			.alert2(isPresented: $isShowingShakeTip) {
 				Alert(
 					title: Text("Tip"),
-					message: Text("Shake the device to get a random image.")
+					message: Text("Double-tap the image or shake the device to get another random image.")
 				)
 			}
 			.alert2(isPresented: $isShowingWallpaperTip) {
@@ -115,6 +118,10 @@ struct ContentView: View {
 			.accessNativeWindow {
 				window = $0
 			}
+	}
+
+	private func randomImage() {
+		image = Self.getRandomImage()
 	}
 
 	private func saveImage() {
