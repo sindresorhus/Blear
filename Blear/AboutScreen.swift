@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct AboutView: View {
-	@Environment(\.presentationMode) private var presentationMode
+struct AboutScreen: View {
+	@Environment(\.dismiss) private var dismiss
 
 	var body: some View {
 		NavigationView {
 			Form {
 				Section(
 					header: Text("\(SSApp.name) \(SSApp.version)"),
-					footer: Text("\n\(SSApp.name) was made with ♥ by Sindre Sorhus, an indie app developer from Norway.\n\nIf you enjoy using this app, please consider leaving a review in the App Store. It helps more than you can imagine.")
+					footer: Text("\n\(SSApp.name) was made with ♥ by Sindre Sorhus, an indie app developer from Norway.\n\nIf you enjoy using this app, please consider leaving a review on the App Store. It helps more than you can imagine.")
 				) {
 					SendFeedbackButton()
 					Link("Website", destination: "https://sindresorhus.com/blear")
@@ -17,11 +17,10 @@ struct AboutView: View {
 				}
 			}
 				.navigationTitle("About")
-				.navigationBarTitleDisplayMode(.inline)
 				.toolbar {
 					ToolbarItem(placement: .confirmationAction) {
 						Button("Done") {
-							presentationMode.wrappedValue.dismiss()
+							dismiss()
 						}
 					}
 				}
@@ -29,8 +28,8 @@ struct AboutView: View {
 	}
 }
 
-struct AboutView_Previews: PreviewProvider {
+struct AboutScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		AboutView()
+		AboutScreen()
 	}
 }

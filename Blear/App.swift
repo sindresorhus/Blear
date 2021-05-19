@@ -2,13 +2,16 @@ import SwiftUI
 
 @main
 struct AppMain: App {
+	@StateObject private var appState = AppState()
+
 	init() {
-		initAppCenter()
+		initSentry()
 	}
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+			MainScreen()
+				.environmentObject(appState)
 		}
 	}
 }

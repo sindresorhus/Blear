@@ -15,4 +15,4 @@
 
 ## Info
 
-Requires minimum iOS 14.
+Requires minimum iOS 15.

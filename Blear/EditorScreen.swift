@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct EditorView: View {
-	private static let updateImageQueue = DispatchQueue(label: "\(SSApp.id).updateImage", qos: .userInteractive)
+// TODO: Move to an ObservableObject that handles the blurring. Or maybe Actor?
+
+struct EditorScreen: View {
+	private static let updateImageQueue = DispatchQueue(label: "\(SSApp.idString).updateImage", qos: .userInteractive)
 
 	@ViewStorage private var workItem: DispatchWorkItem?
 	@State private var blurredImage: UIImage?
@@ -28,7 +30,7 @@ struct EditorView: View {
 			.onChange(of: blurAmount) {
 				updateImage(blurAmount: $0)
 			}
-			.onAppear {
+			.task {
 				UIScrollView.appearance().bounces = false
 				updateImage(blurAmount: blurAmount)
 			}
@@ -37,15 +39,15 @@ struct EditorView: View {
 	private func blurImage(_ blurAmount: Double) -> UIImage {
 		UIImageEffects.imageByApplyingBlur(
 			to: image,
-			withRadius: CGFloat(blurAmount * 0.8),
-			tintColor: UIColor(white: 1, alpha: CGFloat(max(0, min(0.25, blurAmount * 0.004)))),
-			saturationDeltaFactor: CGFloat(max(1, min(2.8, blurAmount * (DeviceInfo.isPad ? 0.035 : 0.045)))),
+			withRadius: blurAmount * 0.8,
+			tintColor: UIColor(white: 1, alpha: max(0, min(0.25, blurAmount * 0.004))),
+			saturationDeltaFactor: max(1, min(2.8, blurAmount * (DeviceInfo.isPad ? 0.035 : 0.045))),
 			maskImage: nil
 		)
 	}
 
 	private func updateImage(blurAmount: Double) {
-		if let workItem = self.workItem {
+		if let workItem = workItem {
 			workItem.cancel()
 		}
 
@@ -58,8 +60,8 @@ struct EditorView: View {
 	}
 }
 
-//struct EditorView_Previews: PreviewProvider {
+//struct EditorScreen_Previews: PreviewProvider {
 //    static var previews: some View {
-//        EditorView()
+//        EditorScreen()
 //    }
 //}
