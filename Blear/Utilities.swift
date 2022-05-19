@@ -724,8 +724,50 @@ extension Dictionary {
 }
 
 
+extension NSObject {
+	// Note: It's intentionally a getter to get the dynamic self.
+	/**
+	Returns the class name without module name.
+	*/
+	static var simpleClassName: String { String(describing: self) }
+
+	/**
+	Returns the class name of the instance without module name.
+	*/
+	var simpleClassName: String { Self.simpleClassName }
+}
+
+
 extension Error {
-	var isNsError: Bool { Self.self is NSError.Type }
+	/**
+	Whether the error matches the given domain and code.
+	*/
+	func matches(domain: String, code: Int) -> Bool {
+		let nsError = self as NSError
+		return nsError.domain == domain && nsError.code == code
+	}
+
+	/**
+	Whether the error or any of its underlying errors match the given domain and code.
+	*/
+	func matchesDeep(domain: String, code: Int) -> Bool {
+		let nsError = self as NSError
+
+		return matches(domain: domain, code: code)
+			|| nsError.underlyingErrors.contains { $0.matches(domain: domain, code: code) }
+	}
+}
+
+
+extension Error {
+	/**
+	Whether the error was originally created as an `NSError`.
+	*/
+	var isNSError: Bool {
+		// This used to work before Swift 5.6:
+		// `var isNsError: Bool { Self.self is NSError.Type }``
+		(self as NSError).simpleClassName != "__SwiftNativeNSError"
+	}
 }
 
 extension NSError {
@@ -733,7 +775,7 @@ extension NSError {
 		let nsError = error as NSError
 
 		// Since Error and NSError are often bridged between each other, we check if it was originally an NSError and then return that.
-		guard !error.isNsError else {
+		guard !error.isNSError else {
 			guard !userInfo.isEmpty else {
 				return nsError
 			}
@@ -741,11 +783,9 @@ extension NSError {
 			return nsError.appending(userInfo: userInfo)
 		}
 
-		var userInfo = userInfo
+		var userInfo = nsError.userInfo.appending(userInfo)
 		userInfo[NSLocalizedDescriptionKey] = error.localizedDescription
 
-		// Awful, but no better way to get the enum case name.
-		// This gets `Error.generateFrameFailed` from `Error.generateFrameFailed(Error Domain=AVFoundationErrorDomain Code=-11832 […]`.
 		let errorName = "\(error)".split(separator: "(").first ?? ""
 
 		return .init(
@@ -880,6 +920,7 @@ extension CGImage {
 			let source = CGImageSourceCreateWithURL(url as CFURL, sourceOptions as CFDictionary),
 			let image = CGImageSourceCreateThumbnailAtIndex(source, 0, thumbnailOptions as CFDictionary)
 		else {
+			_ = try Data(contentsOf: url, options: [.uncached]) // Just to get a better error.
 			throw NSError.appError("Failed to load image.")
 		}
 
@@ -953,8 +994,17 @@ extension NSItemProvider {
 	func loadFileRepresentation(for type: UTType) async throws -> URL {
 		try await withCheckedThrowingContinuation { continuation in
 			_ = loadFileRepresentation(forTypeIdentifier: type.identifier) { url, error in
-				if let error = error {
+				if var error = error {
+					// Error Domain=CloudPhotoLibraryErrorDomain Code=82 "Failed to download CPLResourceTypeOriginal"
+					if error.matchesDeep(domain: "CloudPhotoLibraryErrorDomain", code: 82) {
+						error = NSError.appError(
+							"Failed to download photo from iCloud.",
+							recoverySuggestion: "Make sure you are connected to the internet."
+						)
+					}
+
 					continuation.resume(throwing: error)
+
 					return
 				}
 
