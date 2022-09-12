@@ -5,15 +5,19 @@ struct AboutScreen: View {
 
 	var body: some View {
 		NavigationView {
+//		NavigationStack {
 			Form {
-				Section(
-					header: Text("\(SSApp.name) \(SSApp.version)"),
-					footer: Text("\n\(SSApp.name) was made with ♥ by Sindre Sorhus, an indie app developer from Norway.\n\nIf you enjoy using this app, please consider leaving a review on the App Store. It helps more than you can imagine.")
-				) {
+				Section {} // For padding
+				Section {
 					SendFeedbackButton()
 					Link("Website", destination: "https://sindresorhus.com/blear")
 					RateOnAppStoreButton(appStoreID: "994182280")
 					MoreAppsButton()
+				} footer: {
+					Text(markdown: "\n\n**\(SSApp.name) \(SSApp.version)**\n\nMade with ♥ by Sindre Sorhus\nan indie app developer from Norway\n\n.·:*¨༺ ༻¨*:·.\n\nIf you enjoy using this app, please consider leaving a review on the App Store. It helps more than you can imagine.")
+						.multilineTextAlignment(.center)
+						.frame(maxWidth: 370) // Make it look good on iPad.
+						.fillFrame(.horizontal)
 				}
 			}
 				.navigationTitle("About")

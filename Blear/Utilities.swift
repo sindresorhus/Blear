@@ -41,31 +41,36 @@ extension Collection {
 	Returns a infinite sequence with consecutively unique random elements from the collection.
 
 	```
-	let x = [1, 2, 3].uniqueRandomElementIterator()
+	let sequence = [1, 2, 3, 4].infiniteConsecutivelyUniqueRandomSequence()
 
-	x.next()
-	//=> 2
-	x.next()
-	//=> 1
-
-	for element in x.prefix(2) {
+	for element in sequence.prefix(3) {
 		print(element)
 	}
 	//=> 3
 	//=> 1
+	//=> 2
+
+	let iterator = sequence.makeIterator()
+
+	iterator.next()
+	//=> 4
+	iterator.next()
+	//=> 1
 	```
 	*/
-	func uniqueRandomElement() -> AnyIterator<Element> {
-		var previousNumber: Int?
+	func infiniteConsecutivelyUniqueRandomSequence() -> AnySequence<Element> {
+		AnySequence { () -> AnyIterator in
+			var previousOffset: Int?
 
-		return AnyIterator {
-			var offset: Int
-			repeat {
-				offset = Int.random(in: 0..<count)
-			} while offset == previousNumber
-			previousNumber = offset
+			return AnyIterator {
+				var offset: Int
+				repeat {
+					offset = Int.random(in: 0..<count)
+				} while offset == previousOffset
+				previousOffset = offset
 
-			return self[index(startIndex, offsetBy: offset)]
+				return self[index(startIndex, offsetBy: offset)]
+			}
 		}
 	}
 }
@@ -286,7 +291,7 @@ extension NSError {
 		var userInfo = userInfo
 		userInfo[NSLocalizedDescriptionKey] = description
 
-		if let recoverySuggestion = recoverySuggestion {
+		if let recoverySuggestion {
 			userInfo[NSLocalizedRecoverySuggestionErrorKey] = recoverySuggestion
 		}
 
@@ -295,7 +300,7 @@ extension NSError {
 			userInfo[NSRecoveryAttempterErrorKey] = ErrorRecoveryAttempter(recoveryOptions: recoveryOptions)
 		}
 
-		if let underlyingError = underlyingError {
+		if let underlyingError {
 			userInfo[NSUnderlyingErrorKey] = underlyingError
 		}
 
@@ -419,7 +424,7 @@ extension UIImage {
 
 		@objc
 		private func handler(_ image: UIImage?, didFinishSavingWithError error: Error?, contextInfo: UnsafeMutableRawPointer?) {
-			if let error = error {
+			if let error {
 				continuation.resume(throwing: error)
 				return
 			}
@@ -538,7 +543,7 @@ extension View {
 			isPresented: isPresented,
 			actions: actions,
 			message: {
-				if let message = message {
+				if let message {
 					Text(message)
 				}
 			}
@@ -561,7 +566,7 @@ extension View {
 			isPresented: isPresented,
 			actions: actions,
 			message: {
-				if let message = message {
+				if let message {
 					Text(message)
 				}
 			}
@@ -901,7 +906,7 @@ struct UnexpectedNilError: LocalizedError {
 
 
 extension CGImage {
-	static func from(_ url: URL, maxSize: Double?) throws -> CGImage {
+	static func from(_ url: URL, maxPixelSize: Double?) throws -> CGImage {
 		let sourceOptions: [CFString: Any] = [
 			kCGImageSourceShouldCache: false
 		]
@@ -912,8 +917,8 @@ extension CGImage {
 			kCGImageSourceShouldCacheImmediately: true
 		]
 
-		if let maxSize = maxSize {
-			thumbnailOptions[kCGImageSourceThumbnailMaxPixelSize] = maxSize
+		if let maxPixelSize {
+			thumbnailOptions[kCGImageSourceThumbnailMaxPixelSize] = maxPixelSize
 		}
 
 		guard
@@ -929,8 +934,8 @@ extension CGImage {
 }
 
 extension UIImage {
-	static func from(_ url: URL, maxSize: Double?) throws -> Self {
-		let cgImage = try CGImage.from(url, maxSize: maxSize)
+	static func from(_ url: URL, maxPixelSize: Double?) throws -> Self {
+		let cgImage = try CGImage.from(url, maxPixelSize: maxPixelSize)
 		return Self(cgImage: cgImage)
 	}
 }
@@ -1033,9 +1038,9 @@ extension NSItemProvider {
 	/**
 	Get the image from an item provider.
 	*/
-	func getImage(maxSize: Double? = nil) async throws -> UIImage {
+	func getImage(maxPixelSize: Double? = nil) async throws -> UIImage {
 		let url = try await loadFileRepresentation(for: .image)
-		return try UIImage.from(url, maxSize: maxSize)
+		return try UIImage.from(url, maxPixelSize: maxPixelSize)
 	}
 }
 
@@ -1092,7 +1097,7 @@ Let the user pick a single photo from their library.
 - Note: If the user cancels the operation, `isPresented` will be set to `false` and `onCompletion` will not be called.
 */
 struct SinglePhotoPicker: View {
-	var maxSize: Double?
+	var maxPixelSize: Double?
 	var onCompletion: (Result<UIImage, Error>) -> Void
 
 	var body: some View {
@@ -1107,7 +1112,7 @@ struct SinglePhotoPicker: View {
 						throw NSError.appError("The image format “\(itemProvider.registeredTypeIdentifiers.first ?? "<Unknown>")” is not supported")
 					}
 
-					let image = try await itemProvider.getImage(maxSize: maxSize)
+					let image = try await itemProvider.getImage(maxPixelSize: maxPixelSize)
 					onCompletion(.success(image))
 				} catch {
 					SSApp.reportError(
@@ -1130,7 +1135,7 @@ struct SinglePhotoPicker: View {
 struct SinglePhotoPickerButton: View {
 	@State private var isPresented = false
 
-	var maxSize: Double?
+	var maxPixelSize: Double?
 	var iconName = "photo"
 	var onCompletion: (Result<UIImage, Error>) -> Void
 
@@ -1141,7 +1146,7 @@ struct SinglePhotoPickerButton: View {
 			Image(systemName: iconName)
 		}
 			.sheet(isPresented: $isPresented) {
-				SinglePhotoPicker(maxSize: maxSize, onCompletion: onCompletion)
+				SinglePhotoPicker(maxPixelSize: maxPixelSize, onCompletion: onCompletion)
 					.ignoresSafeArea()
 			}
 	}
@@ -1218,9 +1223,9 @@ extension View {
 	```
 	*/
 	@ViewBuilder
-	func `if`<Content: View>(
+	func `if`(
 		_ condition: @autoclosure () -> Bool,
-		modify: (Self) -> Content
+		modify: (Self) -> some View
 	) -> some View {
 		if condition() {
 			modify(self)
@@ -1899,15 +1904,15 @@ extension SSApp {
 		}
 
 		Task { @MainActor in
-			if let scene = currentScene {
-				SKStoreReviewController.requestReview(in: scene)
+			if let currentScene {
+				SKStoreReviewController.requestReview(in: currentScene)
 			}
 		}
 	}
 }
 
 
-extension Task where Success == Never, Failure == Never {
+extension Task<Never, Never> {
 	public static func sleep(seconds: TimeInterval) async throws {
 	   try await sleep(nanoseconds: UInt64(seconds * Double(NSEC_PER_SEC)))
 	}
@@ -2061,7 +2066,7 @@ extension View {
 }
 
 
-extension Button where Label == SwiftUI.Label<Text, Image> {
+extension Button<Label<Text, Image>> {
 	init(
 		_ title: String,
 		systemImage: String,
@@ -2074,5 +2079,32 @@ extension Button where Label == SwiftUI.Label<Text, Image> {
 		) {
 			Label(title, systemImage: systemImage)
 		}
+	}
+}
+
+
+extension Text {
+	/**
+	By default, `Text` only accepts Markdown when using a string literal or explicitly passing a `LocalizedStringKey`. That's a bit too magic and I prefer an explicit initializer.
+	*/
+	init(markdown: String) {
+		self.init(LocalizedStringKey(markdown))
+	}
+}
+
+
+extension View {
+	/**
+	Fills the frame.
+	*/
+	func fillFrame(
+		_ axis: Axis.Set = [.horizontal, .vertical],
+		alignment: Alignment = .center
+	) -> some View {
+		frame(
+			maxWidth: axis.contains(.horizontal) ? .infinity : nil,
+			maxHeight: axis.contains(.vertical) ? .infinity : nil,
+			alignment: alignment
+		)
 	}
 }

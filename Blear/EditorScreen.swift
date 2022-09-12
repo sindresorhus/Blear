@@ -23,7 +23,7 @@ struct EditorScreen: View {
 			}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 		}
-			.edgesIgnoringSafeArea(.all)
+			.ignoresSafeArea()
 			.onChange(of: image) { _ in
 				updateImage(blurAmount: blurAmount)
 			}
@@ -47,7 +47,7 @@ struct EditorScreen: View {
 	}
 
 	private func updateImage(blurAmount: Double) {
-		if let workItem = workItem {
+		if let workItem {
 			workItem.cancel()
 		}
 

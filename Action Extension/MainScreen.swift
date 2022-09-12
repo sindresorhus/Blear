@@ -62,7 +62,7 @@ struct MainScreen: View {
 
     var body: some View {
 		ZStack {
-			if let image = image {
+			if let image {
 				EditorScreen(
 					image: .constant(image),
 					blurAmount: $blurAmount
@@ -102,7 +102,7 @@ struct MainScreen: View {
 
 		// TODO: Force the following to execute in a background thread.
 		do {
-			return try await itemProvider.getImage(maxSize: Constants.maxImageSize)
+			return try await itemProvider.getImage(maxPixelSize: Constants.maxImagePixelSize)
 		} catch {
 			SSApp.reportError(
 				error,

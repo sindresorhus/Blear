@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainScreen: View {
 	private static let stockImages = Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: "Bundled Photos")!
-	private static let randomImageIterator = stockImages.uniqueRandomElement()
+	private static let randomImageIterator = stockImages.infiniteConsecutivelyUniqueRandomSequence().makeIterator()
 
 	private static func getRandomImage() -> UIImage {
 		UIImage(contentsOf: randomImageIterator.next()!)!
@@ -11,7 +11,7 @@ struct MainScreen: View {
 	// For testing individual bundled images.
 	// @State private var image = stockImages.first { $0.path.contains("stock6.jpg") }.map { UIImage(contentsOf: $0)! } ?? UIImage()
 
-	@Environment(\.sizeCategory) private var sizeClass
+	@Environment(\.sizeCategory) private var sizeCategory
 	@State private var image = Self.getRandomImage()
 	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isShakeTipPresented = false
@@ -20,84 +20,6 @@ struct MainScreen: View {
 	@State private var isSaving = false
 	@State private var error: Error?
 	@ViewStorage private var hostingWindow: UIWindow?
-
-	private var moreButton: some View {
-		Menu {
-			Button("Random Image", systemImage: "photo") {
-				randomImage()
-			}
-			Divider()
-			Button("About", systemImage: "info.circle") {
-				isAboutScreenPresented = true
-			}
-		} label: {
-			Label("More", systemImage: "ellipsis.circle")
-				// TODO: Workaround for iOS 15.4 where the tap target is tiny.
-				.imageScale(.large)
-				.padding(.trailing, 2)
-				// Increase tap area
-				.padding(8)
-				.contentShape(.rectangle)
-				//
-				.shadow(radius: Constants.buttonShadowRadius)
-				.tint(.white)
-				.labelStyle(.iconOnly)
-				.offset(y: -8)
-		}
-	}
-
-	private var controls: some View {
-		VStack {
-			HStack {
-				Spacer()
-				moreButton
-			}
-				.padding(.top)
-			Spacer()
-			HStack {
-				SinglePhotoPickerButton(maxSize: Constants.maxImageSize) { pickedImage in
-					tryOrAssign($error) {
-						image = try pickedImage.get()
-					}
-				}
-					.help("Pick image")
-					.shadow(radius: Constants.buttonShadowRadius)
-					// Increase tap area
-					.padding(8)
-					.contentShape(.rectangle)
-					.padding(.horizontal, -8)
-				Spacer()
-				// TODO: Use a custom slider like the iOS brightness control.
-				Slider(value: $blurAmount, in: 10...100)
-					.padding(.horizontal, DeviceInfo.isPad ? 60 : 30)
-					.frame(minWidth: 180, maxWidth: 500)
-					.scaleEffect(sizeClass.isAccessibilityCategory ? 1.5 : 1)
-					.padding(.horizontal, sizeClass.isAccessibilityCategory ? 10 : 0)
-				Spacer()
-				Button {
-					Task {
-						await tryOrAssign($error) {
-							try await saveImage()
-						}
-					}
-				} label: {
-					Image(systemName: "square.and.arrow.down")
-						// Increase tap area
-						.padding(8)
-						.contentShape(.rectangle)
-				}
-					.help("Save image")
-					.shadow(radius: Constants.buttonShadowRadius)
-					.padding(.horizontal, -8)
-			}
-				.imageScale(.large)
-				.tint(.white)
-		}
-			.edgesIgnoringSafeArea(.top)
-			.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
-			.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
-			.fadeInAfterDelay(0.4)
-	}
 
 	var body: some View {
 		ZStack {
@@ -134,6 +56,85 @@ struct MainScreen: View {
 				image = Self.getRandomImage()
 			}
 			.bindNativeWindow($hostingWindow)
+	}
+
+	private var controls: some View {
+		VStack {
+			HStack {
+				Spacer()
+				moreButton
+			}
+				.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
+			Spacer()
+			HStack {
+				SinglePhotoPickerButton(maxPixelSize: Constants.maxImagePixelSize) { pickedImage in
+					tryOrAssign($error) {
+						image = try pickedImage.get()
+					}
+				}
+					.help("Pick image")
+					.shadow(radius: Constants.buttonShadowRadius)
+					// Increase tap area
+					.padding(8)
+					.contentShape(.rectangle)
+					.padding(.horizontal, -8)
+				Spacer()
+				// TODO: Use a custom slider like the iOS brightness control.
+				Slider(value: $blurAmount, in: 10...100)
+					.padding(.horizontal, DeviceInfo.isPad ? 60 : 30)
+					.frame(minWidth: 180, maxWidth: 500)
+					.scaleEffect(sizeCategory.isAccessibilityCategory ? 1.5 : 1)
+					.padding(.horizontal, sizeCategory.isAccessibilityCategory ? 10 : 0)
+				Spacer()
+				Button {
+					Task {
+						await tryOrAssign($error) {
+							try await saveImage()
+						}
+					}
+				} label: {
+					Image(systemName: "square.and.arrow.down")
+						// Increase tap area
+						.padding(8)
+						.contentShape(.rectangle)
+				}
+					.help("Save image")
+					.shadow(radius: Constants.buttonShadowRadius)
+					.padding(.horizontal, -8)
+			}
+				.imageScale(.large)
+				.tint(.white)
+		}
+			// TODO: Fix
+//			.ignoresSafeArea(.top)
+			.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
+			.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
+			.fadeInAfterDelay(0.4)
+	}
+
+	private var moreButton: some View {
+		Menu {
+			Button("Random Image", systemImage: "photo") {
+				randomImage()
+			}
+			Divider()
+			Button("About", systemImage: "info.circle") {
+				isAboutScreenPresented = true
+			}
+		} label: {
+			Label("More", systemImage: "ellipsis.circle")
+				// TODO: Workaround for iOS 15.4 where the tap target is tiny.
+				.imageScale(.large)
+				.padding(.trailing, 2)
+				// Increase tap area
+				.padding(8)
+				.contentShape(.rectangle)
+				//
+				.shadow(radius: Constants.buttonShadowRadius)
+				.tint(.white)
+				.labelStyle(.iconOnly)
+				.offset(y: -8)
+		}
 	}
 
 	private func randomImage() {

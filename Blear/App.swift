@@ -1,5 +1,10 @@
 import SwiftUI
 
+/**
+TODO:
+- Use vector icon for the action extension icon.
+*/
+
 @main
 struct AppMain: App {
 	@StateObject private var appState = AppState()
