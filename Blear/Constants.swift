@@ -4,7 +4,7 @@ import UIKit
 enum Constants {
 	static let initialBlurAmount = 50.0
 	static let buttonShadowRadius = 2.0
-	static let maxImagePixelSize = UIScreen.main.bounds.size.longestSide / 2
+	static let maxImagePixelSize = Int(UIScreen.main.bounds.size.longestSide / 2)
 }
 
 

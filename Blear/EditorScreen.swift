@@ -21,7 +21,7 @@ struct EditorScreen: View {
 						.frame(minWidth: proxy.size.width)
 				}
 			}
-				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.fillFrame()
 		}
 			.ignoresSafeArea()
 			.onChange(of: image) { _ in

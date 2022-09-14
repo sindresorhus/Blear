@@ -97,12 +97,12 @@ struct MainScreen: View {
 		guard
 			let itemProvider = (extensionContext.attachments.first { $0.hasItemConforming(to: .image) })
 		else {
-			throw NSError.appError("Did not receive any compatible image.")
+			throw "Did not receive any compatible image.".toError
 		}
 
 		// TODO: Force the following to execute in a background thread.
 		do {
-			return try await itemProvider.getImage(maxPixelSize: Constants.maxImagePixelSize)
+			return try await itemProvider.loadImage(maxPixelSize: Constants.maxImagePixelSize)
 		} catch {
 			SSApp.reportError(
 				error,
@@ -125,7 +125,7 @@ struct MainScreen: View {
 			return
 		}
 
-		try? await Task.sleep(seconds: 1)
+		try? await Task.sleep(for: .seconds(1))
 		isWallpaperTipPresented = true
 	}
 
@@ -137,12 +137,12 @@ struct MainScreen: View {
 			isSaving = false
 		}
 
-		try? await Task.sleep(seconds: 0.2)
+		try? await Task.sleep(for: .seconds(0.2))
 
 		guard let image = await hostingView?.highestAncestor?.toImage() else {
 			SSApp.reportError("Failed to generate the image.")
 
-			throw NSError.appError(
+			throw GeneralError(
 				"Failed to generate the image.",
 				recoverySuggestion: "Please report this problem to the developer (sindresorhus@gmail.com)."
 			)

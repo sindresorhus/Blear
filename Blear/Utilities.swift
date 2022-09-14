@@ -226,7 +226,7 @@ extension SSApp {
 			"metadata": metadata
 		]
 
-		return URL(string: "https://sindresorhus.com/feedback/", query: info)!
+		return URL(string: "https://sindresorhus.com/feedback", query: info)!
 	}
 }
 
@@ -267,49 +267,64 @@ final class ErrorRecoveryAttempter: NSObject {
 	}
 }
 
-extension NSError {
+struct GeneralError: LocalizedError, CustomNSError {
+	// LocalizedError
+	let errorDescription: String?
+	let recoverySuggestion: String?
+	let helpAnchor: String?
+
+	// CustomNSError
+	let errorUserInfo: [String: Any]
+	// We don't define `errorDomain` as it will generate something like `AppName.GeneralError` by default.
+
 	/**
-	Use this for generic app errors.
+	Use this for general app errors.
 
 	- Note: Prefer using a specific enum-type error whenever possible.
 
-	- Parameter description: The description of the error. This is shown as the first line in error dialogs. Corresponds to `NSLocalizedDescriptionKey` in the `userInfo` dictionary.
-	- Parameter recoverySuggestion: Explain how the user how they can recover from the error. For example, "Try choosing a different directory". This is usually shown as the second line in error dialogs. Corresponds to `NSLocalizedRecoverySuggestionErrorKey` in the `userInfo` dictionary.
-	- Parameter recoveryOptions: Add recovery options to the error. These will be presented as buttons in the error dialog. You do not need to add a `Cancel` option.
-	- Parameter underlyingError: The original error if this error wrap another one. Corresponds to `NSUnderlyingErrorKey` in the `userInfo` dictionary.
+	- Parameter description: The description of the error. This is shown as the first line in error dialogs.
+	- Parameter recoverySuggestion: Explain how the user how they can recover from the error. For example, "Try choosing a different directory". This is usually shown as the second line in error dialogs.
 	- Parameter userInfo: Metadata to add to the error. Can be a custom key or any of the `NSLocalizedDescriptionKey` keys except `NSLocalizedDescriptionKey` and `NSLocalizedRecoverySuggestionErrorKey`.
-	- Parameter domainPostfix: String to append to the `domain` to make it easier to identify the error. The domain is the app's bundle identifier.
 	*/
-	static func appError(
+	init(
 		_ description: String,
 		recoverySuggestion: String? = nil,
-		recoveryOptions: [ErrorRecoveryAttempter.Option] = [],
 		userInfo: [String: Any] = [:],
-		domainPostfix: String? = nil,
-		underlyingError: Error? = nil
-	) -> Self {
-		var userInfo = userInfo
-		userInfo[NSLocalizedDescriptionKey] = description
+		url: URL? = nil,
+		underlyingErrors: [Error] = [],
+		recoveryOptions: [ErrorRecoveryAttempter.Option] = [],
+		helpAnchor: String? = nil
+	) {
+		self.errorDescription = description
+		self.recoverySuggestion = recoverySuggestion
+		self.helpAnchor = helpAnchor
 
-		if let recoverySuggestion {
-			userInfo[NSLocalizedRecoverySuggestionErrorKey] = recoverySuggestion
-		}
+		self.errorUserInfo = {
+			var userInfo = userInfo
 
-		if !recoveryOptions.isEmpty {
-			userInfo[NSLocalizedRecoveryOptionsErrorKey] = recoveryOptions.map(\.title)
-			userInfo[NSRecoveryAttempterErrorKey] = ErrorRecoveryAttempter(recoveryOptions: recoveryOptions)
-		}
+			if !recoveryOptions.isEmpty {
+				userInfo[NSLocalizedRecoveryOptionsErrorKey] = recoveryOptions.map(\.title)
+				userInfo[NSRecoveryAttempterErrorKey] = ErrorRecoveryAttempter(recoveryOptions: recoveryOptions)
+			}
 
-		if let underlyingError {
-			userInfo[NSUnderlyingErrorKey] = underlyingError
-		}
+			if !underlyingErrors.isEmpty {
+				userInfo[NSMultipleUnderlyingErrorsKey] = underlyingErrors
+			}
 
-		return .init(
-			domain: domainPostfix.map { "\(SSApp.idString) - \($0)" } ?? SSApp.idString,
-			code: 1, // This is what Swift errors end up as.
-			userInfo: userInfo
-		)
+			if let url {
+				userInfo[NSURLErrorKey] = url
+			}
+
+			return userInfo
+		}()
 	}
+}
+
+extension String {
+	/**
+	Convert a string into an error.
+	*/
+	var toError: some LocalizedError { GeneralError(self) }
 }
 
 
@@ -341,7 +356,7 @@ final class UIHostingView<Content: View>: UIView {
 	}
 
 	override func sizeToFit() {
-		guard let superview = superview else {
+		guard let superview else {
 			super.sizeToFit()
 			return
 		}
@@ -461,7 +476,7 @@ extension UIImage {
 			]
 			#endif
 
-			throw NSError.appError(
+			throw GeneralError(
 				"“\(SSApp.rootName)” does not have access to add photos to your photo library.",
 				recoverySuggestion: recoverySuggestion,
 				recoveryOptions: recoveryOptions
@@ -494,12 +509,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A, M>(
+	func alert2(
 		_ title: Text,
 		isPresented: Binding<Bool>,
-		@ViewBuilder actions: () -> A,
-		@ViewBuilder message: () -> M
-	) -> some View where A: View, M: View {
+		@ViewBuilder actions: () -> some View,
+		@ViewBuilder message: () -> some View
+	) -> some View {
 		background(
 			EmptyView()
 				.alert(
@@ -514,12 +529,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A, M>(
+	func alert2(
 		_ title: String,
 		isPresented: Binding<Bool>,
-		@ViewBuilder actions: () -> A,
-		@ViewBuilder message: () -> M
-	) -> some View where A: View, M: View {
+		@ViewBuilder actions: () -> some View,
+		@ViewBuilder message: () -> some View
+	) -> some View {
 		alert2(
 			Text(title),
 			isPresented: isPresented,
@@ -531,12 +546,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A>(
+	func alert2(
 		_ title: Text,
 		message: String? = nil,
 		isPresented: Binding<Bool>,
-		@ViewBuilder actions: () -> A
-	) -> some View where A: View {
+		@ViewBuilder actions: () -> some View
+	) -> some View {
 		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
@@ -554,12 +569,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A>(
+	func alert2(
 		_ title: String,
 		message: String? = nil,
 		isPresented: Binding<Bool>,
-		@ViewBuilder actions: () -> A
-	) -> some View where A: View {
+		@ViewBuilder actions: () -> some View
+	) -> some View {
 		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
@@ -615,12 +630,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A, M, T>(
+	func alert2<T>(
 		title: (T) -> Text,
 		presenting data: Binding<T?>,
-		@ViewBuilder actions: (T) -> A,
-		@ViewBuilder message: (T) -> M
-	) -> some View where A: View, M: View {
+		@ViewBuilder actions: (T) -> some View,
+		@ViewBuilder message: (T) -> some View
+	) -> some View {
 		background(
 			EmptyView()
 				.alert(
@@ -637,12 +652,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A, T>(
+	func alert2<T>(
 		title: (T) -> Text,
 		message: ((T) -> String?)? = nil,
 		presenting data: Binding<T?>,
-		@ViewBuilder actions: (T) -> A
-	) -> some View where A: View {
+		@ViewBuilder actions: (T) -> some View
+	) -> some View {
 		alert2(
 			title: { title($0) },
 			presenting: data,
@@ -659,12 +674,12 @@ extension View {
 	/**
 	This allows multiple alerts on a single view, which `.alert()` doesn't.
 	*/
-	func alert2<A, T>(
+	func alert2<T>(
 		title: (T) -> String,
 		message: ((T) -> String?)? = nil,
 		presenting data: Binding<T?>,
-		@ViewBuilder actions: (T) -> A
-	) -> some View where A: View {
+		@ViewBuilder actions: (T) -> some View
+	) -> some View {
 		alert2(
 			title: { Text(title($0)) },
 			message: message,
@@ -863,7 +878,7 @@ extension SSApp {
 		line: Int = #line
 	) {
 		reportError(
-			NSError.appError(message),
+			message.toError,
 			file: file,
 			line: line
 		)
@@ -871,42 +886,8 @@ extension SSApp {
 }
 
 
-struct UnexpectedNilError: LocalizedError {
-	let message: String?
-	let file: String
-	let line: Int
-
-	init(
-		_ message: String?,
-		file: String = #fileID,
-		line: Int = #line
-	) {
-		self.message = message
-		self.file = file
-		self.line = line
-
-		SSApp.reportError(
-			self,
-			userInfo: [
-				"message": message ?? "<None>",
-				"file": file,
-				"line": line
-			]
-		)
-	}
-
-	var errorDescription: String {
-		message ?? failureReason
-	}
-
-	var failureReason: String {
-		"Unexpected nil encountered at \(file):\(line)"
-	}
-}
-
-
 extension CGImage {
-	static func from(_ url: URL, maxPixelSize: Double?) throws -> CGImage {
+	static func from(_ data: Data, maxPixelSize: Int? = nil) throws -> CGImage {
 		let sourceOptions: [CFString: Any] = [
 			kCGImageSourceShouldCache: false
 		]
@@ -922,235 +903,56 @@ extension CGImage {
 		}
 
 		guard
-			let source = CGImageSourceCreateWithURL(url as CFURL, sourceOptions as CFDictionary),
+			let source = CGImageSourceCreateWithData(data as CFData, sourceOptions as CFDictionary),
 			let image = CGImageSourceCreateThumbnailAtIndex(source, 0, thumbnailOptions as CFDictionary)
 		else {
-			_ = try Data(contentsOf: url, options: [.uncached]) // Just to get a better error.
-			throw NSError.appError("Failed to load image.")
+			throw "Could not load image from data.".toError
 		}
 
 		return image
 	}
 }
 
+
 extension UIImage {
-	static func from(_ url: URL, maxPixelSize: Double?) throws -> Self {
-		let cgImage = try CGImage.from(url, maxPixelSize: maxPixelSize)
-		return Self(cgImage: cgImage)
-	}
-}
-
-
-extension URL {
-	static func uniqueTemporaryPath() -> Self {
-		FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-	}
-
-	private static func createdTemporaryDirectory() throws -> Self {
-		let url = uniqueTemporaryPath()
-		try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-		return url
-	}
-
-	static func uniqueTemporaryDirectory(appropriateFor: Self? = nil) throws -> Self {
-		let url = {
-			// `Bundle.main.bundleURL` does not work when an iOS app is running on an Apple silicon Mac. (macOS 12.1)
-			#if canImport(AppKit)
-			Bundle.current.bundleURL
-			#elseif canImport(UIKit)
-			FileManager.default.temporaryDirectory
-			#endif
-		}
-
-		do {
-			return try FileManager.default.url(
-				for: .itemReplacementDirectory,
-				in: .userDomainMask,
-				// Note: Using `URL.rootDirectory` or `nil` here causes an permission error when running in an app extension on iOS. (iOS 15.1)
-				appropriateFor: appropriateFor ?? url(),
-				create: true
-			)
-		} catch {
-			return try createdTemporaryDirectory()
-		}
-	}
-
-	/**
-	Copy the file at the current URL to a unique temporary directory and return the new URL.
-	*/
-	func copyToUniqueTemporaryDirectory(filename: String? = nil) throws -> Self {
-		// We intentionally do not use `Self.uniqueTemporaryDirectory(appropriateFor: self)` as the source URL might be transient. It's better to be safe and copy to a global temporary directory.
-		let destinationUrl = try Self.uniqueTemporaryDirectory()
-			.appendingPathComponent(filename ?? lastPathComponent, isDirectory: false)
-
-		try FileManager.default.copyItem(at: self, to: destinationUrl)
-
-		return destinationUrl
-	}
-}
-
-
-extension NSItemProvider {
-	/**
-	Load a file from the item provider.
-
-	The returned file resides in a temporary directory and is yours and you can move or modify it as you please. Don't forget to remove it when you are done with it.
-	*/
-	func loadFileRepresentation(for type: UTType) async throws -> URL {
-		try await withCheckedThrowingContinuation { continuation in
-			_ = loadFileRepresentation(forTypeIdentifier: type.identifier) { url, error in
-				if var error = error {
-					// Error Domain=CloudPhotoLibraryErrorDomain Code=82 "Failed to download CPLResourceTypeOriginal"
-					if error.matchesDeep(domain: "CloudPhotoLibraryErrorDomain", code: 82) {
-						error = NSError.appError(
-							"Failed to download photo from iCloud.",
-							recoverySuggestion: "Make sure you are connected to the internet."
-						)
-					}
-
-					continuation.resume(throwing: error)
-
-					return
-				}
-
-				guard let url = url else {
-					// This should in theory not happen.
-					continuation.resume(throwing: UnexpectedNilError("Expected NSItemProvider#loadFileRepresentation to return either an error or URL. It returned neither."))
-					return
-				}
-
-				let newURL: URL
-				do {
-					newURL = try url.copyToUniqueTemporaryDirectory()
-				} catch {
-					continuation.resume(throwing: error)
-					return
-				}
-
-				continuation.resume(returning: newURL)
-			}
-		}
-	}
-}
-
-
-extension NSItemProvider {
-	/**
-	Get the image from an item provider.
-	*/
-	func getImage(maxPixelSize: Double? = nil) async throws -> UIImage {
-		let url = try await loadFileRepresentation(for: .image)
-		return try UIImage.from(url, maxPixelSize: maxPixelSize)
-	}
-}
-
-
-/**
-Let the user pick photos and videos from their library.
-*/
-struct PhotoVideoPicker: UIViewControllerRepresentable {
-	final class Coordinator: PHPickerViewControllerDelegate {
-		private let parent: PhotoVideoPicker
-
-		init(_ parent: PhotoVideoPicker) {
-			self.parent = parent
-		}
-
-		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-			// This is important as otherwise it causes weird problems like `@State` not updating. (iOS 14)
-			picker.dismiss(animated: true)
-
-			parent.dismiss()
-
-			// Give the sheet time to close.
-			DispatchQueue.main.async { [self] in
-				parent.onCompletion(results)
-			}
-		}
-	}
-
-	@Environment(\.dismiss) private var dismiss
-
-	var filter: PHPickerFilter
-	var selectionLimit = 1
-	let onCompletion: ([PHPickerResult]) -> Void
-
-	func makeCoordinator() -> Coordinator { .init(self) }
-
-	func makeUIViewController(context: Context) -> PHPickerViewController {
-		var configuration = PHPickerConfiguration()
-		configuration.filter = filter
-		configuration.selectionLimit = selectionLimit
-
-		let controller = PHPickerViewController(configuration: configuration)
-		controller.delegate = context.coordinator
-
-		return controller
-	}
-
-	func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
-}
-
-/**
-Let the user pick a single photo from their library.
-
-- Note: If the user cancels the operation, `isPresented` will be set to `false` and `onCompletion` will not be called.
-*/
-struct SinglePhotoPicker: View {
-	var maxPixelSize: Double?
-	var onCompletion: (Result<UIImage, Error>) -> Void
-
-	var body: some View {
-		PhotoVideoPicker(filter: .images) { results in
-			Task {
-				guard let itemProvider = results.first?.itemProvider else {
-					return
-				}
-
-				do {
-					guard itemProvider.hasItemConforming(to: .image) else {
-						throw NSError.appError("The image format “\(itemProvider.registeredTypeIdentifiers.first ?? "<Unknown>")” is not supported")
-					}
-
-					let image = try await itemProvider.getImage(maxPixelSize: maxPixelSize)
-					onCompletion(.success(image))
-				} catch {
-					SSApp.reportError(
-						error,
-						userInfo: [
-							"registeredTypeIdentifiers": itemProvider.registeredTypeIdentifiers,
-							"canLoadObject(UIImage)": itemProvider.canLoadObject(ofClass: UIImage.self),
-							"underlyingErrors": (error as NSError).underlyingErrors
-						]
-					) // TODO: Remove at some point.
-
-					onCompletion(.failure(error))
-				}
-			}
-		}
+	static func from(_ data: Data, maxPixelSize: Int) throws -> Self {
+		let cgImage = try CGImage.from(data, maxPixelSize: maxPixelSize)
+		let image = Self(cgImage: cgImage)
+		return image
 	}
 }
 
 
 struct SinglePhotoPickerButton: View {
 	@State private var isPresented = false
+	@State private var selection: PhotosPickerItem?
 
-	var maxPixelSize: Double?
+	var title = "Choose Image"
 	var iconName = "photo"
-	var onCompletion: (Result<UIImage, Error>) -> Void
+	var onCompletion: (PhotosPickerItem) -> Void
 
 	var body: some View {
-		Button {
+		Button(title, systemImage: iconName) {
 			isPresented = true
-		} label: {
-			Image(systemName: iconName)
 		}
-			.sheet(isPresented: $isPresented) {
-				SinglePhotoPicker(maxPixelSize: maxPixelSize, onCompletion: onCompletion)
-					.ignoresSafeArea()
+			.tint(.white)
+			.photosPicker(
+				isPresented: $isPresented,
+				selection: $selection,
+				matching: .images,
+				preferredItemEncoding: .compatible
+			)
+			.tint(nil) // Prevent the white tint from affecting the picker.
+			.onChange(of: selection) {
+				guard let selection = $0 else {
+					return
+				}
+
+				onCompletion(selection)
 			}
 	}
 }
+
 
 extension UIDevice {
 	// TODO: Find out a way to do this without Combine.
@@ -1692,7 +1494,7 @@ extension SSApp {
 		Task.detached { @MainActor in
 			guard await UIApplication.shared.open(settingsUrl) else {
 				// TODO: Present the error
-				_ = NSError.appError("Failed to open settings for this app.")
+				_ = "Failed to open settings for this app.".toError
 
 				// TODO: Remove at some point.
 				SSApp.reportError("Failed to open settings for this app.")
@@ -1912,13 +1714,6 @@ extension SSApp {
 }
 
 
-extension Task<Never, Never> {
-	public static func sleep(seconds: TimeInterval) async throws {
-	   try await sleep(nanoseconds: UInt64(seconds * Double(NSEC_PER_SEC)))
-	}
-}
-
-
 struct AnyAsyncSequence<Element>: AsyncSequence {
 	typealias AsyncIterator = AnyAsyncIterator<Element>
 
@@ -2106,5 +1901,42 @@ extension View {
 			maxHeight: axis.contains(.vertical) ? .infinity : nil,
 			alignment: alignment
 		)
+	}
+}
+
+
+// We cannot use `loadTransferable(type: Image.self)`: https://developer.apple.com/forums/thread/709764
+extension PhotosPickerItem {
+	/**
+	Loads an image from the item.
+	*/
+	func loadImage(maxPixelSize: Int) async throws -> UIImage {
+		guard let data = try await loadTransferable(type: Data.self) else {
+			throw "Failed to load image.".toError
+		}
+
+		return try UIImage.from(data, maxPixelSize: maxPixelSize)
+	}
+}
+
+
+extension NSItemProvider {
+	func loadTransferable<T: Transferable>(type transferableType: T.Type) async throws -> T {
+		try await withCheckedThrowingContinuation { continuation in
+			_ = loadTransferable(type: transferableType) {
+				continuation.resume(with: $0)
+			}
+		}
+	}
+}
+
+
+extension NSItemProvider {
+	/**
+	Loads an image from the item.
+	*/
+	func loadImage(maxPixelSize: Int) async throws -> UIImage {
+		let data = try await loadTransferable(type: Data.self)
+		return try UIImage.from(data, maxPixelSize: maxPixelSize)
 	}
 }

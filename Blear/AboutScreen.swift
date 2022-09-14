@@ -4,8 +4,7 @@ struct AboutScreen: View {
 	@Environment(\.dismiss) private var dismiss
 
 	var body: some View {
-		NavigationView {
-//		NavigationStack {
+		NavigationStack {
 			Form {
 				Section {} // For padding
 				Section {

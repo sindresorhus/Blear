@@ -19,43 +19,53 @@ struct MainScreen: View {
 	@State private var isAboutScreenPresented = false
 	@State private var isSaving = false
 	@State private var error: Error?
-	@ViewStorage private var hostingWindow: UIWindow?
+	@ViewStorage private var nativeWindow: UIWindow?
 
 	var body: some View {
-		ZStack {
-			EditorScreen(
-				image: $image,
-				blurAmount: $blurAmount
-			)
-				.onTapGesture(count: 2) {
-					randomImage()
+		NavigationStack {
+			ZStack {
+				EditorScreen(
+					image: $image,
+					blurAmount: $blurAmount
+				)
+					.onTapGesture(count: 2) {
+						randomImage()
+					}
+				if !isSaving {
+					controls
 				}
-			if !isSaving {
-				controls
 			}
+				.statusBar(hidden: true)
+				.alert2(
+					"Tip",
+					message: "Double-tap the image or shake the device to get another random image.",
+					isPresented: $isShakeTipPresented
+				)
+				.alert2(
+					"How to Change Wallpaper",
+					message: "In the Photos app, go to the image you just saved, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+					isPresented: $isWallpaperTipPresented
+				)
+				.alert(error: $error)
+				.sheet(isPresented: $isAboutScreenPresented) {
+					AboutScreen()
+				}
+				.task {
+					await showShakeTipIfNeeded()
+				}
+				.onDeviceShake {
+					image = Self.getRandomImage()
+				}
+				.bindNativeWindow($nativeWindow)
+//				.toolbar {
+//					ToolbarItem(placement: .bottomBar) {
+//						Button("DD", systemImage: "circle.fill") {}
+//							.tint(.white)
+//					}
+//				}
+//				.toolbarBackground(.hidden, for: .automatic)
+				// TODO: The above does not actually remove the background. (iOS 16.1)
 		}
-			.statusBar(hidden: true)
-			.alert2(
-				"Tip",
-				message: "Double-tap the image or shake the device to get another random image.",
-				isPresented: $isShakeTipPresented
-			)
-			.alert2(
-				"How to Change Wallpaper",
-				message: "In the Photos app, go to the image you just saved, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
-				isPresented: $isWallpaperTipPresented
-			)
-			.alert(error: $error)
-			.sheet(isPresented: $isAboutScreenPresented) {
-				AboutScreen()
-			}
-			.task {
-				await showShakeTipIfNeeded()
-			}
-			.onDeviceShake {
-				image = Self.getRandomImage()
-			}
-			.bindNativeWindow($hostingWindow)
 	}
 
 	private var controls: some View {
@@ -67,12 +77,14 @@ struct MainScreen: View {
 				.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
 			Spacer()
 			HStack {
-				SinglePhotoPickerButton(maxPixelSize: Constants.maxImagePixelSize) { pickedImage in
-					tryOrAssign($error) {
-						image = try pickedImage.get()
+				SinglePhotoPickerButton { pickedImage in
+					Task {
+						await tryOrAssign($error) {
+							image = try await pickedImage.loadImage(maxPixelSize: Constants.maxImagePixelSize)
+						}
 					}
 				}
-					.help("Pick image")
+					.labelStyle(.iconOnly)
 					.shadow(radius: Constants.buttonShadowRadius)
 					// Increase tap area
 					.padding(8)
@@ -156,12 +168,12 @@ struct MainScreen: View {
 			isSaving = false
 		}
 
-		try? await Task.sleep(seconds: 0.2)
+		try? await Task.sleep(for: .seconds(0.2))
 
-		guard let image = await hostingWindow?.rootViewController?.view?.toImage() else {
+		guard let image = await nativeWindow?.rootViewController?.view?.toImage() else {
 			SSApp.reportError("Failed to generate the image.")
 
-			throw NSError.appError(
+			throw GeneralError(
 				"Failed to generate the image.",
 				recoverySuggestion: "Please report this problem to the developer (sindresorhus@gmail.com)."
 			)
@@ -175,7 +187,7 @@ struct MainScreen: View {
 			return
 		}
 
-		try? await Task.sleep(seconds: 1.5)
+		try? await Task.sleep(for: .seconds(1.5))
 		isShakeTipPresented = true
 	}
 
@@ -184,7 +196,7 @@ struct MainScreen: View {
 			return
 		}
 
-		try? await Task.sleep(seconds: 1)
+		try? await Task.sleep(for: .seconds(1))
 		isWallpaperTipPresented = true
 	}
 }
