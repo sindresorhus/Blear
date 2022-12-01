@@ -16,3 +16,13 @@
 ## Info
 
 Requires minimum iOS 16.
+
+## FAQ
+
+### Can you add more bundled images?
+
+The bundled images are just meant to be able to quickly try out the app. The point is to use your own images or from a service like Unsplash.
+
+### Can you support Unsplash?
+
+I don't plan to integrate with Unsplash. There is a better way. Save the images you want in the [Unsplash](https://apps.apple.com/us/app/unsplash/id1290631746) app, open the Photos app, go to one of the images, tap the share button, and tap “Make Blurry Wallpaper”.

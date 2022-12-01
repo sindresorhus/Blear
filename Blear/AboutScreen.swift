@@ -18,6 +18,8 @@ struct AboutScreen: View {
 						.frame(maxWidth: 370) // Make it look good on iPad.
 						.fillFrame(.horizontal)
 				}
+					.buttonStyle(.formLink)
+					.tint(.primary)
 			}
 				.navigationTitle("About")
 				.toolbar {

@@ -3,6 +3,10 @@ import SwiftUI
 /**
 TODO:
 - Use vector icon for the action extension icon.
+- Set `URL.itemCreator` on the exported file.
+- Unsplash support: https://github.com/unsplash/unsplash-photopicker-ios
+- Add tip about the action extension: For example, download images from the Unsplash app and bring into the app.
+- Add ability to zoom in.
 */
 
 @main

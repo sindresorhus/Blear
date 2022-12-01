@@ -200,10 +200,10 @@ enum SSApp {
 
 		if UserDefaults.standard.bool(forKey: key) {
 			return false
-		} else {
-			UserDefaults.standard.set(true, forKey: key)
-			return true
 		}
+
+		UserDefaults.standard.set(true, forKey: key)
+		return true
 	}()
 }
 
@@ -916,9 +916,7 @@ extension CGImage {
 
 extension UIImage {
 	static func from(_ data: Data, maxPixelSize: Int) throws -> Self {
-		let cgImage = try CGImage.from(data, maxPixelSize: maxPixelSize)
-		let image = Self(cgImage: cgImage)
-		return image
+		Self(cgImage: try .from(data, maxPixelSize: maxPixelSize))
 	}
 }
 
@@ -1101,7 +1099,7 @@ struct RateOnAppStoreButton: View {
 	let appStoreID: String
 
 	var body: some View {
-		Link("Rate on the App Store", destination: URL(string: "itms-apps://apps.apple.com/app/id\(appStoreID)?action=write-review")!)
+		Link("Rate App", destination: URL(string: "itms-apps://apps.apple.com/app/id\(appStoreID)?action=write-review")!)
 	}
 }
 
@@ -1267,7 +1265,7 @@ struct ViewStorage<Value>: DynamicProperty {
 }
 
 
-private struct AccessNativeView: UIViewRepresentable {
+private struct AccessHostingView: UIViewRepresentable {
 	var callback: (UIView?) -> Void
 
 	func makeUIView(context: Context) -> UIView { .init() }
@@ -1283,17 +1281,17 @@ extension View {
 
 	- Important: Don't assume the view is in the view hierarchy on the first callback invocation.
 	*/
-	func accessNativeView(_ callback: @escaping (UIView?) -> Void) -> some View {
+	func accessHostingView(_ callback: @escaping (UIView?) -> Void) -> some View {
 		background {
-			AccessNativeView(callback: callback)
+			AccessHostingView(callback: callback)
 		}
 	}
 
 	/**
 	Access the window the view is contained in if any.
 	*/
-	func accessNativeWindow(_ callback: @escaping (UIWindow?) -> Void) -> some View {
-		accessNativeView { uiView in
+	func accessHostingWindow(_ callback: @escaping (UIWindow?) -> Void) -> some View {
+		accessHostingView { uiView in
 			guard let window = uiView?.window else {
 				return
 			}
@@ -1305,8 +1303,8 @@ extension View {
 	/**
 	Bind the native backing-window of a SwiftUI window to a property.
 	*/
-	func bindNativeWindow(_ window: Binding<UIWindow?>) -> some View {
-		accessNativeWindow {
+	func bindHostingWindow(_ window: Binding<UIWindow?>) -> some View {
+		accessHostingWindow {
 			window.wrappedValue = $0
 		}
 	}
@@ -1674,12 +1672,12 @@ extension SSApp {
 	@MainActor
 	static var currentScene: UIWindowScene? {
 		#if !APP_EXTENSION
-		return UIApplication.shared // swiftlint:disable:this first_where
+		return UIApplication.shared
 			.connectedScenes
 			.filter { $0.activationState == .foregroundActive }
 			.firstNonNil { $0 as? UIWindowScene }
 				// If it's called early on in the launch, the scene might not be active yet, so we fall back to the inactive state.
-				?? UIApplication.shared // swiftlint:disable:this first_where
+				?? UIApplication.shared
 					.connectedScenes
 					.filter { $0.activationState == .foregroundInactive }
 					.firstNonNil { $0 as? UIWindowScene }
@@ -1717,10 +1715,10 @@ extension SSApp {
 struct AnyAsyncSequence<Element>: AsyncSequence {
 	typealias AsyncIterator = AnyAsyncIterator<Element>
 
-	struct AnyAsyncIterator<Element>: AsyncIteratorProtocol {
-		private let _next: () async -> Element?
+	struct AnyAsyncIterator<Element2>: AsyncIteratorProtocol {
+		private let _next: () async -> Element2?
 
-		init<I: AsyncIteratorProtocol>(_ asyncIterator: I) where I.Element == Element {
+		init<I: AsyncIteratorProtocol>(_ asyncIterator: I) where I.Element == Element2 {
 			var asyncIterator = asyncIterator
 			self._next = {
 				do {
@@ -1732,7 +1730,7 @@ struct AnyAsyncSequence<Element>: AsyncSequence {
 			}
 		}
 
-		mutating func next() async -> Element? {
+		mutating func next() async -> Element2? {
 			await _next()
 		}
 	}
@@ -1760,17 +1758,17 @@ extension AsyncSequence {
 struct AnyThrowingAsyncSequence<Element>: AsyncSequence {
 	typealias AsyncIterator = AnyAsyncIterator<Element>
 
-	struct AnyAsyncIterator<Element>: AsyncIteratorProtocol {
-		private let _next: () async throws -> Element?
+	struct AnyAsyncIterator<Element2>: AsyncIteratorProtocol {
+		private let _next: () async throws -> Element2?
 
-		init<I: AsyncIteratorProtocol>(_ asyncIterator: I) where I.Element == Element {
+		init<I: AsyncIteratorProtocol>(_ asyncIterator: I) where I.Element == Element2 {
 			var asyncIterator = asyncIterator
 			self._next = {
 				try await asyncIterator.next()
 			}
 		}
 
-		mutating func next() async throws -> Element? {
+		mutating func next() async throws -> Element2? {
 			try await _next()
 		}
 	}
@@ -1847,14 +1845,22 @@ func tryOrAssign<T>(
 }
 
 extension View {
+	@MainActor // Temporary sendable warning workaround.
 	func taskOrAssign(
 		_ errorBinding: Binding<Error?>,
 		priority: TaskPriority = .userInitiated,
 		_ action: @escaping @Sendable () async throws -> Void
 	) -> some View {
-		task(priority: priority) {
-			await tryOrAssign(errorBinding) {
+		task(priority: priority) { @MainActor in
+//			await tryOrAssign(errorBinding) {
+//				try await action()
+//			}
+
+			// Temporary sendable warning workaround.
+			do {
 				try await action()
+			} catch {
+				errorBinding.wrappedValue = error
 			}
 		}
 	}
@@ -1938,5 +1944,36 @@ extension NSItemProvider {
 	func loadImage(maxPixelSize: Int) async throws -> UIImage {
 		let data = try await loadTransferable(type: Data.self)
 		return try UIImage.from(data, maxPixelSize: maxPixelSize)
+	}
+}
+
+
+extension PrimitiveButtonStyle where Self == FormLinkButtonStyle {
+	/**
+	Makes buttons have a link icon after them. Should be used in a `Form`.
+
+	- Note: This only does something on iOS.
+	- Note: This does not override the existing button style.
+	*/
+	static var formLink: Self { .init() }
+}
+
+struct FormLinkButtonStyle: PrimitiveButtonStyle {
+	@Environment(\.isEnabled) private var isEnabled
+
+	func makeBody(configuration: Configuration) -> some View {
+		#if os(iOS)
+		LabeledContent {
+			Image(systemName: "arrow.up.right")
+				.imageScale(.small)
+				.fontWeight(.semibold)
+				.foregroundStyle(.tertiary)
+				.opacity(isEnabled ? 1 : 0.5)
+		} label: {
+			Button(configuration)
+		}
+		#else
+		Button(configuration)
+		#endif
 	}
 }

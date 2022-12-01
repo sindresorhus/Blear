@@ -88,7 +88,7 @@ struct MainScreen: View {
 				extensionContext.cancel()
 			}
 			.alert(error: $error)
-			.accessNativeView {
+			.accessHostingView {
 				hostingView = $0
 			}
     }
@@ -107,7 +107,7 @@ struct MainScreen: View {
 			SSApp.reportError(
 				error,
 				userInfo: [
-					"registeredTypeIdentifiers": itemProvider.registeredTypeIdentifiers,
+					"registeredContentTypes": itemProvider.registeredContentTypes,
 					"canLoadObject(UIImage)": itemProvider.canLoadObject(ofClass: UIImage.self),
 					"underlyingErrors": (error as NSError).underlyingErrors
 				]

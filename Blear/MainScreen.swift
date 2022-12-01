@@ -19,7 +19,7 @@ struct MainScreen: View {
 	@State private var isAboutScreenPresented = false
 	@State private var isSaving = false
 	@State private var error: Error?
-	@ViewStorage private var nativeWindow: UIWindow?
+	@ViewStorage private var hostingWindow: UIWindow?
 
 	var body: some View {
 		NavigationStack {
@@ -56,7 +56,7 @@ struct MainScreen: View {
 				.onDeviceShake {
 					image = Self.getRandomImage()
 				}
-				.bindNativeWindow($nativeWindow)
+				.bindHostingWindow($hostingWindow)
 //				.toolbar {
 //					ToolbarItem(placement: .bottomBar) {
 //						Button("DD", systemImage: "circle.fill") {}
@@ -72,7 +72,7 @@ struct MainScreen: View {
 		VStack {
 			HStack {
 				Spacer()
-				moreButton
+				actionButton
 			}
 				.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
 			Spacer()
@@ -124,7 +124,7 @@ struct MainScreen: View {
 			.fadeInAfterDelay(0.4)
 	}
 
-	private var moreButton: some View {
+	private var actionButton: some View {
 		Menu {
 			Button("Random Image", systemImage: "photo") {
 				randomImage()
@@ -134,7 +134,7 @@ struct MainScreen: View {
 				isAboutScreenPresented = true
 			}
 		} label: {
-			Label("More", systemImage: "ellipsis.circle")
+			Label("Action", systemImage: "ellipsis.circle")
 				// TODO: Workaround for iOS 15.4 where the tap target is tiny.
 				.imageScale(.large)
 				.padding(.trailing, 2)
@@ -170,7 +170,7 @@ struct MainScreen: View {
 
 		try? await Task.sleep(for: .seconds(0.2))
 
-		guard let image = await nativeWindow?.rootViewController?.view?.toImage() else {
+		guard let image = await hostingWindow?.rootViewController?.view?.toImage() else {
 			SSApp.reportError("Failed to generate the image.")
 
 			throw GeneralError(
