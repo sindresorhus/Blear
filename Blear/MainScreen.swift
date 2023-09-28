@@ -16,26 +16,25 @@ struct MainScreen: View {
 	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isShakeTipPresented = false
 	@State private var isWallpaperTipPresented = false
-	@State private var isAboutScreenPresented = false
 	@State private var isSaving = false
 	@State private var error: Error?
 	@ViewStorage private var hostingWindow: UIWindow?
 
 	var body: some View {
 		NavigationStack {
-			ZStack {
-				EditorScreen(
-					image: $image,
-					blurAmount: $blurAmount
-				)
-					.onTapGesture(count: 2) {
-						randomImage()
-					}
-				if !isSaving {
-					controls
+			EditorScreen(
+				image: $image,
+				blurAmount: $blurAmount
+			)
+				.statusBarHidden()
+				.onTapGesture(count: 2) {
+					randomImage()
 				}
-			}
-				.statusBar(hidden: true)
+				.overlay {
+					if !isSaving {
+						controls
+					}
+				}
 				.alert2(
 					"Tip",
 					message: "Double-tap the image or shake the device to get another random image.",
@@ -47,9 +46,6 @@ struct MainScreen: View {
 					isPresented: $isWallpaperTipPresented
 				)
 				.alert(error: $error)
-				.sheet(isPresented: $isAboutScreenPresented) {
-					AboutScreen()
-				}
 				.task {
 					await showShakeTipIfNeeded()
 				}
@@ -63,8 +59,8 @@ struct MainScreen: View {
 //							.tint(.white)
 //					}
 //				}
-//				.toolbarBackground(.hidden, for: .automatic)
-				// TODO: The above does not actually remove the background. (iOS 16.1)
+//				.toolbarBackground(.hidden, for: .bottomBar)
+				// TODO: The above does not actually remove the background. (iOS 17.0)
 		}
 	}
 
@@ -88,7 +84,7 @@ struct MainScreen: View {
 					.shadow(radius: Constants.buttonShadowRadius)
 					// Increase tap area
 					.padding(8)
-					.contentShape(.rectangle)
+					.contentShape(.rect)
 					.padding(.horizontal, -8)
 				Spacer()
 				// TODO: Use a custom slider like the iOS brightness control.
@@ -108,7 +104,7 @@ struct MainScreen: View {
 					Image(systemName: "square.and.arrow.down")
 						// Increase tap area
 						.padding(8)
-						.contentShape(.rectangle)
+						.contentShape(.rect)
 				}
 					.help("Save image")
 					.shadow(radius: Constants.buttonShadowRadius)
@@ -121,7 +117,10 @@ struct MainScreen: View {
 //			.ignoresSafeArea(.top)
 			.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
 			.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
-			.fadeInAfterDelay(0.4)
+			.compositingGroup()
+			.transition(.opacity)
+			// TODO: Fix
+//			.fadeInAfterDelay(0.4)
 	}
 
 	private var actionButton: some View {
@@ -130,9 +129,10 @@ struct MainScreen: View {
 				randomImage()
 			}
 			Divider()
-			Button("About", systemImage: "info.circle") {
-				isAboutScreenPresented = true
-			}
+			SendFeedbackButton()
+			Link("Website", systemImage: "safari", destination: "https://sindresorhus.com/blear")
+			RateOnAppStoreButton(appStoreID: "994182280")
+			MoreAppsButton()
 		} label: {
 			Label("Action", systemImage: "ellipsis.circle")
 				// TODO: Workaround for iOS 15.4 where the tap target is tiny.
@@ -140,7 +140,7 @@ struct MainScreen: View {
 				.padding(.trailing, 2)
 				// Increase tap area
 				.padding(8)
-				.contentShape(.rectangle)
+				.contentShape(.rect)
 				//
 				.shadow(radius: Constants.buttonShadowRadius)
 				.tint(.white)

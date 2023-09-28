@@ -65,7 +65,7 @@ extension Collection {
 			return AnyIterator {
 				var offset: Int
 				repeat {
-					offset = Int.random(in: 0..<count)
+					offset = .random(in: 0..<count)
 				} while offset == previousOffset
 				previousOffset = offset
 
@@ -784,8 +784,6 @@ extension Error {
 	Whether the error was originally created as an `NSError`.
 	*/
 	var isNSError: Bool {
-		// This used to work before Swift 5.6:
-		// `var isNsError: Bool { Self.self is NSError.Type }``
 		(self as NSError).simpleClassName != "__SwiftNativeNSError"
 	}
 }
@@ -942,10 +940,11 @@ struct SinglePhotoPickerButton: View {
 			)
 			.tint(nil) // Prevent the white tint from affecting the picker.
 			.onChange(of: selection) {
-				guard let selection = $0 else {
+				guard let selection else {
 					return
 				}
 
+				self.selection = nil
 				onCompletion(selection)
 			}
 	}
@@ -1083,14 +1082,22 @@ extension URL {
 
 struct SendFeedbackButton: View {
 	var body: some View {
-		Link("Feedback & Support", destination: SSApp.appFeedbackUrl())
+		Link(
+			"Feedback & Support",
+			systemImage: "exclamationmark.bubble",
+			destination: SSApp.appFeedbackUrl()
+		)
 	}
 }
 
 
 struct MoreAppsButton: View {
 	var body: some View {
-		Link("More Apps by Me", destination: "itms-apps://apps.apple.com/developer/id328077650")
+		Link(
+			"More Apps by Me",
+			systemImage: "app.dashed",
+			destination: "itms-apps://apps.apple.com/developer/id328077650"
+		)
 	}
 }
 
@@ -1099,7 +1106,11 @@ struct RateOnAppStoreButton: View {
 	let appStoreID: String
 
 	var body: some View {
-		Link("Rate App", destination: URL(string: "itms-apps://apps.apple.com/app/id\(appStoreID)?action=write-review")!)
+		Link(
+			"Rate App",
+			systemImage: "star",
+			destination: URL(string: "itms-apps://apps.apple.com/app/id\(appStoreID)?action=write-review")!
+		)
 	}
 }
 
@@ -1115,6 +1126,7 @@ extension CharacterSet {
 	static let urlUnreservedRFC3986 = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
 }
 
+// TODO: I may be able to remove this. Needs testing.
 private func escapeQueryComponent(_ query: String) -> String {
 	query.addingPercentEncoding(withAllowedCharacters: .urlUnreservedRFC3986)!
 }
@@ -1205,7 +1217,7 @@ enum Device {
 	*/
 	static let modelIdentifier: String = {
 		#if targetEnvironment(simulator)
-		return "Simulator"
+		"Simulator"
 		#else
 		var systemInfo = utsname()
 		uname(&systemInfo)
@@ -1349,7 +1361,7 @@ ForEach(persons.indexed(), id: \.1.id) { index, person in
 */
 struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
 	typealias Index = Base.Index
-	typealias Element = (index: Index, element: Base.Element)
+	typealias Element = (Index, Base.Element)
 
 	let base: Base
 	var startIndex: Index { base.startIndex }
@@ -1373,10 +1385,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
 }
 
 extension RandomAccessCollection {
-	/**
-	Returns a sequence with a tuple of both the index and the element.
-	*/
-	func indexed() -> IndexedCollection<Self> {
+	func indexed() -> some RandomAccessCollection<(Index, Element)> {
 		IndexedCollection(base: self)
 	}
 }
@@ -1490,14 +1499,7 @@ extension SSApp {
 	*/
 	static func openSettings() {
 		Task.detached { @MainActor in
-			guard await UIApplication.shared.open(settingsUrl) else {
-				// TODO: Present the error
-				_ = "Failed to open settings for this app.".toError
-
-				// TODO: Remove at some point.
-				SSApp.reportError("Failed to open settings for this app.")
-				return
-			}
+			await UIApplication.shared.open(settingsUrl)
 		}
 	}
 }
@@ -1682,7 +1684,7 @@ extension SSApp {
 					.filter { $0.activationState == .foregroundInactive }
 					.firstNonNil { $0 as? UIWindowScene }
 		#else
-		return nil
+		nil
 		#endif
 	}
 }
@@ -1815,11 +1817,6 @@ extension Publisher {
 }
 
 
-extension Shape where Self == Rectangle {
-	static var rectangle: Self { Self() }
-}
-
-
 func tryOrAssign<T>(
 	_ errorBinding: Binding<Error?>,
 	doClosure: () throws -> T?
@@ -1867,21 +1864,18 @@ extension View {
 }
 
 
-extension Button<Label<Text, Image>> {
+extension Link<Label<Text, Image>> {
 	init(
 		_ title: String,
 		systemImage: String,
-		role: ButtonRole? = nil,
-		action: @escaping () -> Void
+		destination: URL
 	) {
-		self.init(
-			role: role,
-			action: action
-		) {
+		self.init(destination: destination) {
 			Label(title, systemImage: systemImage)
 		}
 	}
 }
+
 
 
 extension Text {
@@ -1911,7 +1905,7 @@ extension View {
 }
 
 
-// We cannot use `loadTransferable(type: Image.self)`: https://developer.apple.com/forums/thread/709764
+// TODO: We cannot use `loadTransferable(type: Image.self)`: https://developer.apple.com/forums/thread/709764
 extension PhotosPickerItem {
 	/**
 	Loads an image from the item.
@@ -1962,7 +1956,9 @@ struct FormLinkButtonStyle: PrimitiveButtonStyle {
 	@Environment(\.isEnabled) private var isEnabled
 
 	func makeBody(configuration: Configuration) -> some View {
-		#if os(iOS)
+		#if os(macOS)
+		Button(configuration)
+		#else
 		LabeledContent {
 			Image(systemName: "arrow.up.right")
 				.imageScale(.small)
@@ -1972,8 +1968,6 @@ struct FormLinkButtonStyle: PrimitiveButtonStyle {
 		} label: {
 			Button(configuration)
 		}
-		#else
-		Button(configuration)
 		#endif
 	}
 }

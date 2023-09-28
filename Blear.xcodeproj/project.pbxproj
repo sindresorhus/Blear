@@ -12,14 +12,12 @@
 		E31C26B5282D31900047A564 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = E31C26B4282D31900047A564 /* Sentry */; };
 		E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */; };
 		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
-		E3476879267E9ED40022D2F5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3476878267E9ED40022D2F5 /* AppState.swift */; };
 		E35850582541D24200F9D5BD /* EditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35850572541D24200F9D5BD /* EditorScreen.swift */; };
 		E37CDDE426F1FA7A00130AD3 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E37CDDE326F1FA7A00130AD3 /* Defaults */; };
 		E37D72AE2329664C008B1C48 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D72AD2329664B008B1C48 /* Constants.swift */; };
 		E3A0365A17E5E7AE00892B76 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* App.swift */; };
 		E3A0368F17E6214600892B76 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0368E17E6214500892B76 /* Utilities.swift */; };
 		E3C77408255D7FF900A492FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77407255D7FF900A492FC /* Assets.xcassets */; };
-		E3DFE28B25422D4500B3F299 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DFE28A25422D4500B3F299 /* AboutScreen.swift */; };
 		E3DFE29C254390AB00B3F299 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3DFE29B254390AB00B3F299 /* Media.xcassets */; };
 		E3DFE29E254390AB00B3F299 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DFE29D254390AB00B3F299 /* ActionViewController.swift */; };
 		E3DFE2A5254390AB00B3F299 /* Action Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E3DFE299254390AB00B3F299 /* Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -59,7 +57,6 @@
 		E33A6D4E1B2272B700CBEDC9 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		E3430F421B27AD5800AF3F80 /* Bundled Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Bundled Photos"; sourceTree = "<group>"; };
-		E3476878267E9ED40022D2F5 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		E35850572541D24200F9D5BD /* EditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScreen.swift; sourceTree = "<group>"; };
 		E37D72AD2329664B008B1C48 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Constants.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3A0364617E5E7AE00892B76 /* Blear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blear.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +65,6 @@
 		E3A0368E17E6214500892B76 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utilities.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3B140881F2C2F2A008408AC /* Blear-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Blear-Bridging-Header.h"; sourceTree = "<group>"; };
 		E3C77407255D7FF900A492FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E3DFE28A25422D4500B3F299 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		E3DFE299254390AB00B3F299 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3DFE29B254390AB00B3F299 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E3DFE29D254390AB00B3F299 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -125,10 +121,8 @@
 			children = (
 				E3A0365917E5E7AE00892B76 /* App.swift */,
 				E37D72AD2329664B008B1C48 /* Constants.swift */,
-				E3476878267E9ED40022D2F5 /* AppState.swift */,
 				E3ECA0C124A4FC5900A1864E /* MainScreen.swift */,
 				E35850572541D24200F9D5BD /* EditorScreen.swift */,
-				E3DFE28A25422D4500B3F299 /* AboutScreen.swift */,
 				E3A0368E17E6214500892B76 /* Utilities.swift */,
 				E3C77407255D7FF900A492FC /* Assets.xcassets */,
 				E3A0365017E5E7AE00892B76 /* Supporting Files */,
@@ -166,9 +160,9 @@
 		E3DFE29A254390AB00B3F299 /* Action Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E3DFE29B254390AB00B3F299 /* Media.xcassets */,
 				E3DFE2AC254390D000B3F299 /* MainScreen.swift */,
 				E3DFE29D254390AB00B3F299 /* ActionViewController.swift */,
+				E3DFE29B254390AB00B3F299 /* Media.xcassets */,
 				E3DFE2A2254390AB00B3F299 /* Info.plist */,
 			);
 			path = "Action Extension";
@@ -311,8 +305,6 @@
 			files = (
 				E37D72AE2329664C008B1C48 /* Constants.swift in Sources */,
 				E3ECA0C224A4FC5A00A1864E /* MainScreen.swift in Sources */,
-				E3DFE28B25422D4500B3F299 /* AboutScreen.swift in Sources */,
-				E3476879267E9ED40022D2F5 /* AppState.swift in Sources */,
 				E35850582541D24200F9D5BD /* EditorScreen.swift in Sources */,
 				E3A0365A17E5E7AE00892B76 /* App.swift in Sources */,
 				E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */,
@@ -395,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -447,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -539,6 +531,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.blear.Action-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APP_EXTENSION";
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -574,6 +569,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.blear.Action-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
 				SWIFT_OBJC_BRIDGING_HEADER = "Blear/Blear-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

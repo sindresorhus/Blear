@@ -24,11 +24,11 @@ struct EditorScreen: View {
 				.fillFrame()
 		}
 			.ignoresSafeArea()
-			.onChange(of: image) { _ in
+			.onChange(of: image) {
 				updateImage(blurAmount: blurAmount)
 			}
 			.onChange(of: blurAmount) {
-				updateImage(blurAmount: $0)
+				updateImage(blurAmount: blurAmount)
 			}
 			.task {
 				UIScrollView.appearance().bounces = false
@@ -60,8 +60,6 @@ struct EditorScreen: View {
 	}
 }
 
-//struct EditorScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditorScreen()
-//    }
+//#Preview {
+//	EditorScreen()
 //}

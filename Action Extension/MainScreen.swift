@@ -10,6 +10,42 @@ struct MainScreen: View {
 	@State private var isWallpaperTipPresented = false
 	@ViewStorage private var hostingView: UIView?
 
+	var body: some View {
+		VStack {
+			if let image {
+				EditorScreen(
+					image: .constant(image),
+					blurAmount: $blurAmount
+				)
+			}
+		}
+			.safeAreaInset(edge: .top) {
+				if !isSaving {
+					controls
+						.safeAreaPadding(.top, 16)
+				}
+			}
+			.taskOrAssign($error) {
+				image = try await getImage()
+			}
+			.alert2(
+				"How to Change Wallpaper",
+				message: "Go to the most recent photo in the photo library, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+				isPresented: $isWallpaperTipPresented
+			)
+			.onChange(of: isWallpaperTipPresented) {
+				guard !isWallpaperTipPresented else {
+					return
+				}
+
+				extensionContext.cancel()
+			}
+			.alert(error: $error)
+			.accessHostingView {
+				hostingView = $0
+			}
+	}
+
 	private var controls: some View {
 		VStack {
 			HStack {
@@ -22,7 +58,7 @@ struct MainScreen: View {
 							.imageScale(.large)
 							// Increase tap area
 							.padding(8)
-							.contentShape(.rectangle)
+							.contentShape(.rect)
 					}
 						.padding(.horizontal, -8)
 						// TOOD: use label instead
@@ -39,7 +75,7 @@ struct MainScreen: View {
 							.imageScale(.large)
 							// Increase tap area
 							.padding(8)
-							.contentShape(.rectangle)
+							.contentShape(.rect)
 					}
 						.padding(.horizontal, -8)
 						// TOOD: Use label instead
@@ -60,40 +96,8 @@ struct MainScreen: View {
 			.padding(.vertical)
 	}
 
-    var body: some View {
-		ZStack {
-			if let image {
-				EditorScreen(
-					image: .constant(image),
-					blurAmount: $blurAmount
-				)
-			}
-			if !isSaving {
-				controls
-			}
-		}
-			.taskOrAssign($error) {
-				image = try await getImage()
-			}
-			.alert2(
-				"How to Change Wallpaper",
-				message: "Go to the most recent photo in the photo library, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
-				isPresented: $isWallpaperTipPresented
-			)
-			.onChange(of: isWallpaperTipPresented) {
-				guard !$0 else {
-					return
-				}
-
-				extensionContext.cancel()
-			}
-			.alert(error: $error)
-			.accessHostingView {
-				hostingView = $0
-			}
-    }
-
 	private func getImage() async throws -> UIImage {
+		// TODO: Switch to Transferable when targeting iOS 18.
 		guard
 			let itemProvider = (extensionContext.attachments.first { $0.hasItemConforming(to: .image) })
 		else {
@@ -152,8 +156,6 @@ struct MainScreen: View {
 	}
 }
 
-//struct MainScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainScreen()
-//    }
+//#Preview {
+//	MainScreen()
 //}

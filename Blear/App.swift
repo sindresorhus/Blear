@@ -11,8 +11,6 @@ TODO:
 
 @main
 struct AppMain: App {
-	@StateObject private var appState = AppState()
-
 	init() {
 		initSentry()
 	}
@@ -20,7 +18,6 @@ struct AppMain: App {
 	var body: some Scene {
 		WindowGroup {
 			MainScreen()
-				.environmentObject(appState)
 		}
 	}
 }
