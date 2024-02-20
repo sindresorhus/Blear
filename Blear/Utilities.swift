@@ -215,14 +215,14 @@ extension SSApp {
 	static func appFeedbackUrl() -> URL {
 		let metadata =
 			"""
-			\(SSApp.name) \(SSApp.versionWithBuild)
-			Bundle Identifier: \(SSApp.idString)
+			\(name) \(versionWithBuild)
+			Bundle Identifier: \(idString)
 			OS: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
 			Model: \(Device.modelIdentifier)
 			"""
 
 		let info: [String: String] = [
-			"product": SSApp.name,
+			"product": name,
 			"metadata": metadata
 		]
 
@@ -928,8 +928,15 @@ struct SinglePhotoPickerButton: View {
 	var onCompletion: (PhotosPickerItem) -> Void
 
 	var body: some View {
-		Button(title, systemImage: iconName) {
+		Button {
 			isPresented = true
+		} label: {
+			Label(title, systemImage: iconName)
+				// Increase tap area
+				.padding(8)
+				.contentShape(.rect)
+				.padding(.horizontal, -6)
+				// -
 		}
 			.tint(.white)
 			.photosPicker(
@@ -1102,6 +1109,15 @@ struct MoreAppsButton: View {
 }
 
 
+struct ShareAppButton: View {
+	let appStoreID: String
+
+	var body: some View {
+		ShareLink("Share App", item: "https://apps.apple.com/app/id\(appStoreID)")
+	}
+}
+
+
 struct RateOnAppStoreButton: View {
 	let appStoreID: String
 
@@ -1243,6 +1259,7 @@ Store a value persistently in a `View` like with `@State`, but without updating 
 
 You can use it for storing both value and reference types.
 */
+@MainActor
 @propertyWrapper
 struct ViewStorage<Value>: DynamicProperty {
 	private final class ValueBox {
@@ -1875,7 +1892,6 @@ extension Link<Label<Text, Image>> {
 		}
 	}
 }
-
 
 
 extension Text {

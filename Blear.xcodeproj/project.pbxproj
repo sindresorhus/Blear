@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E304D608268502480035185A /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E304D607268502480035185A /* Defaults */; };
-		E31C26B3282D301B0047A564 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = E31C26B2282D301B0047A564 /* Sentry */; };
-		E31C26B5282D31900047A564 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = E31C26B4282D31900047A564 /* Sentry */; };
 		E33A6D501B2272B700CBEDC9 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A6D4F1B2272B700CBEDC9 /* UIImageEffects.m */; };
 		E3430F431B27AD5800AF3F80 /* Bundled Photos in Resources */ = {isa = PBXBuildFile; fileRef = E3430F421B27AD5800AF3F80 /* Bundled Photos */; };
 		E35850582541D24200F9D5BD /* EditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35850572541D24200F9D5BD /* EditorScreen.swift */; };
 		E37CDDE426F1FA7A00130AD3 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E37CDDE326F1FA7A00130AD3 /* Defaults */; };
 		E37D72AE2329664C008B1C48 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D72AD2329664B008B1C48 /* Constants.swift */; };
+		E38674432C165C550089CD67 /* Sentry-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E38674422C165C550089CD67 /* Sentry-Dynamic */; };
+		E38674452C165C5D0089CD67 /* Sentry-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E38674442C165C5D0089CD67 /* Sentry-Dynamic */; };
 		E3A0365A17E5E7AE00892B76 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0365917E5E7AE00892B76 /* App.swift */; };
 		E3A0368F17E6214600892B76 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0368E17E6214500892B76 /* Utilities.swift */; };
 		E3C77408255D7FF900A492FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77407255D7FF900A492FC /* Assets.xcassets */; };
@@ -80,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E304D608268502480035185A /* Defaults in Frameworks */,
-				E31C26B3282D301B0047A564 /* Sentry in Frameworks */,
+				E38674432C165C550089CD67 /* Sentry-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,13 +89,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E37CDDE426F1FA7A00130AD3 /* Defaults in Frameworks */,
-				E31C26B5282D31900047A564 /* Sentry in Frameworks */,
+				E38674452C165C5D0089CD67 /* Sentry-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E38674412C165C550089CD67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3A0363D17E5E7AE00892B76 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +111,7 @@
 				E3DFE29A254390AB00B3F299 /* Action Extension */,
 				E3B0ED1522CCE084001D4F9E /* Vendor */,
 				E3A0364717E5E7AE00892B76 /* Products */,
+				E38674412C165C550089CD67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,7 +197,7 @@
 			name = Blear;
 			packageProductDependencies = (
 				E304D607268502480035185A /* Defaults */,
-				E31C26B2282D301B0047A564 /* Sentry */,
+				E38674422C165C550089CD67 /* Sentry-Dynamic */,
 			);
 			productName = blurr;
 			productReference = E3A0364617E5E7AE00892B76 /* Blear.app */;
@@ -210,7 +218,7 @@
 			name = "Action Extension";
 			packageProductDependencies = (
 				E37CDDE326F1FA7A00130AD3 /* Defaults */,
-				E31C26B4282D31900047A564 /* Sentry */,
+				E38674442C165C5D0089CD67 /* Sentry-Dynamic */,
 			);
 			productName = "Action Extension";
 			productReference = E3DFE299254390AB00B3F299 /* Action Extension.appex */;
@@ -387,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -439,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -459,9 +467,16 @@
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
+				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = Blear/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This is required to save the blurred photo to your library.";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.${PRODUCT_NAME:rfc1034identifier:lower}";
 				PRODUCT_NAME = Blear;
 				PROVISIONING_PROFILE = "";
@@ -488,9 +503,16 @@
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
+				GENERATE_INFOPLIST_FILE = YES;
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = Blear/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This is required to save the blurred photo to your library.";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.${PRODUCT_NAME:rfc1034identifier:lower}";
 				PRODUCT_NAME = Blear;
 				PROVISIONING_PROFILE = "";
@@ -520,7 +542,9 @@
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Make Blurry Wallpaper";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,7 +582,9 @@
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Make Blurry Wallpaper";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -616,7 +642,7 @@
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.0;
+				minimumVersion = 8.0.0;
 			};
 		};
 		E31C26B1282D301B0047A564 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
@@ -635,20 +661,20 @@
 			package = E304D606268502480035185A /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
-		E31C26B2282D301B0047A564 /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E31C26B1282D301B0047A564 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
-		E31C26B4282D31900047A564 /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E31C26B1282D301B0047A564 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
 		E37CDDE326F1FA7A00130AD3 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E304D606268502480035185A /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		E38674422C165C550089CD67 /* Sentry-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E31C26B1282D301B0047A564 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = "Sentry-Dynamic";
+		};
+		E38674442C165C5D0089CD67 /* Sentry-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E31C26B1282D301B0047A564 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = "Sentry-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

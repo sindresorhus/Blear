@@ -82,10 +82,6 @@ struct MainScreen: View {
 				}
 					.labelStyle(.iconOnly)
 					.shadow(radius: Constants.buttonShadowRadius)
-					// Increase tap area
-					.padding(8)
-					.contentShape(.rect)
-					.padding(.horizontal, -8)
 				Spacer()
 				// TODO: Use a custom slider like the iOS brightness control.
 				Slider(value: $blurAmount, in: 10...100)
@@ -132,6 +128,7 @@ struct MainScreen: View {
 			SendFeedbackButton()
 			Link("Website", systemImage: "safari", destination: "https://sindresorhus.com/blear")
 			RateOnAppStoreButton(appStoreID: "994182280")
+			ShareAppButton(appStoreID: "994182280")
 			MoreAppsButton()
 		} label: {
 			Label("Action", systemImage: "ellipsis.circle")
@@ -192,7 +189,10 @@ struct MainScreen: View {
 	}
 
 	private func showWallpaperTipIfNeeded() async {
-		guard SSApp.isFirstLaunch else {
+		guard
+			SSApp.runOnceShouldRun(identifier: "showWallpaperTip"),
+			SSApp.isFirstLaunch // TODO: Can be removed at some point.
+		else {
 			return
 		}
 
