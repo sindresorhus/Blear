@@ -552,12 +552,11 @@ extension View {
 		isPresented: Binding<Bool>,
 		@ViewBuilder actions: () -> some View
 	) -> some View {
-		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
 			isPresented: isPresented,
 			actions: actions,
-			message: {
+			message: { // swiftlint:disable:this trailing_closure
 				if let message {
 					Text(message)
 				}
@@ -575,12 +574,11 @@ extension View {
 		isPresented: Binding<Bool>,
 		@ViewBuilder actions: () -> some View
 	) -> some View {
-		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
 			isPresented: isPresented,
 			actions: actions,
-			message: {
+			message: { // swiftlint:disable:this trailing_closure
 				if let message {
 					Text(message)
 				}
@@ -596,12 +594,11 @@ extension View {
 		message: String? = nil,
 		isPresented: Binding<Bool>
 	) -> some View {
-		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
 			message: message,
 			isPresented: isPresented,
-			actions: {}
+			actions: {} // swiftlint:disable:this trailing_closure
 		)
 	}
 
@@ -614,12 +611,11 @@ extension View {
 		message: String? = nil,
 		isPresented: Binding<Bool>
 	) -> some View {
-		// swiftlint:disable:next trailing_closure
 		alert2(
 			title,
 			message: message,
 			isPresented: isPresented,
-			actions: {}
+			actions: {} // swiftlint:disable:this trailing_closure
 		)
 	}
 }
@@ -662,7 +658,7 @@ extension View {
 			title: { title($0) },
 			presenting: data,
 			actions: actions,
-			message: {
+			message: { // swiftlint:disable:this trailing_closure
 				if let message = message?($0) {
 					Text(message)
 				}
@@ -697,12 +693,11 @@ extension View {
 		message: ((T) -> String?)? = nil,
 		presenting data: Binding<T?>
 	) -> some View {
-		// swiftlint:disable:next trailing_closure
 		alert2(
 			title: title,
 			message: message,
 			presenting: data,
-			actions: { _ in }
+			actions: { _ in } // swiftlint:disable:this trailing_closure
 		)
 	}
 
@@ -1259,7 +1254,7 @@ Store a value persistently in a `View` like with `@State`, but without updating 
 
 You can use it for storing both value and reference types.
 */
-@MainActor
+//@MainActor // TODO: Enable when on Xcode 16.
 @propertyWrapper
 struct ViewStorage<Value>: DynamicProperty {
 	private final class ValueBox {
