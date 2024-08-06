@@ -92,6 +92,7 @@ only_rules:
   - operator_usage_whitespace
   - operator_whitespace
   - overridden_super_call
+  - prefer_key_path
   - prefer_self_in_static_references
   - prefer_self_type_over_type_of_self
   - prefer_zero_over_explicit_init
@@ -223,6 +224,12 @@ custom_rules:
   swiftui_environment_private:
     regex: '@Environment\(\\\.\w+\)\s+var'
     message: 'SwiftUI @Environment properties should be private'
+  swiftui_scaledtofit:
+    regex: 'aspectRatio\(contentMode: \.fit\)'
+    message: 'Prefer `scaledToFit()`'
+  swiftui_scaledtofill:
+      regex: 'aspectRatio\(contentMode: \.fill\)'
+      message: 'Prefer `scaledToFill()`'
   final_class:
     regex: '^class [a-zA-Z\d]+[^{]+\{'
     message: 'Classes should be marked as final whenever possible. If you actually need it to be subclassable, just add `// swiftlint:disable:next final_class`.'

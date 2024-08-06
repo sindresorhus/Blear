@@ -155,7 +155,7 @@ struct MainScreen: View {
 
 		await showWallpaperTipIfNeeded()
 
-		await SSApp.requestReviewAfterBeingCalledThisManyTimes([3, 50, 200, 500, 1000])
+		SSApp.requestReviewAfterBeingCalledThisManyTimes([3, 50, 200, 500, 1000])
 	}
 
 	private func _saveImage() async throws {
@@ -167,7 +167,7 @@ struct MainScreen: View {
 
 		try? await Task.sleep(for: .seconds(0.2))
 
-		guard let image = await hostingWindow?.rootViewController?.view?.toImage() else {
+		guard let image = hostingWindow?.rootViewController?.view?.toImage() else {
 			SSApp.reportError("Failed to generate the image.")
 
 			throw GeneralError(

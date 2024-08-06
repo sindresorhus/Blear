@@ -486,6 +486,20 @@ extension UIImage {
 }
 
 
+extension Optional {
+	fileprivate var _isPresent: Bool {
+		get { self != nil }
+		set {
+			guard !newValue else {
+				return
+			}
+
+			self = nil
+		}
+	}
+}
+
+
 extension Binding {
 	/**
 	Converts the binding of an optional value to a binding to a boolean for whether the value is non-nil.
@@ -493,14 +507,7 @@ extension Binding {
 	You could use this in a `isPresent` parameter for a sheet, alert, etc, to have it show when the value is non-nil.
 	*/
 	func isPresent<Wrapped>() -> Binding<Bool> where Value == Wrapped? {
-		.init(
-			get: { wrappedValue != nil },
-			set: { isPresented in
-				if !isPresented {
-					wrappedValue = nil
-				}
-			}
-		)
+		self._isPresent
 	}
 }
 
@@ -872,6 +879,7 @@ extension SSApp {
 	) {
 		reportError(
 			message.toError,
+			userInfo: userInfo,
 			file: file,
 			line: line
 		)
@@ -1055,7 +1063,7 @@ extension View {
 }
 
 
-extension URL: ExpressibleByStringLiteral {
+extension URL: @retroactive ExpressibleByStringLiteral {
 	/**
 	Example:
 
@@ -1254,7 +1262,7 @@ Store a value persistently in a `View` like with `@State`, but without updating 
 
 You can use it for storing both value and reference types.
 */
-//@MainActor // TODO: Enable when on Xcode 16.
+@MainActor
 @propertyWrapper
 struct ViewStorage<Value>: DynamicProperty {
 	private final class ValueBox {
@@ -1414,7 +1422,7 @@ extension Sequence {
 }
 
 
-extension NSError: Identifiable {
+extension NSError: @retroactive Identifiable {
 	public var id: String {
 		"\(code)" + domain + localizedDescription + (localizedRecoverySuggestion ?? "")
 	}
@@ -1497,12 +1505,12 @@ extension Collection {
 
 @available(iOSApplicationExtension, unavailable)
 extension SSApp {
-	private static var settingsUrl = URL(string: UIApplication.openSettingsURLString)!
+	private static let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
 
 	/**
 	Whether the settings view in Settings for the current app exists and can be opened.
 	*/
-	static var canOpenSettings = UIApplication.shared.canOpenURL(settingsUrl)
+	static let canOpenSettings = UIApplication.shared.canOpenURL(settingsUrl)
 
 	/**
 	Open the settings view in Settings for the current app.
@@ -1534,19 +1542,10 @@ extension UIView {
 
 
 extension EnvironmentValues {
-	private struct ExtensionContext: EnvironmentKey {
-		static var defaultValue: NSExtensionContext?
-	}
-
 	/**
 	The `.extensionContext` of an app extension view controller.
 	*/
-	var extensionContext: NSExtensionContext? {
-		get { self[ExtensionContext.self] }
-		set {
-			self[ExtensionContext.self] = newValue
-		}
-	}
+	@Entry var extensionContext: NSExtensionContext?
 }
 
 
@@ -1717,7 +1716,7 @@ extension SSApp {
 			return
 		}
 
-		Task { @MainActor in
+		Task {
 			if let currentScene {
 				SKStoreReviewController.requestReview(in: currentScene)
 			}
@@ -1843,7 +1842,7 @@ func tryOrAssign<T>(
 
 func tryOrAssign<T>(
 	_ errorBinding: Binding<Error?>,
-	doClosure: () async throws -> T?
+	@_inheritActorContext doClosure: () async throws -> T?
 ) async -> T? {
 	do {
 		return try await doClosure()
@@ -1854,13 +1853,12 @@ func tryOrAssign<T>(
 }
 
 extension View {
-	@MainActor // Temporary sendable warning workaround.
 	func taskOrAssign(
 		_ errorBinding: Binding<Error?>,
 		priority: TaskPriority = .userInitiated,
-		_ action: @escaping @Sendable () async throws -> Void
+		_ action: sending @escaping () async throws -> Void
 	) -> some View {
-		task(priority: priority) { @MainActor in
+		task(priority: priority) {
 //			await tryOrAssign(errorBinding) {
 //				try await action()
 //			}

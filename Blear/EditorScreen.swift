@@ -17,7 +17,7 @@ struct EditorScreen: View {
 				ScrollView(.horizontal, showsIndicators: false) {
 					Image(uiImage: blurredImage ?? image)
 						.resizable()
-						.aspectRatio(contentMode: .fill)
+						.scaledToFill()
 						.frame(minWidth: proxy.size.width)
 				}
 			}

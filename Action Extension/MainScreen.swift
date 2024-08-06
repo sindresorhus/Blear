@@ -143,7 +143,7 @@ struct MainScreen: View {
 
 		try? await Task.sleep(for: .seconds(0.2))
 
-		guard let image = await hostingView?.highestAncestor?.toImage() else {
+		guard let image = hostingView?.highestAncestor?.toImage() else {
 			SSApp.reportError("Failed to generate the image.")
 
 			throw GeneralError(
@@ -159,3 +159,5 @@ struct MainScreen: View {
 //#Preview {
 //	MainScreen()
 //}
+
+extension NSItemProvider: @retroactive @unchecked Sendable {}
