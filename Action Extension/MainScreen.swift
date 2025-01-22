@@ -19,31 +19,31 @@ struct MainScreen: View {
 				)
 			}
 		}
-			.safeAreaInset(edge: .top) {
-				if !isSaving {
-					controls
-						.safeAreaPadding(.top, 16)
-				}
+		.safeAreaInset(edge: .top) {
+			if !isSaving {
+				controls
+					.safeAreaPadding(.top, 16)
 			}
-			.taskOrAssign($error) {
-				image = try await getImage()
+		}
+		.taskOrAssign($error) {
+			image = try await getImage()
+		}
+		.alert2(
+			"How to Change Wallpaper",
+			message: "Go to the most recent photo in the photo library, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+			isPresented: $isWallpaperTipPresented
+		)
+		.onChange(of: isWallpaperTipPresented) {
+			guard !isWallpaperTipPresented else {
+				return
 			}
-			.alert2(
-				"How to Change Wallpaper",
-				message: "Go to the most recent photo in the photo library, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
-				isPresented: $isWallpaperTipPresented
-			)
-			.onChange(of: isWallpaperTipPresented) {
-				guard !isWallpaperTipPresented else {
-					return
-				}
 
-				extensionContext.cancel()
-			}
-			.alert(error: $error)
-			.accessHostingView {
-				hostingView = $0
-			}
+			extensionContext.cancel()
+		}
+		.alert(error: $error)
+		.accessHostingView {
+			hostingView = $0
+		}
 	}
 
 	private var controls: some View {
@@ -60,9 +60,9 @@ struct MainScreen: View {
 							.padding(8)
 							.contentShape(.rect)
 					}
-						.padding(.horizontal, -8)
-						// TOOD: use label instead
-						.help("Cancel")
+					.padding(.horizontal, -8)
+					// TOOD: use label instead
+					.help("Cancel")
 					Spacer()
 					Button {
 						Task {
@@ -77,13 +77,13 @@ struct MainScreen: View {
 							.padding(8)
 							.contentShape(.rect)
 					}
-						.padding(.horizontal, -8)
-						// TOOD: Use label instead
-						.help("Save image")
+					.padding(.horizontal, -8)
+					// TOOD: Use label instead
+					.help("Save image")
 				}
-					.shadow(radius: Constants.buttonShadowRadius)
-					.tint(.white)
-					.padding(.horizontal)
+				.shadow(radius: Constants.buttonShadowRadius)
+				.tint(.white)
+				.padding(.horizontal)
 			}
 			Spacer()
 			Slider(value: $blurAmount, in: 10...100)
@@ -91,13 +91,13 @@ struct MainScreen: View {
 				.frame(maxWidth: 500)
 				.tint(.white)
 		}
-			.padding()
-			.padding(.bottom, 40)
-			.padding(.vertical)
+		.padding()
+		.padding(.bottom, 40)
+		.padding(.vertical)
 	}
 
 	private func getImage() async throws -> UIImage {
-		// TODO: Switch to Transferable when targeting iOS 18.
+		// TODO: Switch to Transferable when targeting iOS 20.
 		guard
 			let itemProvider = (extensionContext.attachments.first { $0.hasItemConforming(to: .image) })
 		else {
@@ -122,7 +122,7 @@ struct MainScreen: View {
 	}
 
 	private func saveImage() async throws {
-		try await _saveImage()
+		try await hostingView?.highestAncestor?.blear_saveToPhotoLibrary(isSaving: $isSaving)
 
 		guard SSApp.runOnceShouldRun(identifier: "wallpaperTip") else {
 			extensionContext.cancel()
@@ -131,28 +131,6 @@ struct MainScreen: View {
 
 		try? await Task.sleep(for: .seconds(1))
 		isWallpaperTipPresented = true
-	}
-
-	// TODO: Unify this from the main app.
-	private func _saveImage() async throws {
-		isSaving = true
-
-		defer {
-			isSaving = false
-		}
-
-		try? await Task.sleep(for: .seconds(0.2))
-
-		guard let image = hostingView?.highestAncestor?.toImage() else {
-			SSApp.reportError("Failed to generate the image.")
-
-			throw GeneralError(
-				"Failed to generate the image.",
-				recoverySuggestion: "Please report this problem to the developer (sindresorhus@gmail.com)."
-			)
-		}
-
-		try await image.saveToPhotosLibrary()
 	}
 }
 

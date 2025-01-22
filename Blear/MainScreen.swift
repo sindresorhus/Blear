@@ -12,6 +12,7 @@ struct MainScreen: View {
 	// @State private var image = stockImages.first { $0.path.contains("stock6.jpg") }.map { UIImage(contentsOf: $0)! } ?? UIImage()
 
 	@Environment(\.sizeCategory) private var sizeCategory
+	@Environment(\.requestReview) private var requestReview
 	@State private var image = Self.getRandomImage()
 	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isShakeTipPresented = false
@@ -26,41 +27,41 @@ struct MainScreen: View {
 				image: $image,
 				blurAmount: $blurAmount
 			)
-				.statusBarHidden()
-				.onTapGesture(count: 2) {
-					randomImage()
+			.statusBarHidden()
+			.onTapGesture(count: 2) {
+				randomImage()
+			}
+			.overlay {
+				if !isSaving {
+					controls
 				}
-				.overlay {
-					if !isSaving {
-						controls
-					}
-				}
-				.alert2(
-					"Tip",
-					message: "Double-tap the image or shake the device to get another random image.",
-					isPresented: $isShakeTipPresented
-				)
-				.alert2(
-					"How to Change Wallpaper",
-					message: "In the Photos app, go to the image you just saved, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
-					isPresented: $isWallpaperTipPresented
-				)
-				.alert(error: $error)
-				.task {
-					await showShakeTipIfNeeded()
-				}
-				.onDeviceShake {
-					image = Self.getRandomImage()
-				}
-				.bindHostingWindow($hostingWindow)
-//				.toolbar {
-//					ToolbarItem(placement: .bottomBar) {
-//						Button("DD", systemImage: "circle.fill") {}
-//							.tint(.white)
-//					}
+			}
+			.alert2(
+				"Tip",
+				message: "Double-tap the image or shake the device to get another random image.",
+				isPresented: $isShakeTipPresented
+			)
+			.alert2(
+				"How to Change Wallpaper",
+				message: "In the Photos app, go to the image you just saved, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+				isPresented: $isWallpaperTipPresented
+			)
+			.alert(error: $error)
+			.task {
+				await showShakeTipIfNeeded()
+			}
+			.onDeviceShake {
+				image = Self.getRandomImage()
+			}
+			.bindHostingWindow($hostingWindow)
+//			.toolbar {
+//				ToolbarItem(placement: .bottomBar) {
+//					Button("DD", systemImage: "circle.fill") {}
+//						.tint(.white)
 //				}
-//				.toolbarBackground(.hidden, for: .bottomBar)
-				// TODO: The above does not actually remove the background. (iOS 17.0)
+//			}
+//			.toolbarBackground(.hidden, for: .bottomBar)
+			// TODO: The above does not actually remove the background. (iOS 17.0)
 		}
 	}
 
@@ -70,7 +71,7 @@ struct MainScreen: View {
 				Spacer()
 				actionButton
 			}
-				.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
+			.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
 			Spacer()
 			HStack {
 				SinglePhotoPickerButton { pickedImage in
@@ -80,8 +81,8 @@ struct MainScreen: View {
 						}
 					}
 				}
-					.labelStyle(.iconOnly)
-					.shadow(radius: Constants.buttonShadowRadius)
+				.labelStyle(.iconOnly)
+				.shadow(radius: Constants.buttonShadowRadius)
 				Spacer()
 				// TODO: Use a custom slider like the iOS brightness control.
 				Slider(value: $blurAmount, in: 10...100)
@@ -102,21 +103,21 @@ struct MainScreen: View {
 						.padding(8)
 						.contentShape(.rect)
 				}
-					.help("Save image")
-					.shadow(radius: Constants.buttonShadowRadius)
-					.padding(.horizontal, -8)
+				.help("Save image")
+				.shadow(radius: Constants.buttonShadowRadius)
+				.padding(.horizontal, -8)
 			}
-				.imageScale(.large)
-				.tint(.white)
+			.imageScale(.large)
+			.tint(.white)
 		}
 			// TODO: Fix
-//			.ignoresSafeArea(.top)
-			.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
-			.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
-			.compositingGroup()
-			.transition(.opacity)
-			// TODO: Fix
-//			.fadeInAfterDelay(0.4)
+//		.ignoresSafeArea(.top)
+		.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
+		.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
+		.compositingGroup()
+		.transition(.opacity)
+		// TODO: Fix
+//		.fadeInAfterDelay(0.4)
 	}
 
 	private var actionButton: some View {
@@ -151,32 +152,11 @@ struct MainScreen: View {
 	}
 
 	private func saveImage() async throws {
-		try await _saveImage()
+		try await hostingWindow?.rootViewController?.view?.blear_saveToPhotoLibrary(isSaving: $isSaving)
 
 		await showWallpaperTipIfNeeded()
 
-		SSApp.requestReviewAfterBeingCalledThisManyTimes([3, 50, 200, 500, 1000])
-	}
-
-	private func _saveImage() async throws {
-		isSaving = true
-
-		defer {
-			isSaving = false
-		}
-
-		try? await Task.sleep(for: .seconds(0.2))
-
-		guard let image = hostingWindow?.rootViewController?.view?.toImage() else {
-			SSApp.reportError("Failed to generate the image.")
-
-			throw GeneralError(
-				"Failed to generate the image.",
-				recoverySuggestion: "Please report this problem to the developer (sindresorhus@gmail.com)."
-			)
-		}
-
-		try await image.saveToPhotosLibrary()
+		SSApp.requestReviewAfterBeingCalledThisManyTimes([3, 50, 200, 500, 1000], requestReview: requestReview)
 	}
 
 	private func showShakeTipIfNeeded() async {
@@ -189,10 +169,7 @@ struct MainScreen: View {
 	}
 
 	private func showWallpaperTipIfNeeded() async {
-		guard
-			SSApp.runOnceShouldRun(identifier: "showWallpaperTip"),
-			SSApp.isFirstLaunch // TODO: Can be removed at some point.
-		else {
+		guard SSApp.runOnceShouldRun(identifier: "showWallpaperTip") else {
 			return
 		}
 

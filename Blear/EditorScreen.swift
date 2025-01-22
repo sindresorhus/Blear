@@ -21,19 +21,19 @@ struct EditorScreen: View {
 						.frame(minWidth: proxy.size.width)
 				}
 			}
-				.fillFrame()
+			.fillFrame()
 		}
-			.ignoresSafeArea()
-			.onChange(of: image) {
-				updateImage(blurAmount: blurAmount)
-			}
-			.onChange(of: blurAmount) {
-				updateImage(blurAmount: blurAmount)
-			}
-			.task {
-				UIScrollView.appearance().bounces = false
-				updateImage(blurAmount: blurAmount)
-			}
+		.ignoresSafeArea()
+		.onChange(of: image) {
+			updateImage(blurAmount: blurAmount)
+		}
+		.onChange(of: blurAmount) {
+			updateImage(blurAmount: blurAmount)
+		}
+		.task {
+			UIScrollView.appearance().bounces = false
+			updateImage(blurAmount: blurAmount)
+		}
     }
 
 	private func blurImage(_ blurAmount: Double) -> UIImage {

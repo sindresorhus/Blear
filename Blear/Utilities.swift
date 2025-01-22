@@ -29,7 +29,7 @@ let label = with(NSTextField()) {
 ```
 */
 @discardableResult
-func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
+func with<T, E>(_ item: T, update: (inout T) throws(E) -> Void) throws(E) -> T {
 	var this = item
 	try update(&this)
 	return this
@@ -460,7 +460,7 @@ extension UIImage {
 
 		guard PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized else {
 			#if APP_EXTENSION
-			let recoverySuggestion = "You can manually grant access in “Settings › \(SSApp.rootName) › Photos”."
+			let recoverySuggestion = "You can manually grant access in “Settings › Apps › \(SSApp.rootName) › Photos”."
 			let recoveryOptions = [ErrorRecoveryAttempter.Option]()
 			#else
 			let recoverySuggestion = "You can manually grant access in the “Settings”."
@@ -470,7 +470,10 @@ extension UIImage {
 						return false
 					}
 
-					SSApp.openSettings()
+					Task.detached {
+						await SSApp.openSettings()
+					}
+
 					return true
 				}
 			]
@@ -941,22 +944,22 @@ struct SinglePhotoPickerButton: View {
 				.padding(.horizontal, -6)
 				// -
 		}
-			.tint(.white)
-			.photosPicker(
-				isPresented: $isPresented,
-				selection: $selection,
-				matching: .images,
-				preferredItemEncoding: .compatible
-			)
-			.tint(nil) // Prevent the white tint from affecting the picker.
-			.onChange(of: selection) {
-				guard let selection else {
-					return
-				}
-
-				self.selection = nil
-				onCompletion(selection)
+		.tint(.white)
+		.photosPicker(
+			isPresented: $isPresented,
+			selection: $selection,
+			matching: .images,
+			preferredItemEncoding: .compatible
+		)
+		.tint(nil) // Prevent the white tint from affecting the picker.
+		.onChange(of: selection) {
+			guard let selection else {
+				return
 			}
+
+			self.selection = nil
+			onCompletion(selection)
+		}
 	}
 }
 
@@ -965,7 +968,7 @@ extension UIDevice {
 	// TODO: Find out a way to do this without Combine.
 	fileprivate static let didShakeSubject = PassthroughSubject<Void, Never>()
 
-	var didShake: AnyAsyncSequence<Void> {
+	var didShake: some AsyncSequence<Void, Never> {
 		Self.didShakeSubject.eraseToAnySequence()
 	}
 }
@@ -1201,8 +1204,7 @@ extension URL {
 
 extension Dictionary {
 	func compactValues<T>() -> [Key: T] where Value == T? {
-		// TODO: Make this `compactMapValues(\.self)` when https://github.com/apple/swift/issues/55343 is fixed.
-		compactMapValues { $0 }
+		compactMapValues(\.self)
 	}
 }
 
@@ -1416,8 +1418,7 @@ extension Sequence {
 	Returns an array containing the non-nil elements.
 	*/
 	func compact<T>() -> [T] where Element == T? {
-		// TODO: Make this `compactMap(\.self)` when https://github.com/apple/swift/issues/55343 is fixed.
-		compactMap { $0 }
+		compactMap(\.self)
 	}
 }
 
@@ -1480,8 +1481,7 @@ extension View {
 
 extension Sequence where Element: Sequence {
 	func flatten() -> [Element.Element] {
-		// TODO: Make this `flatMap(\.self)` when https://github.com/apple/swift/issues/55343 is fixed.
-		flatMap { $0 }
+		flatMap(\.self)
 	}
 }
 
@@ -1517,10 +1517,8 @@ extension SSApp {
 
 	- Important: Ensure you use `.canOpenSettings`.
 	*/
-	static func openSettings() {
-		Task.detached { @MainActor in
-			await UIApplication.shared.open(settingsUrl)
-		}
+	static func openSettings() async {
+		await UIApplication.shared.open(settingsUrl)
 	}
 }
 
@@ -1668,14 +1666,15 @@ extension Sequence {
 	/**
 	Returns the first non-`nil` result obtained from applying the given.
 	*/
-	public func firstNonNil<Result>(
-		_ transform: (Element) throws -> Result?
-	) rethrows -> Result? {
+	public func firstNonNil<Result, E>(
+		_ transform: (Element) throws(E) -> Result?
+	) throws(E) -> Result? {
 		for value in self {
 			if let value = try transform(value) {
 				return value
 			}
 		}
+
 		return nil
 	}
 }
@@ -1708,7 +1707,7 @@ extension SSApp {
 	Requests a review only after this method has been called the given amount of times.
 	*/
 	@MainActor
-	static func requestReviewAfterBeingCalledThisManyTimes(_ counts: [Int]) {
+	static func requestReviewAfterBeingCalledThisManyTimes(_ counts: [Int], requestReview: RequestReviewAction) {
 		guard
 			!SSApp.isFirstLaunch,
 			counts.contains(Defaults[key].increment())
@@ -1716,11 +1715,7 @@ extension SSApp {
 			return
 		}
 
-		Task {
-			if let currentScene {
-				SKStoreReviewController.requestReview(in: currentScene)
-			}
-		}
+		requestReview()
 	}
 }
 
@@ -1768,69 +1763,16 @@ extension AsyncSequence {
 	}
 }
 
-struct AnyThrowingAsyncSequence<Element>: AsyncSequence {
-	typealias AsyncIterator = AnyAsyncIterator<Element>
-
-	struct AnyAsyncIterator<Element2>: AsyncIteratorProtocol {
-		private let _next: () async throws -> Element2?
-
-		init<I: AsyncIteratorProtocol>(_ asyncIterator: I) where I.Element == Element2 {
-			var asyncIterator = asyncIterator
-			self._next = {
-				try await asyncIterator.next()
-			}
-		}
-
-		mutating func next() async throws -> Element2? {
-			try await _next()
-		}
-	}
-
-	private let _makeAsyncIterator: AsyncIterator
-
-	init<S: AsyncSequence>(_ asyncSequence: S) where S.AsyncIterator.Element == AsyncIterator.Element {
-		self._makeAsyncIterator = AnyAsyncIterator(asyncSequence.makeAsyncIterator())
-	}
-
-	func makeAsyncIterator() -> AsyncIterator {
-		_makeAsyncIterator
-	}
-}
-
-extension AsyncSequence {
-	func eraseToAnyThrowingAsyncSequence() -> AnyThrowingAsyncSequence<Element> {
-		AnyThrowingAsyncSequence(self)
-	}
-}
-
-extension AsyncStream {
-	@available(*, unavailable)
-	func eraseToAnyThrowingAsyncSequence() -> AnyThrowingAsyncSequence<Element> {
-		fatalError() // swiftlint:disable:this fatal_error_message
-	}
-}
-
-extension AsyncThrowingStream {
-	@available(*, unavailable)
-	func eraseToAnyAsyncSequence() -> AnyAsyncSequence<Element> {
-		fatalError() // swiftlint:disable:this fatal_error_message
-	}
-}
-
 extension Publisher {
 	func eraseToAnySequence<Element>() -> AnyAsyncSequence<Element> where Output == Element, Failure == Never {
 		AnyAsyncSequence(values)
 	}
-
-	func eraseToAnySequence<Element>() -> AnyThrowingAsyncSequence<Element> where Output == Element {
-		AnyThrowingAsyncSequence(values)
-	}
 }
 
 
-func tryOrAssign<T>(
-	_ errorBinding: Binding<Error?>,
-	doClosure: () throws -> T?
+func tryOrAssign<T, E>(
+	_ errorBinding: Binding<E?>,
+	doClosure: () throws(E) -> T?
 ) -> T? {
 	do {
 		return try doClosure()
@@ -1840,9 +1782,9 @@ func tryOrAssign<T>(
 	}
 }
 
-func tryOrAssign<T>(
-	_ errorBinding: Binding<Error?>,
-	@_inheritActorContext doClosure: () async throws -> T?
+func tryOrAssign<T, E>(
+	_ errorBinding: Binding<E?>,
+	@_inheritActorContext doClosure: () async throws(E) -> T?
 ) async -> T? {
 	do {
 		return try await doClosure()
@@ -1853,10 +1795,10 @@ func tryOrAssign<T>(
 }
 
 extension View {
-	func taskOrAssign(
-		_ errorBinding: Binding<Error?>,
+	func taskOrAssign<E>(
+		_ errorBinding: Binding<E?>,
 		priority: TaskPriority = .userInitiated,
-		_ action: sending @escaping () async throws -> Void
+		@_implicitSelfCapture operation: sending @escaping @isolated(any) () async throws(E) -> Void
 	) -> some View {
 		task(priority: priority) {
 //			await tryOrAssign(errorBinding) {
@@ -1864,8 +1806,8 @@ extension View {
 //			}
 
 			// Temporary sendable warning workaround.
-			do {
-				try await action()
+			do throws(E) {
+				try await operation()
 			} catch {
 				errorBinding.wrappedValue = error
 			}

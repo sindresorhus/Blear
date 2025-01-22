@@ -1,5 +1,4 @@
-import UIKit
-
+import SwiftUI
 
 enum Constants {
 	static let initialBlurAmount = 50.0
@@ -13,4 +12,18 @@ enum Constants {
 enum DeviceInfo {
 	static let isPhone = UIDevice.current.userInterfaceIdiom == .phone
 	static let isPad = UIDevice.current.userInterfaceIdiom == .pad
+}
+
+extension UIView {
+	func blear_saveToPhotoLibrary(isSaving: Binding<Bool>) async throws {
+		isSaving.wrappedValue = true
+
+		defer {
+			isSaving.wrappedValue = false
+		}
+
+		try? await Task.sleep(for: .seconds(0.2))
+
+		try await toImage().saveToPhotosLibrary()
+	}
 }
