@@ -13,6 +13,7 @@ struct MainScreen: View {
 
 	@Environment(\.sizeCategory) private var sizeCategory
 	@Environment(\.requestReview) private var requestReview
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	@State private var image = Self.getRandomImage()
 	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isShakeTipPresented = false
@@ -20,6 +21,8 @@ struct MainScreen: View {
 	@State private var isSaving = false
 	@State private var error: Error?
 	@ViewStorage private var hostingWindow: UIWindow?
+
+	private var isPad: Bool { horizontalSizeClass == .regular }
 
 	var body: some View {
 		NavigationStack {
@@ -31,9 +34,16 @@ struct MainScreen: View {
 			.onTapGesture(count: 2) {
 				randomImage()
 			}
-			.overlay {
+			// We intentionally don't use `safeAreaBar` as it creates some shadow.
+			.safeAreaInset(edge: .top) {
 				if !isSaving {
-					controls
+					actionButton
+				}
+			}
+			.safeAreaInset(edge: .bottom) {
+				if !isSaving {
+					bottomControls
+						.transition(.opacity)
 				}
 			}
 			.alert2(
@@ -43,7 +53,7 @@ struct MainScreen: View {
 			)
 			.alert2(
 				"How to Change Wallpaper",
-				message: "In the Photos app, go to the image you just saved, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+				message: "In the Photos app, go to the image you just saved, tap the action button at the \(isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
 				isPresented: $isWallpaperTipPresented
 			)
 			.alert(error: $error)
@@ -54,70 +64,41 @@ struct MainScreen: View {
 				image = Self.getRandomImage()
 			}
 			.bindHostingWindow($hostingWindow)
-//			.toolbar {
-//				ToolbarItem(placement: .bottomBar) {
-//					Button("DD", systemImage: "circle.fill") {}
-//						.tint(.white)
-//				}
-//			}
-//			.toolbarBackground(.hidden, for: .bottomBar)
-			// TODO: The above does not actually remove the background. (iOS 17.0)
 		}
 	}
 
-	private var controls: some View {
-		VStack {
-			HStack {
-				Spacer()
-				actionButton
+	private var bottomControls: some View {
+		HStack {
+			SinglePhotoPickerButton { pickedImage in
+				Task {
+					await tryOrAssign($error) {
+						image = try await pickedImage.loadImage(maxPixelSize: Constants.maxImagePixelSize)
+					}
+				}
 			}
-			.padding(.top) // TODO: Remove this when the homebutton type phones are no longer supported.
+			.buttonStyle(.glass)
+			.labelStyle(.iconOnly)
 			Spacer()
-			HStack {
-				SinglePhotoPickerButton { pickedImage in
-					Task {
-						await tryOrAssign($error) {
-							image = try await pickedImage.loadImage(maxPixelSize: Constants.maxImagePixelSize)
-						}
+			Slider(value: $blurAmount, in: 10...100)
+				.tint(.white)
+				.padding(.horizontal, isPad ? 60 : 30)
+				.frame(minWidth: 180, maxWidth: 500)
+				.scaleEffect(sizeCategory.isAccessibilityCategory ? 1.5 : 1)
+				.padding(.horizontal, sizeCategory.isAccessibilityCategory ? 10 : 0)
+			Spacer()
+			Button("Save image", systemImage: "square.and.arrow.down") {
+				Task {
+					await tryOrAssign($error) {
+						try await saveImage()
 					}
 				}
-				.labelStyle(.iconOnly)
-				.shadow(radius: Constants.buttonShadowRadius)
-				Spacer()
-				// TODO: Use a custom slider like the iOS brightness control.
-				Slider(value: $blurAmount, in: 10...100)
-					.padding(.horizontal, DeviceInfo.isPad ? 60 : 30)
-					.frame(minWidth: 180, maxWidth: 500)
-					.scaleEffect(sizeCategory.isAccessibilityCategory ? 1.5 : 1)
-					.padding(.horizontal, sizeCategory.isAccessibilityCategory ? 10 : 0)
-				Spacer()
-				Button {
-					Task {
-						await tryOrAssign($error) {
-							try await saveImage()
-						}
-					}
-				} label: {
-					Image(systemName: "square.and.arrow.down")
-						// Increase tap area
-						.padding(8)
-						.contentShape(.rect)
-				}
-				.help("Save image")
-				.shadow(radius: Constants.buttonShadowRadius)
-				.padding(.horizontal, -8)
 			}
-			.imageScale(.large)
-			.tint(.white)
+			.buttonStyle(.glass)
+			.labelStyle(.iconOnly)
 		}
-			// TODO: Fix
-//		.ignoresSafeArea(.top)
-		.padding(.horizontal, DeviceInfo.isPad ? 50 : 30)
-		.padding(.bottom, DeviceInfo.isPad ? 50 : 30)
-		.compositingGroup()
-		.transition(.opacity)
-		// TODO: Fix
-//		.fadeInAfterDelay(0.4)
+		.imageScale(.large)
+		.padding(.horizontal, isPad ? 50 : 30)
+		.padding(.vertical)
 	}
 
 	private var actionButton: some View {
@@ -132,19 +113,11 @@ struct MainScreen: View {
 			ShareAppButton(appStoreID: "994182280")
 			MoreAppsButton()
 		} label: {
-			Label("Action", systemImage: "ellipsis.circle")
-				// TODO: Workaround for iOS 15.4 where the tap target is tiny.
-				.imageScale(.large)
-				.padding(.trailing, 2)
-				// Increase tap area
-				.padding(8)
-				.contentShape(.rect)
-				//
-				.shadow(radius: Constants.buttonShadowRadius)
-				.tint(.white)
+			Label("Action", systemImage: "ellipsis")
 				.labelStyle(.iconOnly)
-				.offset(y: -8)
 		}
+		.buttonStyle(.glass)
+		.buttonBorderShape(.capsule)
 	}
 
 	private func randomImage() {

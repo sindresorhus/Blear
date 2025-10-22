@@ -3,18 +3,7 @@ import Combine
 import MobileCoreServices
 import PhotosUI
 import StoreKit
-import Sentry
 import Defaults
-
-
-func initSentry() {
-	#if !DEBUG
-	SentrySDK.start {
-		$0.dsn = "https://56d71bf257f043f8ad95ce7b61d52b41@o844094.ingest.sentry.io/6398796"
-		$0.enableSwizzling = false
-	}
-	#endif
-}
 
 
 /**
@@ -832,64 +821,6 @@ extension NSError {
 }
 
 
-extension SSApp {
-	/**
-	Report an error to the chosen crash reporting solution.
-	*/
-	@inlinable
-	static func reportError(
-		_ error: Error,
-		userInfo: [String: Any] = [:],
-		file: String = #fileID,
-		line: Int = #line
-	) {
-		guard !(error is CancellationError) else {
-			#if DEBUG
-			print("[\(file):\(line)] CancellationError:", error)
-			#endif
-			return
-		}
-
-		let userInfo = userInfo
-			.appending([
-				"file": file,
-				"line": line
-			])
-
-		let error = NSError.from(
-			error: error,
-			userInfo: userInfo
-		)
-
-		#if DEBUG
-		print("[\(file):\(line)] Reporting error:", error)
-		#endif
-
-		#if canImport(Sentry)
-		SentrySDK.capture(error: error)
-		#endif
-	}
-
-	/**
-	Report an error message to the chosen crash reporting solution.
-	*/
-	@inlinable
-	static func reportError(
-		_ message: String,
-		userInfo: [String: Any] = [:],
-		file: String = #fileID,
-		line: Int = #line
-	) {
-		reportError(
-			message.toError,
-			userInfo: userInfo,
-			file: file,
-			line: line
-		)
-	}
-}
-
-
 extension CGImage {
 	static func from(_ data: Data, maxPixelSize: Int? = nil) throws -> CGImage {
 		let sourceOptions: [CFString: Any] = [
@@ -934,24 +865,15 @@ struct SinglePhotoPickerButton: View {
 	var onCompletion: (PhotosPickerItem) -> Void
 
 	var body: some View {
-		Button {
+		Button(title, systemImage: iconName) {
 			isPresented = true
-		} label: {
-			Label(title, systemImage: iconName)
-				// Increase tap area
-				.padding(8)
-				.contentShape(.rect)
-				.padding(.horizontal, -6)
-				// -
 		}
-		.tint(.white)
 		.photosPicker(
 			isPresented: $isPresented,
 			selection: $selection,
 			matching: .images,
 			preferredItemEncoding: .compatible
 		)
-		.tint(nil) // Prevent the white tint from affecting the picker.
 		.onChange(of: selection) {
 			guard let selection else {
 				return
@@ -1139,53 +1061,24 @@ struct RateOnAppStoreButton: View {
 
 typealias QueryDictionary = [String: String]
 
-extension CharacterSet {
-	/**
-	Characters allowed to be unescaped in an URL.
-
-	https://tools.ietf.org/html/rfc3986#section-2.3
-	*/
-	static let urlUnreservedRFC3986 = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
-}
-
-// TODO: I may be able to remove this. Needs testing.
-private func escapeQueryComponent(_ query: String) -> String {
-	query.addingPercentEncoding(withAllowedCharacters: .urlUnreservedRFC3986)!
-}
-
 extension Dictionary where Key == String {
-	/**
-	This correctly escapes items. See `escapeQueryComponent`.
-	*/
 	var toQueryItems: [URLQueryItem] {
-		map {
-			URLQueryItem(
-				name: escapeQueryComponent($0),
-				value: escapeQueryComponent("\($1)")
-			)
-		}
+		map { URLQueryItem(name: $0, value: "\($1)") }
 	}
 }
 
 extension URLComponents {
-	/**
-	This correctly escapes items. See `escapeQueryComponent`.
-	*/
 	init?(string: String, query: QueryDictionary) {
 		self.init(string: string)
 		self.queryDictionary = query
 	}
 
-	/**
-	This correctly escapes items. See `escapeQueryComponent`.
-	*/
 	var queryDictionary: QueryDictionary {
 		get {
 			queryItems?.toDictionary { ($0.name, $0.value) }.compactValues() ?? [:]
 		}
 		set {
-			// Using `percentEncodedQueryItems` instead of `queryItems` since the query items are already custom-escaped. See `escapeQueryComponent`.
-			percentEncodedQueryItems = newValue.toQueryItems
+			queryItems = newValue.toQueryItems
 		}
 	}
 }
@@ -1784,7 +1677,7 @@ func tryOrAssign<T, E>(
 
 func tryOrAssign<T, E>(
 	_ errorBinding: Binding<E?>,
-	@_inheritActorContext doClosure: () async throws(E) -> T?
+	doClosure: () async throws(E) -> T?
 ) async -> T? {
 	do {
 		return try await doClosure()

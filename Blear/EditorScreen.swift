@@ -14,12 +14,13 @@ struct EditorScreen: View {
     var body: some View {
 		VStack {
 			GeometryReader { proxy in
-				ScrollView(.horizontal, showsIndicators: false) {
+				ScrollView(.horizontal) {
 					Image(uiImage: blurredImage ?? image)
 						.resizable()
 						.scaledToFill()
 						.frame(minWidth: proxy.size.width)
 				}
+				.scrollIndicators(.hidden)
 			}
 			.fillFrame()
 		}

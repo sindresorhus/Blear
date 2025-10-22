@@ -10,8 +10,6 @@
 			<string>photo</string>
 		</dict>
 	</dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionActionWantsFullScreenPresentation</key>

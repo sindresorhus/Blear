@@ -5,7 +5,10 @@ enum Constants {
 	static let buttonShadowRadius = 2.0
 
 	@MainActor
-	static let maxImagePixelSize = Int(UIScreen.main.bounds.size.longestSide / 2)
+	static let maxImagePixelSize: Int = {
+		let longestSide = SSApp.currentScene?.screen.bounds.size.longestSide ?? 932
+		return Int(longestSide / 2)
+	}()
 }
 
 @MainActor

@@ -15,7 +15,7 @@
 
 ## Info
 
-Requires minimum iOS 18.
+Requires minimum iOS 26.
 
 ## FAQ
 

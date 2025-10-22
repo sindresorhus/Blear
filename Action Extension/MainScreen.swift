@@ -3,12 +3,15 @@ import UniformTypeIdentifiers
 
 struct MainScreen: View {
 	@Environment(\.extensionContext) private var extensionContext: NSExtensionContext!
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
 	@State private var image: UIImage?
 	@State private var blurAmount = Constants.initialBlurAmount
 	@State private var isSaving = false
 	@State private var error: Error?
 	@State private var isWallpaperTipPresented = false
 	@ViewStorage private var hostingView: UIView?
+
+	private var isPad: Bool { horizontalSizeClass == .regular }
 
 	var body: some View {
 		VStack {
@@ -30,7 +33,7 @@ struct MainScreen: View {
 		}
 		.alert2(
 			"How to Change Wallpaper",
-			message: "Go to the most recent photo in the photo library, tap the action button at the \(DeviceInfo.isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
+			message: "Go to the most recent photo in the photo library, tap the action button at the \(isPad ? "top right" : "bottom left"), and choose “Use as Wallpaper”.",
 			isPresented: $isWallpaperTipPresented
 		)
 		.onChange(of: isWallpaperTipPresented) {
@@ -49,47 +52,32 @@ struct MainScreen: View {
 	private var controls: some View {
 		VStack {
 			HStack {
-				Group {
-					// TODO: Use `CloseOrClearButton`.
-					Button {
-						extensionContext.cancel()
-					} label: {
-						Image(systemName: "xmark.circle")
-							.imageScale(.large)
-							// Increase tap area
-							.padding(8)
-							.contentShape(.rect)
-					}
-					.padding(.horizontal, -8)
-					// TOOD: use label instead
-					.help("Cancel")
-					Spacer()
-					Button {
-						Task {
-							await tryOrAssign($error) {
-								try await saveImage()
-							}
-						}
-					} label: {
-						Image(systemName: "square.and.arrow.down")
-							.imageScale(.large)
-							// Increase tap area
-							.padding(8)
-							.contentShape(.rect)
-					}
-					.padding(.horizontal, -8)
-					// TOOD: Use label instead
-					.help("Save image")
+				Button(role: .close) {
+					extensionContext.cancel()
 				}
-				.shadow(radius: Constants.buttonShadowRadius)
-				.tint(.white)
-				.padding(.horizontal)
+				.scaleEffect(1.2) // Work around iOS 26 bug where the button is tiny.
+				Spacer()
+				Button(
+					"Save image",
+					systemImage: "square.and.arrow.down",
+					role: .confirm
+				) {
+					Task {
+						await tryOrAssign($error) {
+							try await saveImage()
+						}
+					}
+				}
 			}
+			.buttonStyle(.glass)
+			.buttonBorderShape(.circle)
+			.labelStyle(.iconOnly)
+			.padding(.horizontal)
 			Spacer()
 			Slider(value: $blurAmount, in: 10...100)
-				.padding(.horizontal, DeviceInfo.isPad ? 60 : 30)
-				.frame(maxWidth: 500)
 				.tint(.white)
+				.padding(.horizontal, isPad ? 60 : 30)
+				.frame(maxWidth: 500)
 		}
 		.padding()
 		.padding(.bottom, 40)
@@ -97,28 +85,13 @@ struct MainScreen: View {
 	}
 
 	private func getImage() async throws -> UIImage {
-		// TODO: Switch to Transferable when targeting iOS 20.
 		guard
 			let itemProvider = (extensionContext.attachments.first { $0.hasItemConforming(to: .image) })
 		else {
 			throw "Did not receive any compatible image.".toError
 		}
 
-		// TODO: Force the following to execute in a background thread.
-		do {
-			return try await itemProvider.loadImage(maxPixelSize: Constants.maxImagePixelSize)
-		} catch {
-			SSApp.reportError(
-				error,
-				userInfo: [
-					"registeredContentTypes": itemProvider.registeredContentTypes,
-					"canLoadObject(UIImage)": itemProvider.canLoadObject(ofClass: UIImage.self),
-					"underlyingErrors": (error as NSError).underlyingErrors
-				]
-			) // TODO: Remove at some point.
-
-			throw error
-		}
+		return try await itemProvider.loadImage(maxPixelSize: Constants.maxImagePixelSize)
 	}
 
 	private func saveImage() async throws {

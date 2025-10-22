@@ -6,8 +6,6 @@ final class ActionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		initSentry()
-
 		let contentView = MainScreen()
 			.environment(\.extensionContext, extensionContext)
 

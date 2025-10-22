@@ -164,7 +164,7 @@
 			.colorSpace = NULL,
 			// (kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little)
 			// requests a BGRA buffer.
-			.bitmapInfo = kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little,
+			.bitmapInfo = (CGBitmapInfo)kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little,
 			.version = 0,
 			.decode = NULL,
 			.renderingIntent = kCGRenderingIntentDefault
